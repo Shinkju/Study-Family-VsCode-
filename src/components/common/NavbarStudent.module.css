@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    /* padding: 0; */
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+.NavInfoDiv {
+    width: 45%;
+    float: left;
+}
+
+.NavInfoDiv>div {
+    line-height: 30px;
+    
+}
+
+.NavTitleName{
+    text-align: center;
+}
+
+.NavTitleDiv{
+    line-height:150%;
+    text-align: left;
+   
+}
+
+.NavlistUl {
+    list-style-type: none;
+    background-color: #F2F2F2;
+    width: 300px;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+   
+}
+.NavAddimg{   
+    margin-top: 50px;
+}
+
+.NavlistUl>hr{
+    margin-top: 60px;
+}
+
+.NavlistUl>li {
+    height: 5px;
+    line-height: 10px;
+    display: block;
+    margin-top: 50px;
+    padding: 0.5rem 1rem;
+    font-size: 25px;
+    /*border-top: solid 1px #AEA4AB; */
+    text-align: center;
+   
+}
+
+.NavlistUl>li>a {
+    color: #9A9A9A;
+    transition: 1s;
+    
+    
+}
+.NavlistUl>li>a:hover {
+    color: black;
+    transition: 0.85s;
+    opacity : 2;
+}

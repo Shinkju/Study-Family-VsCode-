@@ -14,7 +14,7 @@ function Main() {
             <nav>
                 <Link to="/">HOME</Link>
                 <Link to="/about">소개</Link>
-                <Link to="/menu">메뉴목록</Link>
+                <Link to="/menu">수강신청</Link>
             </nav>
         </div>
     );

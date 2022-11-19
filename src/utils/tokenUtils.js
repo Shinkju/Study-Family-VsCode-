@@ -6,4 +6,3 @@ export function decodeJwt(token) {
 
     return jwt_decode(token);
 }
-

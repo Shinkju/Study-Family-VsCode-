@@ -1,9 +1,9 @@
-import TacMainCSS from './TacMain.module.css';
+import AppClassCSS from './AppClass.module.css';
 
-function TacMain() {
+function AppClass() {
     return (
-        <div className={ TacMainCSS.TacMainDiv }>
-            <ul className={ TacMainCSS.TacMainUl }>
+        <div className={ AppClassCSS.AppClassDiv }>
+            <ul className={ AppClassCSS.AppClassUl }>
                 <li>구분</li>
                 <li>과목번호</li>
                 <li>학과명</li>
@@ -17,4 +17,4 @@ function TacMain() {
     );
 }
 
-export default TacMain;
+export default AppClass;

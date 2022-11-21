@@ -2,7 +2,6 @@ import { decodeJwt } from '../../utils/tokenUtils';
 import { NavLink } from 'react-router-dom';
 import NavbarStudentCSS from './NavbarStudent.module.css';
 
-
 function NavbarStudent() {
 
     const isLogin = window.localStorage.getItem('accessToken');
@@ -29,7 +28,7 @@ function NavbarStudent() {
                 <hr/>
                 <li><NavLink to="/">강의실</NavLink></li>
                 <hr/>
-                <li><NavLink to="/">수강신청</NavLink></li>
+                <li><NavLink to="/appClass">수강신청</NavLink></li>
                 <hr/>
                 <li><NavLink to="/">학과일정</NavLink></li>
                 <hr/>

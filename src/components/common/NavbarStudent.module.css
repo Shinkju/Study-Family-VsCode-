@@ -1,15 +1,33 @@
 * {
-    margin: 0;
+    font-family: 'Y_Spotlight';
     
+}
+
+@font-face {
+    font-family: 'Y_Spotlight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 a {
     text-decoration: none;
 }
 
+hr {
+    height: 10px;
+    border: 0;
+    box-shadow: 0 10px 10px -10px #bbb inset;
+}
+
 .NavInfoDiv {
     width: 45%;
     float: left;
+}
+
+.NavInfoDiv>img {
+    width: 100px;
+    height: 80px;
 }
 
 .NavInfoDiv>div {
@@ -24,18 +42,20 @@ a {
 .NavTitleDiv{
     line-height:150%;
     text-align: left;
-   
 }
+.NavTitleDiv>a:hover {
+    color: #9A9A9A;
+}
+
 
 .NavlistUl {
     list-style-type: none;
-    background-color: #F2F2F2;
+    background-color: #F8EDF5;
     width: 300px;
-    height: 100vh;
+    height: 90vh;
     float: left;
-    /* overflow: auto;
-    position: fixed; */
-   
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-radius: 20%;
 }
 .NavAddimg{   
     margin-top: 50px;
@@ -51,20 +71,16 @@ a {
     display: block;
     margin-top: 50px;
     padding: 0.5rem 1rem;
-    font-size: 25px;
-    /*border-top: solid 1px #AEA4AB; */
+    font-size: 23px;
     text-align: center;
    
 }
 
 .NavlistUl>li>a {
     color: #9A9A9A;
-    transition: 1s;
-    
-    
+
 }
 .NavlistUl>li>a:hover {
     color: black;
-    transition: 0.85s;
-    opacity : 2;
+
 }

@@ -17,7 +17,7 @@ function NavbarStudent() {
                 <ul className={ NavbarStudentCSS.NavlistUl }>
                 <div className={NavbarStudentCSS.NavAddimg}>
                     <div className={ NavbarStudentCSS.NavInfoDiv }>
-                        <img src="/images/admin.ico" alt=""></img></div>
+                        <img src="/images/logo2.png" alt=""></img></div>
                        <div className={NavbarStudentCSS.NavTitleDiv} >
                         <strong>홍길동님</strong><br/>
                         <strong>220608</strong>

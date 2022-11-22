@@ -50,15 +50,15 @@ function LectureStuList(){
                 <table>
                     <colgroup>
                         <col width="10%" />
-                        <col width="50%" />
-                        <col width="20%" />
-                        <col width="20%" />
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="5%" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th>강좌 명</th>
-                            <th>담당 학과</th>
                             <th>담당 교수</th>
+                            <th>담당 학과</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -85,11 +85,12 @@ function LectureStuList(){
                             <button
                                 onClick={ () => onClickTableTr() }
                             >
-                            입장하기
+                                입장하기
                             </button>  
                         </tr>
-                    </tbody>              
-                </table>         
+                    </tbody>       
+                </table>    
+                    
             </div>
 
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>

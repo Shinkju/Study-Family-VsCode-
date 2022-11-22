@@ -15,7 +15,22 @@ table {
   overflow: hidden;
 }
 
-th, button {
+/* 강의실 입장Bt */
+table>tbody>tr>button {
+  background-color: #F8EDF5;
+  border-radius: 5px;
+  border-color: #F8EDF5;
+  padding: 10px;
+  margin-top: 3px;
+}
+table>tbody>tr>button:hover {
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+
+th {
   text-align: center;
 }
   
@@ -39,13 +54,13 @@ thead {
   
  @media all and (max-width: 768px) {
     
-  table, thead, tbody, th, td, tr, button {
+  table, thead, tbody, th, td, tr {
     display: block;
   }
   
-  th, button {
+  /* th {
     text-align: right;
-  }
+  } */
   
   table {
     position: relative; 
@@ -54,22 +69,22 @@ thead {
     box-shadow: 0 0 10px rgba(0,0,0,.2);
   }
   
-  thead {
+  /* thead {
     float: left;
     white-space: nowrap;
-  }
+  } */
   
-  tbody {
+  /* tbody {
     overflow-x: auto;
     overflow-y: hidden;
     position: relative;
     white-space: nowrap;
-  }
+  } */
   
-  tr, button {
+  /* tr {
     display: inline-block;
     vertical-align: top;
-  }
+  } */
   
   th {
     border-bottom: 1px solid #a39485;
@@ -81,3 +96,5 @@ thead {
   
   
   }
+
+

@@ -1,6 +1,5 @@
 * {
     margin: 0;
-    /* padding: 0; */
     
 }
 
@@ -32,9 +31,10 @@ a {
     list-style-type: none;
     background-color: #F2F2F2;
     width: 300px;
-    height: 100%;
-    overflow: auto;
-    position: fixed;
+    height: 100vh;
+    float: left;
+    /* overflow: auto;
+    position: fixed; */
    
 }
 .NavAddimg{   

@@ -14,15 +14,23 @@ function App() {
     
       <BrowserRouter>
         <Routes>
+          {/* 학생 화면 */}
           <Route path="/" element={ <LayoutStudent/> }>
             <Route index element={ <LectureStuList/> }/>
             <Route path="/professor" element={ <LayoutProfessor/>}/>
-            <Route path="/admin" element={ <LayoutAdmin/>}/>
             <Route path="/layoutSubnotice" element={ <LayoutSubnotice/>}/>
             <Route path="/appClass" element={ <AppClass/>}/>
             <Route path="/subnotice" element={ <Subnotice/>}/>
           </Route>
+
+          {/* 관리자 화면 */}
+          <Route path="/admin" element={ <LayoutAdmin/>}>
+          
+          </Route>
+
         </Routes>
+
+
       </BrowserRouter>
     
   );

@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import NavbarStudent from "../components/common/NavbarStudent";
+import Navbar from "../components/common/Navbar";
 
-function LayoutStudent() {
+function Layout() {
 
     return (
         <>
-            <NavbarStudent/>
+            <Navbar/>
             <main>
                 <Outlet/>
             </main>
@@ -13,4 +13,4 @@ function LayoutStudent() {
     );
 }
 
-export default LayoutStudent;
+export default Layout;

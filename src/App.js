@@ -1,33 +1,23 @@
 /* BrowserRouter 컴포넌트를 이용하여 라우팅 설정을 한다.  */
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LayoutStudent from "./layouts/LayoutStudent";
-import LayoutProfessor from "./layouts/LayoutProfessor";
-import LayoutAdmin from "./layouts/LayoutAdmin";
-import LayoutSubnotice from './layouts/LayoutSubnotice';
-import AppClass from './pages/AppClass/AppClass';
-import Subnotice from './pages/subnotice/Subnotice';
+import Layout from "./layouts/Layout";
 import LectureStuList from './pages/Lecture/LectureStuList';
+import Login from './pages/Member/Login';
+
 
 function App() {
   return (
     
       <BrowserRouter>
         <Routes>
-          {/* 학생 화면 */}
-          <Route path="/" element={ <LayoutStudent/> }>
-            <Route index element={ <LectureStuList/> }/>
-            <Route path="/professor" element={ <LayoutProfessor/>}/>
-            <Route path="/layoutSubnotice" element={ <LayoutSubnotice/>}/>
-            <Route path="/appClass" element={ <AppClass/>}/>
-            <Route path="/subnotice" element={ <Subnotice/>}/>
-          </Route>
+            {/* 첫 화면에서 나오는 로그인 / 회원가입 화면 */}
+            <Route path="/" element={ <Login/> }/>
 
-          {/* 관리자 화면 */}
-          <Route path="/admin" element={ <LayoutAdmin/>}>
-          
-          </Route>
-
+            {/* 레이아웃 픽스 + 하위 페이지 */}
+            <Route path="/Layout" element={ <Layout/> }>
+              <Route index element={ <LectureStuList/> }/>
+            </Route>
         </Routes>
 
 

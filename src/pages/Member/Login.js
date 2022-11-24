@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { decodeJwt } from '../../utils/tokenUtils';
 import { callLoginAPI } from '../../apis/MemberApiCalls';
 
 function Login(){
@@ -8,6 +9,12 @@ function Login(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const isLogin = window.localStorage.getItem('accessToken');
+    let decoded = null;
+    if(isLogin) {
+        const temp = decodeJwt(isLogin);
+        decoded = temp.auth[0];
+    }
 
     // API 요청을 통해서 반환 된 로그인 결과 값
     const login = useSelector((state) => state.memberReducer);
@@ -17,12 +24,20 @@ function Login(){
 
             alert('로그인 완료!');
 
-            console.log("[Login] Login SUCCESS {}", login);
-            navigate("/Layout", { replace: true });  //리듀서값 변경 시 동작
+            if(decoded === 'ROLE_STUDENT'){
+                console.log("[Login] Login SUCCESS {}", login);
+                navigate("/LectureStuList", { replace: true });  //리듀서값 변경 시 동작
+            } else if(decoded === 'ROLE_PROFESSOR'){
+                console.log("[Login] Login SUCCESS {}", login);
+                navigate("/LectureProList", { replace: true });
+            } else if(decoded === 'ROLE_ADMIN'){
+                console.log("[Login] Login SUCCESS {}", login);
+                navigate("/", { replace: true });
+            }
         }
     }
     ,[login]
-    )
+    );
 
 
     // 폼 받은 데이터를 한 번에 변경 및 state 저장

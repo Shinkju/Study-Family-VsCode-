@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
+import { callLectureProListAPI } from '../../apis/LectureApiCalls';
 import lectureListStuCSS from './LectureStu_module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 
 
-function LectureStuList(){
+function LectureProuList(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -17,18 +17,16 @@ function LectureStuList(){
 
     useEffect(() => {
         if(token){
-
-
-            dispatch(callLectureStuListAPI({
-                studentNo: token.studentNo
+            dispatch(callLectureProListAPI({
+                professorCode: token.professorCode
             }));
         }
     },
     []);
 
-    //학생 강의실 상세 페이지 넘기기
+    //교수 강의실 상세 페이지 넘기기
     const onClickTableTr = (lectureCode) => {
-        navigate(`/lectureStuDetail/${lectureCode}`, { replace : true });
+        navigate(`/lectureProuDetail/${lectureCode}`, { replace : true });
     }
 
 
@@ -53,15 +51,15 @@ function LectureStuList(){
                     <tbody>
                         {
                             Array.isArray(lectureList) && lectureList.map(
-                                (lecture) => (
+                                (lectures) => (
                                     <tr
-                                        key={ lecture.lectureCode }
+                                        key={ lectures.lectureCode }
                                     >
-                                        <td>{ lecture.lectureName || '' }</td>
-                                        <td>{ lecture.professor.professorName || '' }</td>
-                                        <td>{ lecture.subject.subTitle || '' }</td>
+                                        <td >{ lectures.lectureName || '' }</td>
+                                        <td>{ lectures.professor.professorName || '' }</td>
+                                        <td>{ lectures.subject.subTitle || '' }</td>
                                         <td><button
-                                                onClick={ () => onClickTableTr(lecture.lectureCode) }
+                                                onClick={ () => onClickTableTr(lectures.lectureCode) }
                                             >
                                                 입장하기
                                         </button></td>
@@ -78,4 +76,4 @@ function LectureStuList(){
     )
 }
 
-export default LectureStuList;
+export default LectureProuList;

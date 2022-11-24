@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from "./layouts/Layout";
 import LectureStuList from './pages/Lecture/LectureStuList';
 import LectureProList from './pages/Lecture/LectureProuList';
+import LectureStuDetail from './pages/Lecture/LectureStuDetail';
 import Login from './pages/Member/Login';
 
 
@@ -15,12 +16,13 @@ function App() {
       <BrowserRouter>
         <Routes>
             {/* 첫 화면에서 나오는 로그인 / 회원가입 화면 */}
-            <Route path="/login" element={ <Login/> }/>
+            <Route exact path="/" element={ <Login/> }/>
 
             {/* 레이아웃 픽스 + 하위 페이지 */}
-            <Route path="/" element={ <Layout/> }>
-              <Route path="LectureStuList" element={ <LectureStuList/> }/>
-              <Route path="LectureProList" element={ <LectureProList/> }/>
+            <Route path="/layout" element={ <Layout/> }>
+              <Route path="lectureStuList" element={ <LectureStuList/> }/>
+              <Route path="lectureStuDetail" element={ <LectureStuDetail/> }/>
+              <Route path="lectureProList" element={ <LectureProList/> }/>
             </Route>
         </Routes>
 

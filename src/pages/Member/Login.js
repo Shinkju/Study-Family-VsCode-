@@ -26,13 +26,13 @@ function Login(){
 
             if(decoded === 'ROLE_STUDENT'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/LectureStuList", { replace: true });  //리듀서값 변경 시 동작
+                navigate("layout/lectureStuList", { replace: true });  //리듀서값 변경 시 동작
             } else if(decoded === 'ROLE_PROFESSOR'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/LectureProList", { replace: true });
+                navigate("layout/lectureProList", { replace: true });
             } else if(decoded === 'ROLE_ADMIN'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/", { replace: true });
+                navigate("layout/", { replace: true });
             }
         }
     }

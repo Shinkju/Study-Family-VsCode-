@@ -28,7 +28,10 @@ function LectureStuList(){
 
     //학생 강의실 상세 페이지 넘기기
     const onClickTableTr = (lectureCode) => {
-        navigate(`/lectureStuDetail/${lectureCode}`, { replace : true });
+        
+        console.log('강의실 코드번호= ', lectureCode)
+
+        navigate(`/layout/lectureStuDetail/${lectureCode}`, { replace : true });
     }
 
 

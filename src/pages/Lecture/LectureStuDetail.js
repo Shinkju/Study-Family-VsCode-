@@ -2,7 +2,7 @@ import { callLectureStuDetailAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
+import lectureListStuCSS from './LectureStu_module.css';
 
 function LectureStuDetail(){
 
@@ -12,6 +12,8 @@ function LectureStuDetail(){
     const lectureList = lecture.data;  
     const params = useParams();
     const lectureCode = params.lectureCode;
+    const [fileBase64, setFileBase64] = useState([]);
+    const [file, setFile] = useState(null);
 
 
     useEffect(
@@ -23,7 +25,12 @@ function LectureStuDetail(){
         []
     );
 
+    //과제 파일 미리보기 + 업로드
+    const onClickTaskSubmitHandler = (e) => {
+        console.log(e.target.file.data)
+        setFile(e.target.file);
 
+    }
 
 
     return (
@@ -53,16 +60,17 @@ function LectureStuDetail(){
                                     >
                                         <td>{ lecture.lectureWeeks.week || '' }</td>
                                         <td>
-                                            <video controls poster="">
+                                            {/* <video controls poster="">
                                             <source src={ lecture.lectureWeeks.files.savedRoute || '' }/>
-                                            </video>
+                                            </video> */}
                                         </td>
                                         <td>
-                                            <button
-                                                onClick={ onClickTaskSubmitHandler }
-                                            >
-                                                제출하기
-                                            </button>
+                                            <input
+                                                type="file"
+                                                id="file"
+                                                onChange={onClickTaskSubmitHandler}
+                                                multiple="multiple"
+                                            />
                                         </td>
                                         <td></td>
                                     </tr>
@@ -77,5 +85,6 @@ function LectureStuDetail(){
         </>
     );
 }
+
 
 export default LectureStuDetail;

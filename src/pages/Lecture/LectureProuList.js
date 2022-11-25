@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { callLectureProListAPI } from '../../apis/LectureApiCalls';
 import lectureListStuCSS from './LectureStu_module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
+// import lectureProDetail from './LectureProDetail';
 
 
 function LectureProuList(){
@@ -26,16 +27,19 @@ function LectureProuList(){
 
     //교수 강의실 상세 페이지 넘기기
     const onClickTableTr = (lectureCode) => {
-        navigate(`/lectureProuDetail/${lectureCode}`, { replace : true });
+
+       navigate(`/layout/lectureProDetail/${lectureCode}`, { replace : false });
     }
+    
 
 
     return(
         <>
+            <br/><br/><br/>
             <div>
                 <table>
                     <colgroup>
-                        <col width="10%" />
+                        <col width="5%" />
                         <col width="10%" />
                         <col width="10%" />
                         <col width="5%" />

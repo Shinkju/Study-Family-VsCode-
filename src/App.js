@@ -5,6 +5,8 @@ import Layout from "./layouts/Layout";
 import LectureStuList from './pages/Lecture/LectureStuList';
 import LectureProList from './pages/Lecture/LectureProuList';
 import LectureStuDetail from './pages/Lecture/LectureStuDetail';
+import LectureProDetail from './pages/Lecture/LectureProDetail';
+import LectureResitModal from './pages/Lecture/Modal/LectureResitModal';
 import Login from './pages/Member/Login';
 
 
@@ -23,6 +25,8 @@ function App() {
               <Route path="lectureStuList" element={ <LectureStuList/> }/>
               <Route path="lectureStuDetail/:lectureCode" element={ <LectureStuDetail/> }/>
               <Route path="lectureProList" element={ <LectureProList/> }/>
+              <Route path="lectureProDetail/:lectureCode" element={ <LectureProDetail/> }/>
+              <Route path="lectureProDetail/:lectureCode" element={ <LectureResitModal/> }/>
             </Route>
         </Routes>
 

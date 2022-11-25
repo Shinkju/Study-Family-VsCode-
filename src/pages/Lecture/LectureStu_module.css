@@ -69,23 +69,6 @@ thead {
     box-shadow: 0 0 10px rgba(0,0,0,.2);
   }
   
-  /* thead {
-    float: left;
-    white-space: nowrap;
-  } */
-  
-  /* tbody {
-    overflow-x: auto;
-    overflow-y: hidden;
-    position: relative;
-    white-space: nowrap;
-  } */
-  
-  /* tr {
-    display: inline-block;
-    vertical-align: top;
-  } */
-  
   th {
     border-bottom: 1px solid #a39485;
   }

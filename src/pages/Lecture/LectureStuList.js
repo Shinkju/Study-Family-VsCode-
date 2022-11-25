@@ -23,24 +23,26 @@ function LectureStuList(){
                 studentNo: token.studentNo
             }));
         }
-    },
-    []);
+    },[]);
 
     //학생 강의실 상세 페이지 넘기기
     const onClickTableTr = (lectureCode) => {
-        
-        console.log('강의실 코드번호= ', lectureCode)
 
-        navigate(`/layout/lectureStuDetail/${lectureCode}`, { replace : true });
+        navigate(`/layout/lectureStuDetail/${lectureCode}`, { replace : false });
     }
 
 
     return(
         <>
             <div>
+                <div>
+                    <h1>여기는 서브바</h1>
+                </div>
+            </div><br/>
+            <div>
                 <table>
                     <colgroup>
-                        <col width="10%" />
+                        <col width="5%" />
                         <col width="10%" />
                         <col width="10%" />
                         <col width="5%" />

@@ -38,7 +38,8 @@ export const callLectureStuDetailAPI = ({lectureCode}) => {
             method : "GET",
             headers : {
                 "Content-Type" : "application/json",
-                "Accept" : "*/*"
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
             }
         })
         .then(response => response.json());
@@ -80,5 +81,30 @@ export const callLectureProListAPI = ({professorCode}) => {
 }
 
 
+
+/* 교수의 상세페이지 불러오는 API - lectureCode 사용 */
+export const callLectureProDetailAPI = ({lectureCode}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/proLectureList/${lectureCode}`
+
+    return async (dispatch, getState) => {
+        
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
+        .then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[lLectureApiCalls] callLectureProDetailAPI RESULT : ', result);
+            dispatch({ type: GET_PROFESSOR_LECTURE, payload : result });
+        }
+    }
+
+}
 
 

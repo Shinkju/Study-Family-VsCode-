@@ -21,7 +21,7 @@ function App() {
             {/* 레이아웃 픽스 + 하위 페이지 */}
             <Route path="/layout" element={ <Layout/> }>
               <Route path="lectureStuList" element={ <LectureStuList/> }/>
-              <Route path="lectureStuDetail" element={ <LectureStuDetail/> }/>
+              <Route path="lectureStuDetail/:lectureCode" element={ <LectureStuDetail/> }/>
               <Route path="lectureProList" element={ <LectureProList/> }/>
             </Route>
         </Routes>

@@ -17,7 +17,7 @@ function Navbar() {
             <ul className={ NavbarCSS.NavlistUl }>
                 {/* 학생 */}
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/lectureStuList">강의실</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/AppClass">수강신청</NavLink></li> }
+                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/AppClass">수강신청</NavLink></li> }
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/">학과일정</NavLink></li> }
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/">공지사항</NavLink></li> }
                 {/* 관리자 */}

@@ -8,7 +8,7 @@ import LectureStuDetail from './pages/Lecture/LectureStuDetail';
 import LectureProDetail from './pages/Lecture/LectureProDetail';
 import LectureResitModal from './pages/Lecture/Modal/LectureResitModal';
 import Login from './pages/Member/Login';
-
+import AppClass from './pages/AppClass/AppClass';
 
 function App() {
   
@@ -27,7 +27,10 @@ function App() {
               <Route path="lectureProList" element={ <LectureProList/> }/>
               <Route path="lectureProDetail/:lectureCode" element={ <LectureProDetail/> }/>
               <Route path="lectureProDetail/:lectureCode" element={ <LectureResitModal/> }/>
+              
             </Route>
+
+            <Route path="AppClass" element={ <AppClass/> }/>
         </Routes>
 
 

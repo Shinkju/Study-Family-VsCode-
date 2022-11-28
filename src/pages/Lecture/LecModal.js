@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import LecModalCSS from './LecModal.module.css';
-import { callLectureStuDetailAPI } from '../../apis/LectureApiCalls';
+import { callLectureStuDetailAPI } from '../../apis/LectureAPICalls';
 
 function LecModal({setLecModal}){
 

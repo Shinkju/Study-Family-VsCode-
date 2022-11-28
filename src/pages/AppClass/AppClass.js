@@ -1,21 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { callAppClassAPI,callAppClassListAPI } from '../../apis/AppClassApiCalls';
-import { decodeJwt } from '../../utils/tokenUtils';
+import { useNavigate } from 'react-router-dom';
+import { callAppClassAPI } from '../../apis/AppClassAPICalls';
+import { callAppClassListAPI } from '../../apis/LectureAPICalls';
 import AppClassCSS from './AppClass.module.css';
-import { useState } from 'react';
 import PageCSS from './Page.module.css';
 
 function AppClass() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const params = useParams();
     const lecture = useSelector(state => state.lectureReducer);
-    const lectureList = lecture.data;     
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));  
-    
+    const lectureList = lecture.data;      
 
     /* 페이징 버튼 */
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +26,6 @@ function AppClass() {
     useEffect(
         () => {
             dispatch(callAppClassListAPI({
-                lectureCode : params.lectureCode,
                 currentPage : currentPage
             }));
         }
@@ -42,17 +37,11 @@ function AppClass() {
         navigate("/AppClassMyList", { replace : true });
     }
 
-    const [form, setForm] = useState({
-        lectureCode : lecture.lectureCode
-    });
-  
 
     /* 수강신청 버튼 이벤트 */
-    const onClickAppClassHandler = () => {
+    const onClickAppClassHandler = (lecture) => {
 
-        dispatch(callAppClassAPI({
-            form : form
-        }));
+        dispatch(callAppClassAPI(lecture));
 
         alert("수강 신청 되었습니다.");
 
@@ -101,7 +90,7 @@ function AppClass() {
                                         <td>{ lecture.subject.department.departmentName }</td>
                                         <td>{ lecture.lectureName }</td>
                                         <td>{ lecture.professor.professorName }</td>
-                                        <td><button onClick={onClickAppClassHandler}>
+                                        <td><button onClick={ () => onClickAppClassHandler(lecture) }>
                                                 신청
                                         </button></td>
                                         <td>{ lecture.lecturePersonnel } / { lecture.capacity }</td>
@@ -149,14 +138,14 @@ function AppClass() {
                 ))
             }
           { 
-                 /*이거 쓰면 오류뜸 Array.isArray(lectureList) &&
+                Array.isArray(lectureList) &&
                 <button
                     onClick={ () => setCurrentPage(currentPage + 1) }
                     disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
                     className={ PageCSS.pagingBtn }
                 >
                     &gt;
-                </button>*/
+                </button>
             } 
             </div>
                    

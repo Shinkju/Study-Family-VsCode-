@@ -9,6 +9,8 @@ import LectureProDetail from './pages/Lecture/LectureProDetail';
 import LectureResitModal from './pages/Lecture/Modal/LectureResitModal';
 import Login from './pages/Member/Login';
 import AppClass from './pages/AppClass/AppClass';
+import AppClassMyList from './pages/AppClass/AppClassMyList';
+import SubPlan from './pages/SubPlan/SubPlan';
 
 function App() {
   
@@ -31,6 +33,8 @@ function App() {
             </Route>
 
             <Route path="AppClass" element={ <AppClass/> }/>
+            <Route path="AppClassMyList" element={ <AppClassMyList/> }/>
+            <Route path="SubPlan" element={ <SubPlan/> }/>
         </Routes>
 
 

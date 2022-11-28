@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { callLectureProListAPI } from '../../apis/LectureApiCalls';
+import { callLectureProListAPI } from '../../apis/LectureAPICalls';
 import lectureListStuCSS from './LectureStu_module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 // import lectureProDetail from './LectureProDetail';

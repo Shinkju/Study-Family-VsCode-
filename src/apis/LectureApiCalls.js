@@ -3,7 +3,7 @@ import { GET_STUDENT, GET_PROFESSOR, GET_STUDENT_LECTURE, GET_PROFESSOR_LECTURE,
 
 /* 학생의 강의 리스트 불러오는 API */
 export const callLectureStuListAPI = ({studentNo}) => {
-
+    console.log('[AppClassAPICalls] studentNo : ', studentNo);
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/student/stuLectureList`
 
     return async (dispatch, getState) => {
@@ -29,7 +29,8 @@ export const callLectureStuListAPI = ({studentNo}) => {
 
 /* 학생의 강의 상세페이지 불러오는 API - lectureCode 사용 */
 export const callLectureStuDetailAPI = ({lectureCode}) => {
-
+    console.log('[AppClassAPICalls] lectureCode : ', lectureCode);
+   
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/student/stuLectureList/${lectureCode}`
 
     return async (dispatch, getState) => {

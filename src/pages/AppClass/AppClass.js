@@ -39,9 +39,8 @@ function AppClass() {
 
 
     /* 수강신청 버튼 이벤트 */
-    const onClickAppClassHandler = (lecture) => {
-
-        dispatch(callAppClassAPI(lecture));
+    const onClickAppClassHandler = (appClassCode) => {
+        dispatch(callAppClassAPI(appClassCode));
 
         alert("수강 신청 되었습니다.");
 

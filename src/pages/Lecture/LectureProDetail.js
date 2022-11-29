@@ -1,4 +1,4 @@
-import { callLectureProDetailAPI } from '../../apis/LectureAPICalls';
+import { callLectureProDetailAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { callLectureProListAPI } from '../../apis/LectureApiCalls';
 import lectureListStuCSS from './LectureStu_module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
-// import lectureProDetail from './LectureProDetail';
 
 
 function LectureProuList(){

@@ -5,7 +5,6 @@ import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
 import lectureListStuCSS from './LectureStu_module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 
-
 function LectureStuList(){
 
     const navigate = useNavigate();

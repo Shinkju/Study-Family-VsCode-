@@ -2,6 +2,7 @@ import { callRegistTaskAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate  } from "react-router-dom";
+import lectureListStuCSS from './LectureStu_module.css';
 
 function TaskRegistStu(){
 
@@ -81,9 +82,9 @@ function TaskRegistStu(){
 
     return(
         
-        <div>
+        <div style={{ marginLeft:600, paddingTop:200 }}>
             <div>
-                <table>
+                <table style={{ width:800, height:300 }}>
                     <tbody>
                         <tr>
                             <td>
@@ -93,6 +94,7 @@ function TaskRegistStu(){
                                 <input
                                     type="number"
                                     name="task"
+                                    style={{ width:400 }}
                                     onChange={ onChangeHandler }
                                 />
                             </td>

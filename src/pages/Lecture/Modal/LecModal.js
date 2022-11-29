@@ -1,37 +1,39 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { callLectureStuDetailAPI } from '../../../apis/LectureApiCalls';
+// import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate, useParams } from "react-router-dom";
+// import { callLectureStuDetailAPI } from '../../../apis/LectureApiCalls';
+// import ReactPlayer from 'react-player/lazy';
+import { useRef , useState } from "react";
 import LecModalCSS from './LectureRegistModal.module.css';
 import React from 'react';
-// import ReactPlayer from 'react-player/lazy';
+
 
 function LecModal({savedRoute, setLecModal}){
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const lecture = useSelector(state => state.lectureReducer);
-    const lectureModal = lecture.data;
-    const params = useParams();
-
+    
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const lecture = useSelector(state => state.lectureReducer);
+    // const lectureModal = lecture.data;
+    // const params = useParams();
 
     console.log("savedRoute = ", savedRoute)
 
 
     return( 
         <div>
-            <div>
+            <div style={ { zindex:100, position:"absolute", marginLeft:400 } }>
                 <video 
-                    // url={process.env.PUBLIC_URL + savedRoute}
-                    width='auto' 
-                    height='auto' 
+                    width='1200px' 
+                    height='600px' 
                     controls={true}
                 >
-                    {/* <source src={ require(savedRoute) } type="video/mp4"/> */}
-                    <source src={ savedRoute } type="video/mp4"/>
+                    <source 
+                        src={ savedRoute } 
+                        type="video/mp4"
+                    />
                 </video>
                 <button
-                        style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                        style={ { marginLeft: 5 } }
                         onClick={ () => setLecModal(false) }
                     >
                         X

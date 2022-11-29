@@ -2,7 +2,7 @@ import { callLectureStuDetailAPI } from '../../apis/LectureApiCalls';
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import lectureListStuCSS from './LecModal.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 import LecModal from './Modal/LecModal';
@@ -12,6 +12,7 @@ import LecModal from './Modal/LecModal';
 function LectureStuDetail(){
 
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const lecture = useSelector(state => state.lectureReducer);
     const lectureDetail = lecture.data;
@@ -53,12 +54,9 @@ function LectureStuDetail(){
     }
 
 
-
-    //과제 파일 미리보기 + 업로드
-    const onClickTaskSubmitHandler = (e) => {
-        // console.log(e.target.file.data)
-        // setFile(e.target.file);
-
+    //과제 등록 화면 넘기기
+    const onClickLectureRegistHandler = () => {
+        navigate("/layout/taskRegistStu", { replace : false });
     }
 
 
@@ -130,14 +128,13 @@ function LectureStuDetail(){
             </div>
 
             <div>
-                <label>과제 제출</label>
-                <input
-                    type="file"
-                    id="file"
-                    onChange={onClickTaskSubmitHandler}
-                    multiple="multiple"
-                />              
-            </div>
+                <button
+                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                    onClick={ onClickLectureRegistHandler }
+                >
+                    과제 제출
+                </button>
+                </div>
             </div>
         </>
            

@@ -34,8 +34,8 @@ import { POST_APPCLASS, DELETE_APPCLASS, GET_APPCLASSMYLIST} from "../modules/Ap
 
     /* 수강신청한 목록 */
     export const callAppClassMyListAPI = ({studentNo}) => {
-
-        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/appClass/${studentNo}`
+        console.log('[AppClassAPICalls] studentNo : ', studentNo);
+        const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/appClass/student`
     
         return async (dispatch, getState) => {
             
@@ -74,11 +74,13 @@ import { POST_APPCLASS, DELETE_APPCLASS, GET_APPCLASSMYLIST} from "../modules/Ap
             method : "DELETE",
             })
         .then(response => response.json());
+        console.log('[AppClassAPICalls] appClassCode : ', appClassCode);
 
         if(result.status === 200) {
             console.log('[AppClassAPICalls] callAppClassDeleteAPI result : ', result);
-
+   
             dispatch({ type: DELETE_APPCLASS, payload: result.data });
+          
         }
     }
 }

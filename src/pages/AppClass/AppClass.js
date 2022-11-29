@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { callAppClassAPI } from '../../apis/AppClassAPICalls';
-import { callAppClassListAPI } from '../../apis/LectureAPICalls';
+import { callAppClassListAPI } from '../../apis/LectureApiCalls';
 import AppClassCSS from './AppClass.module.css';
 import PageCSS from './Page.module.css';
 

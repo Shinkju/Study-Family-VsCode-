@@ -33,11 +33,7 @@ function LectureStuList(){
 
     return(
         <>
-            <div>
-                <div>
-                    <h1>여기는 서브바</h1>
-                </div>
-            </div><br/>
+            <br/><br/><br/>
             <div>
                 <table>
                     <colgroup>

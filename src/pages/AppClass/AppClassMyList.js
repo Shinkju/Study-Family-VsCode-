@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { callLectureStuListAPI } from '../../apis/LectureAPICalls';
-import { callAppClassDeleteAPI, callAppClassMyListAPI  } from '../../apis/AppClassAPICalls';
+import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
+import { callAppClassDeleteAPI, callAppClassMyListAPI  } from '../../apis/AppClassApiCalls';
 import AppClassCSS from './AppClass.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 

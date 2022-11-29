@@ -6,7 +6,7 @@ import LectureStuList from './pages/Lecture/LectureStuList';
 import LectureProList from './pages/Lecture/LectureProuList';
 import LectureStuDetail from './pages/Lecture/LectureStuDetail';
 import LectureProDetail from './pages/Lecture/LectureProDetail';
-import LectureResitModal from './pages/Lecture/Modal/LectureResitModal';
+import FileRegistPro from './pages/Lecture/FileRegistPro';
 import Login from './pages/Member/Login';
 import AppClass from './pages/AppClass/AppClass';
 import AppClassMyList from './pages/AppClass/AppClassMyList';
@@ -28,7 +28,7 @@ function App() {
               <Route path="lectureStuDetail/:lectureCode" element={ <LectureStuDetail/> }/>
               <Route path="lectureProList" element={ <LectureProList/> }/>
               <Route path="lectureProDetail/:lectureCode" element={ <LectureProDetail/> }/>
-              <Route path="lectureProDetail/:lectureCode" element={ <LectureResitModal/> }/>
+              <Route path="fileRegistPro" element={ <FileRegistPro/> }/>
               
             </Route>
 

@@ -1,9 +1,10 @@
-import { callLectureProDetailAPI } from '../../apis/LectureAPICalls';
+import { callLectureProDetailAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import lectureListStuCSS from './LecModal.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
+
 
 function LectureProDetail(){
 
@@ -14,6 +15,8 @@ function LectureProDetail(){
     const lectureDetail = lecture.data;
     const params = useParams();
     const lectureCode = params.lectureCode;
+
+
  
     const token = decodeJwt(window.localStorage.getItem("accessToken"));  
     console.log(lectureDetail)
@@ -32,7 +35,28 @@ function LectureProDetail(){
     );
 
 
+    //file array null 체크
+    // const files = (files) => {
+    //    const files = [];
 
+    //    if(files != null){
+    //     for(var i=0; i<files.length; i++){
+    //         result.push(<p>{ files[i] }</p>)
+    //     }
+    //    }
+        
+    // }
+
+
+
+
+    //파일 등록 화면 넘기기
+    const onClickLectureRegistHandler = () => {
+        navigate("/layout/fileRegistPro", { replace : false });
+    }
+
+
+ 
 
     return(
         <>
@@ -46,47 +70,42 @@ function LectureProDetail(){
                 <table>
                     <colgroup>
                         <col width="5%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
+                        <col width="15%" />
+                        <col width="15%" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th>회차</th>
                             <th>기간</th>
                             <th>강의 영상</th>
-                            <th>출석</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            Array.isArray(lectureDetail?.lectureWeeks) && lectureDetail.lectureWeeks.map(
-                                (lectureWeek) => ([
+                            Array.isArray(lectureDetail?.lectureWeeks) && lectureDetail?.lectureWeeks.map(
+                                (lecture) => ([
                                     <tr
-                                        key={ lectureWeek.lectureWeekCode }
+                                        key={ lecture.lectureWeekCode }
                                     >
-                                        <td>{ lectureWeek.week || '' }</td>
-                                        <td>{ lectureWeek.startDate } ~ { lectureWeek.endDate }</td>
-                                        <td>
-                                           
-                                        </td>
-                                        <td></td>
+                                        <td>{ lecture.week || '' }</td>
+                                        <td>{ lecture.startDate || '' } ~ { lecture.endDate || '' }</td>
+                                        <td>{ lecture.originName || '' }</td>
                                     </tr>
                                 ])
                             )
                         }
-                        {/* <tr>{ lecModal ? <LecModal setLecModal={ setLecModal }/> : null }</tr> */}
                     </tbody>       
                 </table>    
+                <div>
+                    <button
+                        style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                        onClick={ onClickLectureRegistHandler }
+                    >
+                        강좌 자료 업로드
+                    </button>
+                </div>
             </div>
-            <div>
-                {/* <input
-                    type="file"
-                    id="file"
-                    onChange={onClickTaskSubmitHandler}
-                    multiple="multiple"
-                />             */}
-            </div>
+
         </>
     );
 }

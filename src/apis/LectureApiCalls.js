@@ -160,3 +160,81 @@ export const callRegistFileAPI = ({form}) => {
     }
 
 }
+
+/* ===================== API 수정 예정 =============================    */
+/* 교수 수업 파일 수정을 위한 목록 불러오기 API */
+export const callFileInfoDetailAPI = ({lectureCode}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/proLectureList/${lectureCode}`
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[lLectureApiCalls] callFileInfoDetailAPI result : ', result);
+            dispatch({ type: GET_PROFESSOR_LECTURE, payload: result.data });
+        }
+    }
+
+}
+
+
+/* 교수 파일 수정하기 API */
+export const callProductUpdateAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/lectures`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : { 
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json()); 
+
+        if(result.status === 200){ 
+            console.log('[lLectureApiCalls] callProductUpdateAPI RESULT : ', result);
+            dispatch({ type: PUT_LECTURES, payload : result.data });
+        }
+    }
+}
+
+
+
+/* 학생 과제 파일 등록 API */
+export const callRegistTaskAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/tasks`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[lLectureApiCalls] callRegistTaskAPI result : ', result);
+            dispatch({ type: POST_TASKS, payload: result.data });
+        }
+    }
+
+}

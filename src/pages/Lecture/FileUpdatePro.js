@@ -1,27 +1,34 @@
+import { callFileInfoDetailAPI, callProductUpdateAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { callRegistFileAPI } from '../../apis/LectureApiCalls';
-import React from "react";
-import { useNavigate  } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-function FileRegistPro(){
+
+function FileUpdatePro(){
+
+    const params = useParams(); 
+    const fileDetail = useSelector(state => state.lectureReducer);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const fileInput = useRef();
+    const fileInput = useRef();   
     const [video, setVideo] = useState(null);
     const [videoUrl, setVideoUrl] = useState('');
 
-    const [form, setForm] = useState({
-        lectureWeek: 0,
-        originName: '',
-        week: '',
-        startDate: 0,
-        endDate: 0,
-        fileType: ''
-    });
+    //읽기모드(false), 수정모드(true)
+    const [modifyMode, setModifyMode] = useState(false); 
+    const [form, setForm] = useState({});
 
-    //file 리랜더링 시 작동 
+    
+    useEffect(() => {
+        dispatch(callFileInfoDetailAPI({
+            lectureCode : params.lectureCode
+        }));
+    },
+    []);
+
+
+    //file preview 
     useEffect(() => {
 
         if(video) {
@@ -38,7 +45,6 @@ function FileRegistPro(){
 
 
 
-
     //입력양식 변경
     const onChangeHandler = (e) => {
         setForm({
@@ -46,7 +52,6 @@ function FileRegistPro(){
             [e.target.name] : e.target.value
         });
     }
-
 
 
     //파일 첨부 버튼 클릭
@@ -69,22 +74,38 @@ function FileRegistPro(){
 
 
 
-    //등록하기
+    //수정 모드 변경
+    const onClickModifyHandler = () => {
+        setModifyMode(true);
+        setForm({
+            fileCode : fileDetail.lectureWeeks.fileCode,
+            lectureWeek : fileDetail.lectureWeeks.lectureWeekInFile,
+            originName : fileDetail.lectureWeeks.originName,
+            startDate : fileDetail.lectureWeeks.startDate,
+            endDate : fileDetail.lectureWeeks.endDate,
+            fileType : fileDetail.lectureWeeks.fileType,
+            week : fileDetail.lectureWeeks.week
+        });
+    }
+
+
+    //수정 내용 등록하기
     const onClickLectureRegistHandler = () => {
 
         const formData = new FormData();
-        formData.append("lectureWeek", form.lectureWeek);
-        formData.append("originName", form.originName);
-        formData.append("startDate", form.startDate);
-        formData.append("endDate", form.endDate);
-        formData.append("lectureWeek.week", form.week);
-        formData.append("fileType", form.fileType);
+        formData.append("lectureWeeks.fileCode", form.fileCode);
+        formData.append("lectureWeeks.lectureWeekInFile", form.lectureWeek);
+        formData.append("lectureWeeks.originName", form.originName);
+        formData.append("lectureWeeks.startDate", form.startDate);
+        formData.append("lectureWeeks.endDate", form.endDate);
+        formData.append("lectureWeeks.week", form.week);
+        formData.append("lectureWeeks.fileType", form.fileType);
 
         if(video) {
             formData.append("lectureFiles", video);
         }
         
-        dispatch(callRegistFileAPI({
+        dispatch(callProductUpdateAPI({
             form : formData
         }));
 
@@ -111,6 +132,7 @@ function FileRegistPro(){
                                     type="number"
                                     name="lectureWeek"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -123,6 +145,7 @@ function FileRegistPro(){
                                     type="text"
                                     name="week"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -135,6 +158,7 @@ function FileRegistPro(){
                                     type="date"
                                     name="startDate"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -147,6 +171,7 @@ function FileRegistPro(){
                                     type="date"
                                     name="endDate"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -159,6 +184,7 @@ function FileRegistPro(){
                                     type="text"
                                     name="originName"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -170,6 +196,7 @@ function FileRegistPro(){
                                 <input
                                     name="fileType"
                                     onChange={ onChangeHandler }
+                                    readOnly={ modifyMode ? false : true } 
                                 />
                             </td>
                         </tr>
@@ -177,8 +204,8 @@ function FileRegistPro(){
                 </table>
             </div>
             <div>
-                    { videoUrl && <video 
-                            src={ videoUrl } 
+                    { fileDetail && <video 
+                            src={ (videoUrl == null) ? fileDetail.lectureWeeks.savedRoute : videoUrl } 
                             alt="preview"
                             autoPlay={ true }
                             muted ={ true }
@@ -193,15 +220,29 @@ function FileRegistPro(){
                             multiple={true}
                             style={{ display: "none" }}
                         />  
-                        <button onClick={handleButtonClick}>파일 업로드</button>
+                        <button 
+                            onClick={handleButtonClick}
+                            disabled={ !modifyMode }     
+                        >
+                            파일 업로드
+                        </button>
                     </div>
             </div>
             <div>
+            {modifyMode &&
                 <button
                     onClick={ onClickLectureRegistHandler }
                 >
-                    등록 하기
+                    저장 하기
                 </button>
+}
+            {!modifyMode &&
+                <button
+                    onClick={ onClickModifyHandler }
+                >
+                    수정 모드
+                </button>
+            }
                 <button
                     onClick={ () => navigate(-1) }
                 >
@@ -211,6 +252,7 @@ function FileRegistPro(){
         </div>
         
     );
+
 }
 
-export default FileRegistPro;
+export default FileUpdatePro;

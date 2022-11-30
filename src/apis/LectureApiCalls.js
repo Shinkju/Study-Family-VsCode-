@@ -238,3 +238,29 @@ export const callRegistTaskAPI = ({form}) => {
     }
 
 }
+
+
+/* 학생 출결 상태 등록 API */
+export const callCourseHistoryAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/courseHistory`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "POST",
+            headers : {
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            },
+            body : form
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[lLectureApiCalls] callCourseHistoryAPI result : ', result);
+            dispatch({ type: POST_LECTURES, payload: result.data });
+        }
+    }
+
+}

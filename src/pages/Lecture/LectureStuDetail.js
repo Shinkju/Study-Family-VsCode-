@@ -1,10 +1,8 @@
 import { callLectureStuDetailAPI } from '../../apis/LectureApiCalls';
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams,useNavigate } from "react-router-dom";
 import lectureListStuCSS from './LecModal.module.css';
-import { decodeJwt } from '../../utils/tokenUtils';
 import LecModal from './Modal/LecModal';
 
 
@@ -20,11 +18,11 @@ function LectureStuDetail(){
     const lectureCode = params.lectureCode;
     const [lecModal, setLecModal] = useState(false);    //모달 띄우기 true/false
     const [savedRoute, setSavedRoute] = useState("");
+    const [lectureWeekCode, setLectureWeekCode] = useState(0);
 
 
 
-
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));  
+ 
     console.log(lectureDetail)
 
 
@@ -48,9 +46,12 @@ function LectureStuDetail(){
     //모달창 띄우기
     const videoOpenFunction = (lectureWeek) => {
 
-        setSavedRoute(lectureWeek?.savedRoute);
+        setSavedRoute(lectureWeek.savedRoute);
+        setLectureWeekCode(lectureWeek.lectureWeekCode);
         setLecModal(true);
+
         console.log("videoOpenFunction", setSavedRoute);
+        console.log("videoOpenFunction", setLectureWeekCode);
     }
 
 
@@ -59,7 +60,7 @@ function LectureStuDetail(){
         navigate("/layout/taskRegistStu", { replace : false });
     }
 
-    //강좌 공시사항 화면 넘기기
+    //강좌 공지사항 화면 넘기기
     const onClickSubNoticeHandler = () => {
 
     }
@@ -99,16 +100,15 @@ function LectureStuDetail(){
                 </div><br/>
 
                 <div>
-                {/* <div> */}
                     { 
                         lecModal ? 
                         <LecModal 
+                            lectureWeekCode={lectureWeekCode}
                             savedRoute={savedRoute}
                             setLecModal={setLecModal}
                         /> 
                         : null
                     }       
-                {/* </div> */}
                     <table>
                         <colgroup>
                             <col width="5%" />
@@ -129,21 +129,19 @@ function LectureStuDetail(){
                                 Array.isArray(lectureDetail?.lectureWeeks) && lectureDetail?.lectureWeeks.map(
                                     (lectureWeek) => ([<>
                                         <tr
-                                            key={ lectureWeek.lectureWeekCode }
+                                            key={ lectureWeek.lectureWeekCodes }
                                         >
                                             <td>{ lectureWeek.week || '' }</td>
                                             <td>{ lectureWeek.startDate || '' } ~ { lectureWeek.endDate || '' }</td>
                                             <td>
-
                                                 <button 
                                                     onClick={ () => videoOpenFunction(lectureWeek) }
 
                                                 >
                                                     영상 보기
                                                 </button>
-
                                             </td>
-                                            <td></td>
+                                            <td>{ lectureWeek.courseStatus || '' }</td>
                                         </tr>
 
                                     </>])

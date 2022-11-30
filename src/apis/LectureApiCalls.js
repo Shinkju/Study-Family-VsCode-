@@ -1,4 +1,6 @@
-import { GET_STUDENT, GET_PROFESSOR, GET_STUDENT_LECTURE, GET_PROFESSOR_LECTURE, POST_LECTURES, PUT_LECTURES, POST_TASKS, PUT_TASKS, GET_APPCLASS_LIST } from '../modules/LectureModule';
+import { GET_STUDENT, GET_PROFESSOR, 
+    GET_STUDENT_LECTURE, GET_PROFESSOR_LECTURE, POST_LECTURES, PUT_LECTURES, POST_TASKS, PUT_TASKS, 
+    GET_APPCLASS_LIST, POST_COURSEHISTORY, PUT_COURSEHISTORY } from '../modules/LectureModule';
 
 
 /* 학생의 강의 리스트 불러오는 API */
@@ -259,7 +261,38 @@ export const callCourseHistoryAPI = ({form}) => {
 
         if(result.status === 200) {
             console.log('[lLectureApiCalls] callCourseHistoryAPI result : ', result);
-            dispatch({ type: POST_LECTURES, payload: result.data });
+            dispatch({ type: POST_COURSEHISTORY, payload: result.data });
+        }
+    }
+
+}
+
+/* 학생 출결 상태 수정 API */
+export const callCourseHistoryUpdateAPI = ({form}) => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/courseHistory`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : "PUT",
+            headers : {
+                "Content-Type" : "application/json",
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }, 
+            body : JSON.stringify({
+                courseCode : form.courseCode,
+                courseTime : form.courseTime,
+                courseStatus : form.courseStatus
+            })
+        })
+        .then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[lLectureApiCalls] callCourseHistoryUpdateAPI result : ', result);
+
+            dispatch({ type: PUT_COURSEHISTORY, payload: result });
         }
     }
 

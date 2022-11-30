@@ -12,6 +12,8 @@ export const PUT_LECTURES    = 'lecture/PUT_LECTURES';
 export const POST_TASKS    = 'lecture/POST_TASKS';
 export const PUT_TASKS    = 'lecture/PUT_TASKS';
 export const GET_APPCLASS_LIST = "lecture/GET_APPCLASS_LIST"
+export const POST_COURSEHISTORY = "lecture/POST_COURSEHISTORY";
+export const PUT_COURSEHISTORY = "lecture/PUT_COURSEHISTORY";
 
 const actions = createActions({
     [GET_STUDENT]: () => {},
@@ -22,7 +24,9 @@ const actions = createActions({
     [PUT_LECTURES]: () => {},
     [POST_TASKS]: () => {},
     [PUT_TASKS]: () => {},
-    [GET_APPCLASS_LIST]: () => {}
+    [GET_APPCLASS_LIST]: () => {},
+    [POST_COURSEHISTORY]: () => {},
+    [PUT_COURSEHISTORY]: () => {}
 });
 
 const lectureReducer = handleActions(
@@ -58,7 +62,16 @@ const lectureReducer = handleActions(
         [GET_APPCLASS_LIST]: (state, { payload }) => {
 
             return payload;
+        },
+        [POST_COURSEHISTORY]: (state, { payload }) => {
+
+            return payload;
+        },
+        [PUT_COURSEHISTORY]: (state, { payload }) => {
+
+            return payload;
         }
+
     },
     initialState
 );

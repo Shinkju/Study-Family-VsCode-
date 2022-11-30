@@ -49,7 +49,7 @@ function LectureStuDetail(){
         setSavedRoute(lectureWeek.savedRoute);
         setLectureWeekCode(lectureWeek.lectureWeekCode);
         setLecModal(true);
-
+        
         console.log("videoOpenFunction", setSavedRoute);
         console.log("videoOpenFunction", setLectureWeekCode);
     }

@@ -1,18 +1,22 @@
 import { useDispatch } from "react-redux";
-import { callCourseHistoryAPI } from '../../../apis/LectureApiCalls';
-import { useRef , useState } from "react";
+import { useEffect, useRef , useState } from "react";
 import LecModalCSS from './LectureRegistModal.module.css';
 import React from 'react';
 import ReactPlayer from 'react-player'
+import { 
+    callCourseHistoryAPI,
+    callCourseHistoryUpdateAPI
+    } from '../../../apis/LectureApiCalls';
 
 
 
-function LecModal({savedRoute, lectureWeekCode, setLecModal}){
+function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
 
 
     console.log("savedRoute = ", savedRoute)
     const videoRef = useRef();
     const dispatch = useDispatch();
+
 
     //반환할 palayed 폼
     const [form, setForm] = useState({
@@ -22,6 +26,29 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}){
     });
 
 
+    //상태 변경 시
+    // const handleChange = (e) => {
+    //     setForm({
+    //         ...form,
+    //         [e.target.current] : e.target.current
+    //     });
+
+    //     // API 통신으로 보내기
+    //     dispatch(callCourseHistoryUpdateAPI({
+    //         form : setForm
+    //     }));
+
+    //     //모달 닫기
+    //     setLecModal(false)
+    //     alert("강의가 종료됩니다.");
+    //     window.location.reload();
+        
+    // }
+
+    
+
+
+
     //모달창 닫기 버튼 핸들러
     const closeModalHandler = () => {
 
@@ -29,19 +56,17 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}){
         const currentTime = 
         videoRef && videoRef.current ? videoRef.current.getCurrentTime() : 0;
         const newCurrentTime = currentTime.toFixed(0);  //밀리초 -> 초
-
+        
         //영상의 총 시간
         const duration =
         videoRef && videoRef.current ? videoRef.current.getDuration() : 0;
         
-
-        console.log("현재 재생 시간(밀리초) = ", currentTime);
-        console.log("현재 재생 시간(초) = ", newCurrentTime);
-        console.log("영상의 총 시간 = ", duration);
-
         //해당 문자열을 넣기 위한 선언
         const ing = "진행중";
         const success = "완료";
+
+        console.log("현재 재생 시간(초) = ", newCurrentTime);
+        console.log("영상의 총 시간(초) = ", duration);
 
         const formData = new FormData();
 
@@ -59,8 +84,6 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}){
         dispatch(callCourseHistoryAPI({
             form : formData
         }));
-        
-        console.log("formData = ", form);
 
         //모달 닫기
         setLecModal(false)
@@ -77,13 +100,12 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}){
         videoRef && videoRef.current ? videoRef.current.getCurrentTime() : 0;
         const newCurrentTime = currentTime.toFixed(0);  //밀리초 -> 초
 
-        //영상의 총 시간
+        // //영상의 총 시간
         const duration =
         videoRef && videoRef.current ? videoRef.current.getDuration() : 0;
 
-        console.log("현재 재생 시간(밀리초) = ", currentTime);
         console.log("현재 재생 시간(초) = ", newCurrentTime);
-        console.log("영상의 총 시간 = ", duration);
+        console.log("영상의 총 시간(초) = ", duration);
 
         //해당 문자열을 넣기 위한 선언
         const success = "완료";
@@ -119,7 +141,7 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}){
                     id="video"
                     width='1200px' 
                     height='600px' 
-                    ref={videoRef}
+                    ref={ videoRef }
                     controls={true}
                     onEnded={() => videoEnded()}   //끝났을때 자동 종료
                 />

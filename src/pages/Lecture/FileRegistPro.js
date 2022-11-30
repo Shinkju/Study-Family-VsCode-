@@ -91,7 +91,7 @@ function FileRegistPro(){
         //등록 후 디테일 페이지로 돌아가기
         navigate(-1) 
         alert('수업자료가 등록 되었습니다.');
-
+        window.location.reload();
     };
 
 

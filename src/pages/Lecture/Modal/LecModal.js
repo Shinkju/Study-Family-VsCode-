@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useRef , useState } from "react";
+import { useParams } from "react-router-dom";
 import LecModalCSS from './LectureRegistModal.module.css';
 import React from 'react';
 import ReactPlayer from 'react-player'
@@ -12,10 +13,11 @@ import {
 
 function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
 
-
+    
     console.log("savedRoute = ", savedRoute)
     const videoRef = useRef();
     const dispatch = useDispatch();
+
 
 
     //반환할 palayed 폼
@@ -24,29 +26,7 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
             courseTime: 0,
             courseStatus: ''
     });
-
-
-    //상태 변경 시
-    // const handleChange = (e) => {
-    //     setForm({
-    //         ...form,
-    //         [e.target.current] : e.target.current
-    //     });
-
-    //     // API 통신으로 보내기
-    //     dispatch(callCourseHistoryUpdateAPI({
-    //         form : setForm
-    //     }));
-
-    //     //모달 닫기
-    //     setLecModal(false)
-    //     alert("강의가 종료됩니다.");
-    //     window.location.reload();
-        
-    // }
-
     
-
 
 
     //모달창 닫기 버튼 핸들러
@@ -116,7 +96,7 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
         formData.append("lectureWeek.lectureWeekCode", lectureWeekCode)
 
         // API 통신으로 보내기
-        dispatch(callCourseHistoryAPI({
+        dispatch(callCourseHistoryUpdateAPI({
             form : formData
         }));
 
@@ -134,8 +114,8 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
 
     
     return( 
-        <div>
-            <div style={ { zindex:100, position:"absolute", marginLeft:400 } }>
+        <div style={{ position: "fixed", top:0, left: 0, bottom: 0, right: 0, background: "rgba(0, 0, 0, 0.8)" }}>
+            <div style={ { paddingTop:50, zindex:100, position:"absolute", marginLeft:400, backgroundColor:"white", justifyContent: "center", borderRadius: 10, top: "calc(18vh - 50px)" } }>
                 <ReactPlayer 
                     url={ savedRoute } 
                     id="video"

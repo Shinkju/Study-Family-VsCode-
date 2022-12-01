@@ -7,7 +7,7 @@ import LectureProList from './pages/Lecture/LectureProuList';
 import LectureStuDetail from './pages/Lecture/LectureStuDetail';
 import LectureProDetail from './pages/Lecture/LectureProDetail';
 import FileRegistPro from './pages/Lecture/FileRegistPro';
-import FileUpdatePro from './pages/Lecture/FileUpdatePro';
+// import FileUpdatePro from './pages/Lecture/FileUpdatePro';
 import TaskRegistStu from './pages/Lecture/TaskRegistStu';
 import Login from './pages/Member/Login';
 import AppClass from './pages/AppClass/AppClass';
@@ -31,7 +31,7 @@ function App() {
               <Route path="lectureProList" element={ <LectureProList/> }/>
               <Route path="lectureProDetail/:lectureCode" element={ <LectureProDetail/> }/>
               <Route path="fileRegistPro" element={ <FileRegistPro/> }/>
-              <Route path="fileUpdatePro" element={ <FileUpdatePro/> }/>
+              {/* <Route path="file-updatePro/:lectureCode" element={ <FileUpdatePro/> }/> */}
               <Route path="taskRegistStu" element={ <TaskRegistStu/> }/>
               
             </Route>

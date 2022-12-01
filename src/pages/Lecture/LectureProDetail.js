@@ -1,5 +1,5 @@
 import { callLectureProDetailAPI } from '../../apis/LectureApiCalls';
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import lectureListStuCSS from './LecModal.module.css';
@@ -34,20 +34,10 @@ function LectureProDetail(){
         []
     );
 
-
-    //file array null 체크
-    // const files = (files) => {
-    //    const files = [];
-
-    //    if(files != null){
-    //     for(var i=0; i<files.length; i++){
-    //         result.push(<p>{ files[i] }</p>)
-    //     }
-    //    }
-        
-    // }
-
-
+    //파일 수정 화면 넘기기
+    const onClickTableTr = () => {
+        navigate(`/layout/file-updatePro/${lectureCode}`, { replace : false });
+    }
 
 
     //파일 등록 화면 넘기기
@@ -86,6 +76,7 @@ function LectureProDetail(){
                                 (lecture) => ([
                                     <tr
                                         key={ lecture.lectureWeekCode }
+                                        // onClick={ () => onClickTableTr(lecture.courseCode) }
                                     >
                                         <td>{ lecture.week || '' }</td>
                                         <td>{ lecture.startDate || '' } ~ { lecture.endDate || '' }</td>

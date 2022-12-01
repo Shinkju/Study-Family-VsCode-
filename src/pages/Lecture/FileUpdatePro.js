@@ -1,13 +1,15 @@
-import { callFileInfoDetailAPI, callProductUpdateAPI } from '../../apis/LectureApiCalls';
+import { callLectureProDetailAPI, callProductUpdateAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { decodeJwt } from '../../utils/tokenUtils';
 
 
 function FileUpdatePro(){
 
     const params = useParams(); 
-    const fileDetail = useSelector(state => state.lectureReducer);
+    const lectureDetail = useSelector(state => state.lectureReducer);
+    const lectureCode = params.lectureCode;
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,10 +21,11 @@ function FileUpdatePro(){
     const [modifyMode, setModifyMode] = useState(false); 
     const [form, setForm] = useState({});
 
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));  
     
     useEffect(() => {
-        dispatch(callFileInfoDetailAPI({
-            lectureCode : params.lectureCode
+        dispatch(callLectureProDetailAPI({
+            lectureCode : lectureCode
         }));
     },
     []);
@@ -58,7 +61,6 @@ function FileUpdatePro(){
     const handleButtonClick = () => {
 
       fileInput.current.click();
-
     };
 
 
@@ -68,8 +70,6 @@ function FileUpdatePro(){
 
         const video = e.target.files[0];
         setVideo(video);
-
-        console.log(e.target.files[0]);
     };
 
 
@@ -78,13 +78,13 @@ function FileUpdatePro(){
     const onClickModifyHandler = () => {
         setModifyMode(true);
         setForm({
-            fileCode : fileDetail.lectureWeeks.fileCode,
-            lectureWeek : fileDetail.lectureWeeks.lectureWeekInFile,
-            originName : fileDetail.lectureWeeks.originName,
-            startDate : fileDetail.lectureWeeks.startDate,
-            endDate : fileDetail.lectureWeeks.endDate,
-            fileType : fileDetail.lectureWeeks.fileType,
-            week : fileDetail.lectureWeeks.week
+            fileCode : lectureDetail.lectureWeeks.fileCode,
+            lectureWeek : lectureDetail.lectureWeeks.lectureWeek,
+            originName : lectureDetail.lectureWeeks.originName,
+            startDate : lectureDetail.lectureWeeks.startDate,
+            endDate : lectureDetail.lectureWeeks.endDate,
+            fileType : lectureDetail.lectureWeeks.fileType,
+            week : lectureDetail.lectureWeeks.week
         });
     }
 
@@ -94,7 +94,7 @@ function FileUpdatePro(){
 
         const formData = new FormData();
         formData.append("lectureWeeks.fileCode", form.fileCode);
-        formData.append("lectureWeeks.lectureWeekInFile", form.lectureWeek);
+        formData.append("lectureWeeks.lectureWeek", form.lectureWeek);
         formData.append("lectureWeeks.originName", form.originName);
         formData.append("lectureWeeks.startDate", form.startDate);
         formData.append("lectureWeeks.endDate", form.endDate);
@@ -108,6 +108,7 @@ function FileUpdatePro(){
         dispatch(callProductUpdateAPI({
             form : formData
         }));
+
 
         //등록 후 디테일 페이지로 돌아가기
         navigate(-1) 
@@ -131,6 +132,7 @@ function FileUpdatePro(){
                                 <input
                                     type="number"
                                     name="lectureWeek"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.lectureWeek : form.lectureWeek) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -144,6 +146,7 @@ function FileUpdatePro(){
                                 <input
                                     type="text"
                                     name="week"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.week : form.week) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -157,6 +160,7 @@ function FileUpdatePro(){
                                 <input
                                     type="date"
                                     name="startDate"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.startDate : form.startDate) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -170,6 +174,7 @@ function FileUpdatePro(){
                                 <input
                                     type="date"
                                     name="endDate"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.endDate : form.endDate) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -183,6 +188,7 @@ function FileUpdatePro(){
                                 <input
                                     type="text"
                                     name="originName"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.originName : form.originName) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -195,6 +201,8 @@ function FileUpdatePro(){
                             <td>
                                 <input
                                     name="fileType"
+                                    type="text"
+                                    value={ (!modifyMode ? lectureDetail.lectureWeeks.fileType : form.fileType) || '' }
                                     onChange={ onChangeHandler }
                                     readOnly={ modifyMode ? false : true } 
                                 />
@@ -204,8 +212,8 @@ function FileUpdatePro(){
                 </table>
             </div>
             <div>
-                    { fileDetail && <video 
-                            src={ (videoUrl == null) ? fileDetail.lectureWeeks.savedRoute : videoUrl } 
+                    { lectureDetail && <video 
+                            src={ (videoUrl == null) ? lectureDetail.lectureWeeks.savedRoute : videoUrl } 
                             alt="preview"
                             autoPlay={ true }
                             muted ={ true }

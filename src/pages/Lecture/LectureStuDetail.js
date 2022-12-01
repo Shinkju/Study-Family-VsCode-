@@ -21,7 +21,6 @@ function LectureStuDetail(){
     const [lectureWeekCode, setLectureWeekCode] = useState(0);
 
 
-
  
     console.log(lectureDetail)
 
@@ -46,9 +45,13 @@ function LectureStuDetail(){
     //모달창 띄우기
     const videoOpenFunction = (lectureWeek) => {
 
-        setSavedRoute(lectureWeek.savedRoute);
-        setLectureWeekCode(lectureWeek.lectureWeekCode);
-        setLecModal(true);
+        if(!lectureWeek.savedRoute){
+            alert("해당 강의가 존재하지 않습니다.");
+        } else {
+            setSavedRoute(lectureWeek.savedRoute);
+            setLectureWeekCode(lectureWeek.lectureWeekCode);
+            setLecModal(true);
+        }
         
         console.log("videoOpenFunction", setSavedRoute);
         console.log("videoOpenFunction", setLectureWeekCode);

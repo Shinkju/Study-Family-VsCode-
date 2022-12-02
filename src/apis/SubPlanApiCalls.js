@@ -1,7 +1,7 @@
 import { GET_SUBPLAN, POST_SUBPLAN } from "../modules/SubPlanModule";
 
-export const callSubPlanListAPI = () => {
-
+export const callSubPlanListAPI = (planCode) => {
+    console.log('[AppClassAPICalls] lectureCode : ', planCode)
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/subPlan/list/${planCode}`
 
     return async (dispatch, getState) => {
@@ -9,8 +9,9 @@ export const callSubPlanListAPI = () => {
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
-                "Content-Type" : "application/json",
-                "Accept": "*/*"
+                "Accept": "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            
             }
         })
         .then(response => response.json());

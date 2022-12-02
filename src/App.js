@@ -13,6 +13,9 @@ import Login from './pages/Member/Login';
 import AppClass from './pages/AppClass/AppClass';
 import AppClassMyList from './pages/AppClass/AppClassMyList';
 import SubPlan from './pages/SubPlan/SubPlan';
+import Subnotice from './pages/subnotice/Subnotice';
+import SubnoticeDetail from './pages/subnotice/SubnoticeDetail';
+import SubnoticeModal from './pages/subnotice/SubnoticeModal';
 
 function App() {
   
@@ -33,11 +36,12 @@ function App() {
               <Route path="fileRegistPro" element={ <FileRegistPro/> }/>
               {/* <Route path="file-updatePro/:lectureCode" element={ <FileUpdatePro/> }/> */}
               <Route path="taskRegistStu" element={ <TaskRegistStu/> }/>
-              
+              <Route path="AppClass" element={ <AppClass/> }/>
+              <Route path="AppClassMyList" element={ <AppClassMyList/> }/>
+              <Route path="Subnotice" element={ <Subnotice/> }/>
+              <Route path="SubnoticeDetail/:subnoticeCode" element={ <SubnoticeDetail/> }/>
+              <Route path="SubnoticeModal" element={ <SubnoticeModal/> }/>
             </Route>
-
-            <Route path="AppClass" element={ <AppClass/> }/>
-            <Route path="AppClassMyList" element={ <AppClassMyList/> }/>
             <Route path="SubPlan" element={ <SubPlan/> }/>
         </Routes>
 

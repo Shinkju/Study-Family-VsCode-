@@ -5,6 +5,7 @@ import { callAppClassAPI } from '../../apis/AppClassApiCalls';
 import { callAppClassListAPI } from '../../apis/LectureApiCalls';
 import AppClassCSS from './AppClass.module.css';
 import PageCSS from './Page.module.css';
+import SubPlan from '../SubPlan/SubPlan';
 
 function AppClass() {
 
@@ -12,6 +13,14 @@ function AppClass() {
     const dispatch = useDispatch();
     const lecture = useSelector(state => state.lectureReducer);
     const lectureList = lecture.data;      
+
+    // 모달창 노출 여부 state
+    const [modalOpen, setModalOpen] = useState(false);
+
+    // 모달창 노출
+    const showModal = () => {
+        setModalOpen(true);
+    };
 
     /* 페이징 버튼 */
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +32,7 @@ function AppClass() {
         }
     }
 
+    /* 수강 목록 */
     useEffect(
         () => {
             dispatch(callAppClassListAPI({
@@ -30,20 +40,24 @@ function AppClass() {
             }));
         }
         , [currentPage]
-    );
+    )
 
-    /* 수강 목록 클릭시 이동 */
+    /* 신청 목록 클릭시 이동 */
     const onClickAppClassListHandler = () => {
-        navigate("/AppClassMyList", { replace : true });
+        navigate("/layout/AppClassMyList", { replace : false });
     }
 
-
     /* 수강신청 버튼 이벤트 */
-    const onClickAppClassHandler = (appClassCode) => {
-        dispatch(callAppClassAPI(appClassCode));
+    const onClickAppClassHandler = (lectureCode) => {
+        dispatch(callAppClassAPI(lectureCode));
 
         alert("수강 신청 되었습니다.");
 
+    }
+
+    const [value, setValue] = useState(false);
+    function onClickHide() {
+      setValue(value => !value);
     }
 
 
@@ -89,13 +103,14 @@ function AppClass() {
                                         <td>{ lecture.subject.department.departmentName }</td>
                                         <td>{ lecture.lectureName }</td>
                                         <td>{ lecture.professor.professorName }</td>
-                                        <td><button onClick={ () => onClickAppClassHandler(lecture) }>
+                                        <td><button onClick={ () => onClickAppClassHandler(lecture)}
+                                        >
                                                 신청
                                         </button></td>
                                         <td>{ lecture.lecturePersonnel } / { lecture.capacity }</td>
-                                        <td><button>
-                                                조회
-                                        </button></td>
+                                        <td><button onClick={showModal}> 조회</button>
+                                         {modalOpen && <SubPlan setModalOpen={setModalOpen} />}
+                                        </td>
                                         
                                     </tr>
                                 )
@@ -113,7 +128,7 @@ function AppClass() {
 
 
 
-                  <div style={ { listStyleType: 'none', display: 'flex'} }>
+                  <div style={ { listStyleType: 'none', display: 'flex', justifyContent: "center"} }>
             {
                 Array.isArray(lectureList) &&
                 <button
@@ -140,7 +155,7 @@ function AppClass() {
                 Array.isArray(lectureList) &&
                 <button
                     onClick={ () => setCurrentPage(currentPage + 1) }
-                    disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
+                    /*disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}*/
                     className={ PageCSS.pagingBtn }
                 >
                     &gt;

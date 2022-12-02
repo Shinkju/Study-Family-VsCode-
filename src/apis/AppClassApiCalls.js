@@ -1,8 +1,8 @@
 import { POST_APPCLASS, DELETE_APPCLASS, GET_APPCLASSMYLIST} from "../modules/AppClassModule";
 
     /* 수강신청 */
-    export const callAppClassAPI = (lecture) => {
-
+    export const callAppClassAPI = ({lectureCode}) => {
+        console.log('[AppClassAPICalls] lecture : ', lectureCode);
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/appClass`;
 
     return async (dispatch, getState) => {
@@ -16,7 +16,7 @@ import { POST_APPCLASS, DELETE_APPCLASS, GET_APPCLASSMYLIST} from "../modules/Ap
             },
             body : JSON.stringify({
                 lecture : {
-                    lectureCode : lecture.lectureCode
+                    lectureCode : lectureCode
                 }
             })
         })
@@ -63,23 +63,27 @@ import { POST_APPCLASS, DELETE_APPCLASS, GET_APPCLASSMYLIST} from "../modules/Ap
 
 
     /* 수강취소 */
-    export const callAppClassDeleteAPI = (appClassCode) => {
+    export const callAppClassDeleteAPI = ({lectureCode}) => {
 
-        console.log('[AppClassAPICalls] appClassCode : ', appClassCode);
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/appClass/delete/${appClassCode}`;
+        console.log('[AppClassAPICalls] lectureCode1111 : ', lectureCode);
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/appClass/delete/${lectureCode}`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method : "DELETE",
-            })
+            headers : {
+                "Accept" : "*/*",
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }
+        })
         .then(response => response.json());
-        console.log('[AppClassAPICalls] appClassCode : ', appClassCode);
+
 
         if(result.status === 200) {
             console.log('[AppClassAPICalls] callAppClassDeleteAPI result : ', result);
    
-            dispatch({ type: DELETE_APPCLASS, payload: result.data });
+            dispatch({ type: DELETE_APPCLASS, payload: result });
           
         }
     }

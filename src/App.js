@@ -10,6 +10,10 @@ import FileRegistPro from './pages/Lecture/FileRegistPro';
 // import FileUpdatePro from './pages/Lecture/FileUpdatePro';
 import TaskRegistStu from './pages/Lecture/TaskRegistStu';
 import Login from './pages/Member/Login';
+import RegistSelect from './pages/Member/RegistSelect';
+import ProfessorRegist from './pages/Member/ProfessorRegist';
+import StudentRegist from './pages/Member/StudentRegist';
+import Regist from './pages/Member/Regist';
 import AppClass from './pages/AppClass/AppClass';
 import AppClassMyList from './pages/AppClass/AppClassMyList';
 import SubPlan from './pages/SubPlan/SubPlan';
@@ -26,6 +30,14 @@ function App() {
         <Routes>
             {/* 첫 화면에서 나오는 로그인 / 회원가입 화면 */}
             <Route exact path="/" element={ <Login/> }/>
+            {/* 회원가입 선택 */}
+            <Route path="/registSelect" element={ <RegistSelect/> }/>
+            {/* 교수 */}
+            <Route path="/professorauth/professorRegist" element={ <ProfessorRegist/> }/>
+            {/* 학생 */}
+            <Route path="/studentauth/studentRegist" element={ <StudentRegist/> }/>
+            {/* 관리자 */}
+            <Route path="/auth/regist" element={ <Regist/> }/>
 
             {/* 레이아웃 픽스 + 하위 페이지 */}
             <Route path="/layout" element={ <Layout/> }>

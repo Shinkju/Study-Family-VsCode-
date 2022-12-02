@@ -1,13 +1,19 @@
 import { decodeJwt } from '../../utils/tokenUtils';
-import { NavLink } from 'react-router-dom';
-import NavbarCSS from './Navbar.module.css';
 import { useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import NavbarCSS from './Navbar.module.css';
+import { callLogoutAPI } from '../../apis/MemberApiCalls';
+import { useDispatch } from "react-redux";
 
 
 function Navbar() {
 
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     if(isLogin) {
         const temp = decodeJwt(isLogin);
@@ -19,7 +25,31 @@ function Navbar() {
     const loginList = login.data;
 
    
+    /* 로그아웃 토큰 폐기 처리 */
+    const onClickLogoutHandler = () => {
+        window.localStorage.removeItem('accessToken');
+        dispatch(callLogoutAPI());
+        window.location = "http://localhost:3000/";
+    }
 
+
+    function AfterLogin() {
+
+        return(
+
+            <div>
+
+                <text
+                    onClick = { onClickLogoutHandler }
+                >
+                    로그아웃
+                </text>
+
+            </div>
+
+        );
+
+    }
 
     return (
         <>
@@ -35,7 +65,7 @@ function Navbar() {
                             <strong>{ loginList?.memberName }님</strong><br/>
                             <strong>220608</strong>
                             <p>하이미디어과</p>
-                            <a href="/">마이페이지 | </a><a href="/"> 로그아웃</a>                 
+                            <a href="/">마이페이지 | </a><AfterLogin> 로그아웃</AfterLogin>
                             </div>
                         </div>
                     </ul>

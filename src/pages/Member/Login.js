@@ -26,13 +26,13 @@ function Login(){
 
             if(decoded === 'ROLE_STUDENT'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("layout/lectureStuList", { replace: true });  //리듀서값 변경 시 동작
+                navigate("/layout/lectureStuList", { replace: true });  //리듀서값 변경 시 동작
             } else if(decoded === 'ROLE_PROFESSOR'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("layout/lectureProList", { replace: true });
+                navigate("/layout/lectureProList", { replace: true });
             } else if(decoded === 'ROLE_ADMIN'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("layout/", { replace: true });
+                navigate("/layout/", { replace: true });
             }
         }
     }
@@ -64,11 +64,20 @@ function Login(){
     }
 
 
-    //회원가입 페이지로 이동
+    //회원가입 선택 페이지로 이동
     const onClickRegisterHandler = () => {
-        navigate("/register", {replace:true});
+        navigate("/registSelect", {replace:true});
     }
 
+    //아이디 찾기 페이지로 이동
+    const onClickFindIdHandler = () => {
+        navigate("/findId", {replace:true});
+    }
+
+    //
+    const onClickFindPasswordHandler = () => {
+        navigate("/findPassword", {replace:true});
+    }
 
     return (
         <div>
@@ -94,11 +103,22 @@ function Login(){
                     로그인
                 </button>       
                 <button
-                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
                     onClick={ onClickRegisterHandler }
                 >
                     회원가입
-                </button>                        
+                </button>
+                <button
+                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                    onClick={ onClickFindIdHandler }
+                >
+                    아이디 찾기
+                </button>   
+                <button
+                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                    onClick={ onClickFindPasswordHandler }
+                >
+                    비밀번호 찾기
+                </button>   
             </div>
         </div>
 

@@ -4,35 +4,34 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
 import { callAppClassDeleteAPI, callAppClassMyListAPI  } from '../../apis/AppClassApiCalls';
 import AppClassCSS from './AppClass.module.css';
-import { decodeJwt } from '../../utils/tokenUtils';
 
 function AppClassMyList() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const lectures = useSelector(state => state.appClassReducer);
-    const lectureList = lectures.data;  
-    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    const lecture = useSelector(state => state.appClassReducer);
+    const lectureList = lecture.data;  
     const params = useParams();
 
     /* 수강신청한 목록 */
     useEffect(() => {
-            dispatch(callAppClassMyListAPI({
+            dispatch(callLectureStuListAPI({
                appClassCode : params.AppClassCode
             }));
-        
     },[]);
 
-
-    /* 수강취소 버튼 이벤트 */
-        const onClickAppClassHandler = (appClassCode) => {
-            console.log('[AppClassMyList 수강취소 번호 : ', appClassCode);
-            dispatch(callAppClassDeleteAPI(appClassCode));
-
-            alert("수강 취소 되었습니다.");
-
+    /* 목록 클릭시 이동 */
+    const onClickAppListHandler = () => {
+     navigate("/layout/AppClass", { replace : false });   
     }
 
+    /* 수강취소 버튼 이벤트 */
+        const onClickAppClassDeleteHandler = (lectureCode) => {
+            console.log('[AppClassMyList 수강취소 번호] : ', lectureCode);
+            dispatch(callAppClassDeleteAPI(lectureCode));
+            alert("수강 취소 되었습니다.");
+            window.location.reload();
+    }
 
 
 
@@ -79,7 +78,7 @@ function AppClassMyList() {
                                         <td>{ lecture.subject.department.departmentName }</td>
                                         <td>{ lecture.lectureName }</td>
                                         <td>{ lecture.professor.professorName }</td>
-                                        <td><button onClick={ (e) => onClickAppClassHandler(e.lecture) }>
+                                        <td><button onClick={ () => onClickAppClassDeleteHandler(lecture) }>
                                                 취소
                                         </button></td>
                                         <td>{ lecture.lecturePersonnel } / { lecture.capacity }</td>
@@ -95,7 +94,8 @@ function AppClassMyList() {
                     </tbody>   
                     </table>
                     <div className= { AppClassCSS.sinBtn } >
-                    <button className= { AppClassCSS.sinBtn2 }> 수강취소 </button></div>
+                    <button onClick={ onClickAppListHandler }
+                    className= { AppClassCSS.sinBtn2 }> 목록 </button></div>
                     
                     </div>
             </>

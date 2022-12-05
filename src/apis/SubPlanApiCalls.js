@@ -1,17 +1,18 @@
 import { GET_SUBPLAN, POST_SUBPLAN } from "../modules/SubPlanModule";
 
-export const callSubPlanListAPI = (planCode) => {
-    console.log('[AppClassAPICalls] lectureCode : ', planCode)
-    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/subPlan/list/${planCode}`
+/* 수강계획서 상세 조회 */
+export const callSubPlanListAPI = ({lectureCode}) => {
+    console.log('[SubPlanAPICalls] planCode : ', lectureCode)
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/subPlan/list/${lectureCode}`
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method : "GET",
             headers : {
+               
                 "Accept": "*/*",
-                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
-            
+                "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")  
             }
         })
         .then(response => response.json());
@@ -24,7 +25,8 @@ export const callSubPlanListAPI = (planCode) => {
 
 }
 
-export const callSubPlanMakeAPI = (lecture, form) => {
+/* 수강계획서 작성 */
+export const callSubPlanRegistAPI = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/subPlan/make`
 
@@ -39,7 +41,7 @@ export const callSubPlanMakeAPI = (lecture, form) => {
             },
             body : JSON.stringify({
                 lecture : {
-                    lectureCode : lecture.lectureCode
+                    lectureCode : form.lectureCode
                 },
                 planName : form.planName,
                 purpose : form.purpose

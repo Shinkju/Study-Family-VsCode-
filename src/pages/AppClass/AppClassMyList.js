@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
 import { callAppClassDeleteAPI, callAppClassMyListAPI  } from '../../apis/AppClassApiCalls';
 import AppClassCSS from './AppClass.module.css';
+import SubPlan from '../SubPlan/SubPlan';
 
 function AppClassMyList() {
 
@@ -12,6 +13,16 @@ function AppClassMyList() {
     const lecture = useSelector(state => state.appClassReducer);
     const lectureList = lecture.data;  
     const params = useParams();
+
+     // 모달창 노출 여부 state
+     const [modalOpen, setModalOpen] = useState(false);
+     const [lectureCode, setLectureCode] = useState(0);
+ 
+     // 모달창 노출
+     const showModal = (lectureCode) => {
+         setLectureCode(lectureCode);
+         setModalOpen(true);
+     };
 
     /* 수강신청한 목록 */
     useEffect(() => {
@@ -42,15 +53,15 @@ function AppClassMyList() {
                 <div>
                 <table>
                     <colgroup>
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="15%" />
                         <col width="15%" />
                         <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="5%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -78,11 +89,15 @@ function AppClassMyList() {
                                         <td>{ lecture.subject.department.departmentName }</td>
                                         <td>{ lecture.lectureName }</td>
                                         <td>{ lecture.professor.professorName }</td>
-                                        <td><button onClick={ () => onClickAppClassDeleteHandler(lecture) }>
+                                        <td><button className= { AppClassCSS.sinBtn3 } 
+                                        onClick={ (e) => {onClickAppClassDeleteHandler(lecture);
+                                        }}>
                                                 취소
                                         </button></td>
                                         <td>{ lecture.lecturePersonnel } / { lecture.capacity }</td>
-                                        <td><button>
+                                       <td><button className= { AppClassCSS.sinBtn3 } 
+                                       onClick={ () => showModal(lecture.lectureCode) }
+                                        > 
                                                 조회
                                         </button></td>
                                     </tr>
@@ -93,6 +108,7 @@ function AppClassMyList() {
 
                     </tbody>   
                     </table>
+                    {modalOpen && <SubPlan setModalOpen={setModalOpen} lectureCode = {lectureCode} />}
                     <div className= { AppClassCSS.sinBtn } >
                     <button onClick={ onClickAppListHandler }
                     className= { AppClassCSS.sinBtn2 }> 목록 </button></div>

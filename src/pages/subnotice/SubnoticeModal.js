@@ -28,7 +28,7 @@ function SubnoticeModal({lectureCode}) {
         console.log('[SubnoticeModal] onClickSubnoticeMakeHandler Start!!');        
 
         dispatch(callSubnoticeWriteAPI({	
-            form: form
+            form : form
         }));
 
         alert('공지사항을 작성하였습니다.');
@@ -48,7 +48,7 @@ function SubnoticeModal({lectureCode}) {
             <div>
                 <div>
                 <input
-                        className={ SubnoticeDetailCSS.detailtitle }  
+                        className={ SubnoticeDetailCSS.code }  
                         type="text"
                         name="lectureCode"
                         placeholder="코드를 입력하세요."
@@ -82,7 +82,6 @@ function SubnoticeModal({lectureCode}) {
                     
                    <button className= { BtnCSS.sinBtn2 } 
                         onClick={ () => navigate(-1) }
-                        // onClick={ () => setSubnoticeModal(false) }
                     >
                         돌아가기
                     </button>

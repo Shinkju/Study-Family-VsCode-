@@ -21,7 +21,7 @@ function SubnoticeDetail() {
     /* 최초 랜더링 시 공지사항 상세 조회 */
     useEffect(
         () => {
-            console.log('[SubnoticeDetail] subnoticeCode : ', params.subnoticeCode);
+            console.log('[SubnoticeDetail] subnoticeCode페이지쪽 : ', params.subnoticeCode);
             dispatch(callSubnoticeDetailAPI({
                 subnoticeCode: params.subnoticeCode
             }));
@@ -79,24 +79,14 @@ function SubnoticeDetail() {
     const onClickSubnoticeListHandler = () => {
         navigate(`/layout/subnotice`, { replace : true });
     }
-
-
+    
     return (
          <>
          { subnoticeDetail &&
             <div>
-                {/* <input              
-                    type="hidden"
-                    name='professorCode'
-                    readOnly={updateMode ? false : true}
-                    onChange={ onChangeHandler }
-                    value={ subnoticeDetail && subnoticeDetail.lecture.professor?.professorName || ''}
-                >
-                </input> */}
-                
                 <input              
-                    className={ SubnoticeDetailCSS.lectureCode }  
-                    name='lectureCode'
+                    className={ SubnoticeDetailCSS.code }  
+                    name='lectureName'
                     readOnly={updateMode ? false : true}
                     onChange={ onChangeHandler }
                     value={ subnoticeDetail && subnoticeDetail.lecture?.lectureName || ''}
@@ -127,13 +117,15 @@ function SubnoticeDetail() {
 
             
             { subnoticeDetail && 
-                <div>
-                    <div className= { BtnCSS.sinBtn } >{!updateMode &&
-                    <button className= { BtnCSS.sinBtn2 } 
-                    onClick= {onClickSubnoticeListHandler}> 목록 </button>
-                    } 
-
+                <div className= { BtnCSS.sinBtn } >
                        
+                    <button className= { BtnCSS.sinBtn2 } 
+                    onClick= {onClickSubnoticeListHandler}
+                    > 
+                    목록 
+                    </button>
+                    
+ 
                         <div>{!updateMode &&
                             <button       
                             className= { BtnCSS.sinBtn2 } 
@@ -147,7 +139,7 @@ function SubnoticeDetail() {
                                 className= { BtnCSS.sinBtn2 } 
                                     onClick={ onClickSubnoticeUpdateHandler }             
                                 >
-                                    수정 저장하기
+                                    수정
                                 </button>
                              }
                        {updateMode &&  
@@ -158,10 +150,9 @@ function SubnoticeDetail() {
                                     삭제
                                 </button>
                              }
+                          
                             </div>
-                        
                         </div>
-                </div>
             }
         </>
     );

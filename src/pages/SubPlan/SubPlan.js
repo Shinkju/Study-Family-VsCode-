@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import styles from './ModalBasic.module.css';
 import { callSubPlanListAPI } from '../../apis/SubPlanApiCalls';
 
-function SubPlan({ setModalOpen, id, title, content, writer }) {
+function SubPlan({ setModalOpen , lectureCode}) {
 
-    const params = useParams();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const subPlan = useSelector(state => state.subPlanReducer);
-    const subPlanList = subPlan.data;  
+    const subPlan = useSelector(state => state.subPlanReducer);  
 
     // 모달 끄기 
     const closeModal = () => {
@@ -19,65 +16,38 @@ function SubPlan({ setModalOpen, id, title, content, writer }) {
     };
 
     /* 수업계획서 조회 */
-    useEffect(() => {
+    useEffect(
+        () => {
+        console.log('[SubPlan] planCode페이지쪽 : ', lectureCode);
             dispatch(callSubPlanListAPI({
-                planCode : params.planCode
+                lectureCode : lectureCode
             }));
     },[]);
+
+    console.log('서브플랜', subPlan);
 
     return (
         <>
         <div className={styles.container}>
             <button className={styles.close} onClick={closeModal}>
-                X
-                <table>
-                    <colgroup>
-                        <col width="15%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="5%" />
-                    </colgroup>
-                    <thead>
-                        <tr>
-                        <th>제목</th>
-                         <th>강좌번호</th>
-                         <th>학점</th>
-                          <th>담당 교수</th>
-                          <th>담당 교수 이메일</th>
-                          <th>연락처</th>
-                          <th>이수 구분</th>
-                          <th>학습 목표</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
+                <p>X</p></button>
                     <tbody>
-                        {
-                            Array.isArray(subPlanList) && subPlanList.map(
-                                (subPlan) => (
+                        { subPlan?.lecture && subPlan?.professor && (
                                     <tr
                                         key={ subPlan.planCode }
                                     >
-                                        <td>{ subPlan.planName }</td>
-                                        <td>{ subPlan.lecture.lectureCode }</td>
-                                        <td>3</td>
-                                        <td>{ subPlan.professor.professorName }</td>
-                                        <td>{ subPlan.professor.professorEmail }</td>
-                                        <td>{ subPlan.lecture.subject.majorType }</td>
-                                        <td>{ subPlan.purpose }</td>
+                                        <tr className={styles.head}>{ subPlan.planName }</tr><br/>
+                                        <tr className={styles.body}>강좌번호 : { subPlan.lecture.lectureCode }</tr><br/>
+                                        <tr className={styles.body}>학점 : 3</tr><br/>
+                                        <tr className={styles.body}>담당 교수 : { subPlan.professor.professorName }</tr><br/>
+                                        <tr className={styles.body}>이메일 : { subPlan.professor.professorEmail }</tr><br/>
+                                        <tr className={styles.body}>연락처 : { subPlan.professor.professorPhone }</tr><br/>
+                                        <tr className={styles.body}>이수 구분 : { subPlan.lecture.subject.majorType }</tr><br/>
+                                        <tr className={styles.body}>학습 목표 :{ subPlan.purpose }</tr>
                                     </tr>
-                                )
-                            )
-                        }
+                        )}
 
-                    </tbody>   
-                    </table>
-                    </button>
+                    </tbody>    
                     </div>
         </>
     );

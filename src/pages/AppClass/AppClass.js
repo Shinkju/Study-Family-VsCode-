@@ -12,13 +12,15 @@ function AppClass() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const lecture = useSelector(state => state.lectureReducer);
-    const lectureList = lecture.data;      
-
+    const lectureList = lecture.data;  
+    
     // 모달창 노출 여부 state
     const [modalOpen, setModalOpen] = useState(false);
+    const [lectureCode, setLectureCode] =useState(0);
 
     // 모달창 노출
-    const showModal = () => {
+    const showModal = (lectureCode) => {
+        setLectureCode(lectureCode);
         setModalOpen(true);
     };
 
@@ -48,18 +50,19 @@ function AppClass() {
     }
 
     /* 수강신청 버튼 이벤트 */
-    const onClickAppClassHandler = (lectureCode) => {
-        dispatch(callAppClassAPI(lectureCode));
+    const onClickAppClassHandler = (e) => {
 
-        alert("수강 신청 되었습니다.");
-
-    }
-
-    const [value, setValue] = useState(false);
-    function onClickHide() {
-      setValue(value => !value);
-    }
-
+        if(e.lecturePersonnel >= e.capacity){
+            alert("수강 인원이 초과되었습니다.")
+        } else {
+            dispatch(callAppClassAPI({
+                lectureCode : e.lectureCode
+            }));
+            alert("수강 신청되었습니다.");
+            window.location.reload(); 
+        } 
+        
+        }
 
     return (
         <>
@@ -67,15 +70,15 @@ function AppClass() {
                 <div>
                 <table>
                     <colgroup>
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="10%" />
+                        <col width="15%" />
                         <col width="15%" />
                         <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="10%" />
-                        <col width="5%" />
+                        <col width="15%" />
+                        <col width="15%" />
+                        <col width="15%" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -103,14 +106,21 @@ function AppClass() {
                                         <td>{ lecture.subject.department.departmentName }</td>
                                         <td>{ lecture.lectureName }</td>
                                         <td>{ lecture.professor.professorName }</td>
-                                        <td><button onClick={ () => onClickAppClassHandler(lecture)}
+                                        <td><button 
+                                        className= { AppClassCSS.sinBtn3 } 
+                                        onClick={ 
+                                            (e) => {onClickAppClassHandler(lecture);
+                                            //e.currentTarget.disabled = true;
+                                            }}
                                         >
-                                                신청
+                                        신청
                                         </button></td>
                                         <td>{ lecture.lecturePersonnel } / { lecture.capacity }</td>
-                                        <td><button onClick={showModal}> 조회</button>
-                                         {modalOpen && <SubPlan setModalOpen={setModalOpen} />}
-                                        </td>
+                                        <td><button className= { AppClassCSS.sinBtn3 } 
+                                        onClick={ () => showModal(lecture.lectureCode) }
+                                        > 
+                                                조회
+                                        </button></td>
                                         
                                     </tr>
                                 )
@@ -120,6 +130,7 @@ function AppClass() {
 
                     </tbody>    
                     </table>
+                    {modalOpen && <SubPlan setModalOpen={setModalOpen} lectureCode = {lectureCode} />}
                     <div className= { AppClassCSS.sinBtn } >
                     <button className= { AppClassCSS.sinBtn2 } onClick= {onClickAppClassListHandler}> 신청목록 </button>
                   </div> 
@@ -156,6 +167,7 @@ function AppClass() {
                 <button
                     onClick={ () => setCurrentPage(currentPage + 1) }
                     /*disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}*/
+                    disabled={currentPage === 3}
                     className={ PageCSS.pagingBtn }
                 >
                     &gt;

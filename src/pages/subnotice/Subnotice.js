@@ -24,6 +24,7 @@ function Subnotice() {
         navigate("/layout/SubnoticeModal", { replace : false });
     }
 
+    /* 공지사항 조회 */
     useEffect(
         () => {
             dispatch(callSubnoticeListAPI({
@@ -33,9 +34,9 @@ function Subnotice() {
         , [currentPage]
     )
 
+    /* 상세 조회 */
     const onClickTableTr = (subnoticeCode) => {
         navigate(`/layout/subnoticeDetail/${subnoticeCode}`, { replace : true });
-
     }
     
     /* 페이징 버튼 */
@@ -87,7 +88,7 @@ function Subnotice() {
                                     >
                                         <td>{ subnotice.subnoticeCode }</td>
                                         <td>{ subnotice.lecture.lectureName }</td>
-                                        <td>{ subnotice.subnoticeTitle }</td>
+                                        <td className={MainCSS.content}>{ subnotice.subnoticeTitle }</td>
                                         <td>{ subnotice.registrationDate }</td>
                                     </tr>
                                 )

@@ -30,6 +30,8 @@ import ManagementLayout from './layouts/ManagementLayout';
 import SchoolNoticeList from './pages/SchoolNotice/SchoolNoticeList';
 import SchoolNoticeDetail from './pages/SchoolNotice/SchoolNoticeDetail';
 import SchoolNoticeRegistration from './pages/SchoolNotice/SchoolNoticeRegistration';
+import MsgReceiveList from './pages/Message/MsgReceiveList';
+import MsgSendedList from './pages/Message/MsgSendedList';
 
 
 function App() {
@@ -64,6 +66,8 @@ function App() {
               <Route path="Subnotice" element={ <Subnotice/> }/>
               <Route path="SubnoticeDetail/:subnoticeCode" element={ <SubnoticeDetail/> }/>
               <Route path="SubnoticeModal" element={ <SubnoticeModal/> }/>
+              <Route path="msgReceiveList" element={ <MsgReceiveList/> }/>
+              <Route path="msgSendedList" element={ <MsgSendedList/> }/>
             </Route>
 
             <Route path="/management" element={ <ManagementLayout/> }>

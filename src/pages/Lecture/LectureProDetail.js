@@ -34,33 +34,64 @@ function LectureProDetail(){
         []
     );
 
-    //파일 수정 화면 넘기기
-    const onClickTableTr = () => {
-        navigate(`/layout/file-updatePro/${lectureCode}`, { replace : false });
-    }
-
 
     //파일 등록 화면 넘기기
     const onClickLectureRegistHandler = () => {
         navigate("/layout/fileRegistPro", { replace : false });
     }
 
+    //강좌 공지사항 화면 넘기기
+    const onClickSubNoticeHandler = () => {
+        navigate("/layout/Subnotice", { replace : false });
+    }
 
+    //강좌 QA 게시판 화면 넘기기
+    const onClickQaHandler = () => {
+
+    }
+
+    //쪽지함 화면 넘기기
+    const onClickMsgHandler = () => {
+        navigate("/layout/msgReceiveList", { replace : false });
+    }
  
 
     return(
         <>
            
             <div>
+                <div style={{ marginLeft:450 }}>
+                        <h2
+                            style={{  float:'left' }}
+                            onClick={ onClickSubNoticeHandler }
+                        >
+                            공지 게시판 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        </h2>
+                        <h2
+                            style={{  float:'left'  }}
+                            onClick={ onClickQaHandler }
+                        >
+                            Q&A 게시판
+                        </h2>
+                        <h2
+                            style={{  float:'right', paddingRight:100 }}
+                            onClick={ onClickMsgHandler }
+                        >
+                            💌
+                        </h2>
+                </div><br/>
                 <div>
-                <h2>{ lectureDetail?.lectureName }  /  { lectureDetail?.professor?.professorName }</h2>
+                <h3
+                    style={{ marginLeft:350, paddingTop:80 }}
+                >
+                    { lectureDetail?.lectureName }  /  { lectureDetail?.professor?.professorName }</h3>
                 </div>
             </div><br/>
             <div>
                 <table>
                     <colgroup>
-                        <col width="5%" />
-                        <col width="15%" />
+                        <col width="10%" />
+                        <col width="10%" />
                         <col width="15%" />
                     </colgroup>
                     <thead>
@@ -76,7 +107,6 @@ function LectureProDetail(){
                                 (lecture) => ([
                                     <tr
                                         key={ lecture.lectureWeekCode }
-                                        // onClick={ () => onClickTableTr(lecture.courseCode) }
                                     >
                                         <td>{ lecture.week || '' }</td>
                                         <td>{ lecture.startDate || '' } ~ { lecture.endDate || '' }</td>

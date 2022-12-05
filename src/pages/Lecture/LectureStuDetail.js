@@ -65,7 +65,7 @@ function LectureStuDetail(){
 
     //강좌 공지사항 화면 넘기기
     const onClickSubNoticeHandler = () => {
-
+        navigate("/layout/Subnotice", { replace : false });
     }
 
     //깅좌 QA 게시판 화면 넘기기
@@ -73,6 +73,11 @@ function LectureStuDetail(){
 
     }
 
+
+    //쪽지함 화면 넘기기
+    const onClickMsgHandler = () => {
+        navigate("/layout/msgReceiveList", { replace : false });
+    }
 
 
     return (
@@ -93,6 +98,12 @@ function LectureStuDetail(){
                             onClick={ onClickQaHandler }
                         >
                             Q&A 게시판
+                        </h2>
+                        <h2
+                            style={{  float:'right', paddingRight:100 }}
+                            onClick={ onClickMsgHandler }
+                        >
+                            💌
                         </h2>
                     </div><br/>
                     <div>

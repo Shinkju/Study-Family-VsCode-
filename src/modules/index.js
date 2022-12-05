@@ -7,6 +7,7 @@ import subPlanReducer from "./SubPlanModule";
 import studentListReducer from "./StudentListModule";
 import professorListReducer from "./ProfessorListModule";
 import schoolNoticeReducer from "./SchoolNoticeModule";
+import msgReducer from './MsgModule';
 
 const rootReducer = combineReducers({
     memberReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     subPlanReducer,
     studentListReducer,
     professorListReducer,
-    schoolNoticeReducer
+    schoolNoticeReducer,
+    msgReducer
 });
 
 export default rootReducer;

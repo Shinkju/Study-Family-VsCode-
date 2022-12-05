@@ -1,3 +1,33 @@
 .professorListTable {
     width: 1200px;
 }
+
+
+.professorDetailform {
+    width: 1200px;
+}
+
+.professorDetailtr {
+    align-items: center;
+
+}
+
+.professorDetailTable td {
+    padding: 10px;
+}
+
+.professorDetailBtn {
+    margin-left: 900px;
+}
+
+.DetailBtn {
+    margin: 20px;
+}
+
+.professorInsertform {
+    width: 1000px;
+}
+
+.professorInsertBtn {
+    margin-left: 700px;
+}

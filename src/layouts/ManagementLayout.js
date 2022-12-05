@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Managementsidebar from "../components/common/Managementsidebar";
+import ManagementSidebar from "../components/common/ManagementSidebar";
 import Navbar from "../components/common/Navbar";
 
 function ManagementLayout() {
@@ -7,7 +7,7 @@ function ManagementLayout() {
     return(
         <>
             <Navbar />
-            <Managementsidebar />
+            <ManagementSidebar />
             <main>
                 <Outlet/>
             </main>

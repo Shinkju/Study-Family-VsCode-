@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callProfessorDetailAPI, callProfessorUpdateAPI } from "../../apis/ProfessorListApiCalls";
+import ProfessorManagementCSS from './ProfessorManagement.module.css';
 
 
 function ProfessorDetail() {
@@ -59,7 +60,7 @@ function ProfessorDetail() {
     return(
         <div> 
         <div>
-                <table>
+                <table className={ ProfessorManagementCSS.professorDetailform }>
                     <tbody>
                         <tr>
                             <td><label>교수 ID</label></td>
@@ -85,6 +86,10 @@ function ProfessorDetail() {
                                     value={ (!modifyMode ? professorDetail.professorPosition : form.professorPosition ) || ''}
                                     readOnly={ modifyMode ? false : true }/>
                             </td>
+                            
+                        </tr>
+
+                        <tr>
                             <td><label>임용일자</label></td>
                             <td>
                                 <input
@@ -106,7 +111,11 @@ function ProfessorDetail() {
                                     value={ (!modifyMode ? professorDetail.professorRegistNum : form.professorRegistNum ) || ''}
                                     readOnly={ modifyMode ? false : true }/>
                             </td>
-                            <td><label>전화번호</label></td>
+                            
+                        </tr>
+
+                        <tr>
+                        <td><label>전화번호</label></td>
                             <td>
                                 <input
                                     name='professorPhone'
@@ -127,7 +136,11 @@ function ProfessorDetail() {
                                     value={ (!modifyMode ? professorDetail.professorAddress : form.professorAddress ) || ''}
                                     readOnly={ modifyMode ? false : true }/>
                             </td>
-                            <td><label>재직여부</label></td>
+                            
+                        </tr>
+
+                        <tr>
+                        <td><label>재직여부</label></td>
                             <td>
                                 <label><input type="radio" name="professorStatus" onChange={ onChangeHandler } value={"Y"}
                                     readOnly={ modifyMode ? false : true }
@@ -179,19 +192,19 @@ function ProfessorDetail() {
                 </table>
             </div>
             
-            <div>
-                <button
+            <div className={ ProfessorManagementCSS.professorDetailBtn }>
+                <button className={ ProfessorManagementCSS.DetailBtn } 
                     onClick={ () => navigate(-1) }
                 > 목록으로 </button>
             {!modifyMode &&
-                <button
+                <button className={ ProfessorManagementCSS.DetailBtn } 
                     onClick={ onClickModifyModeHandler }
                 >
                     수정 하기
                 </button>
             }
             {modifyMode &&
-                <button
+                <button className={ ProfessorManagementCSS.DetailBtn } 
                     onClick={ onClickProfessorUpdateHandler }
                 >
                     교수정보 저장하기

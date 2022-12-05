@@ -5,11 +5,11 @@ import { callStudentDetailForAdminAPI, callStudentUpdateAPI } from "../../apis/S
 import StudentManagementCSS from './StudentManagement.module.css';
 
 
+
 function StudentDetail(){
 
     const params = useParams();
     const studentDetail = useSelector(state => state.studentListReducer);
-
 
 
     const dispatch = useDispatch();
@@ -97,8 +97,10 @@ function StudentDetail(){
                                 <td><input name='admissionsDay' onChange={ onChangeHandler }
                                             value={ (!modifyMode ? studentDetail.admissionsDay : form.admissionsDay ) || ''}
                                             readOnly={ modifyMode ? false : true }/></td>
+                            </tr>
 
-                                <td><label>학번</label></td>
+                            <tr>
+                            <td><label>학번</label></td>
                                 <td>
                                     <input
                                         name='studentCode'
@@ -119,7 +121,9 @@ function StudentDetail(){
                                         value={ (!modifyMode ? studentDetail.studentName : form.studentName ) || ''}
                                         readOnly={ modifyMode ? false : true }/>
                                 </td>
-                                <td><label>주민번호</label></td>
+                            </tr>
+                            <tr>
+                            <td><label>주민번호</label></td>
                                 <td>
                                     <input
                                         name='studentRegistNum'
@@ -128,11 +132,9 @@ function StudentDetail(){
                                         value={ (!modifyMode ? studentDetail.studentRegistNum : form.studentRegistNum ) || ''}
                                         readOnly={ modifyMode ? false : true }/>
                                 </td>
-
                             </tr>
 
                             <tr>
-                                
                                 <td><label>학년</label></td>
                                 <td>
                                     <label><input type="radio" name="grade" onChange={ onChangeHandler } value={1}
@@ -164,7 +166,10 @@ function StudentDetail(){
                                         value={ (!modifyMode ? studentDetail.nationality : form.nationality ) || ''}
                                         readOnly={ modifyMode ? false : true }/>
                                 </td>
-                                <td><label>주소</label></td>
+                            </tr>
+
+                            <tr>
+                            <td><label>주소</label></td>
                                 <td>
                                     <input
                                         name='studentAddress'
@@ -212,7 +217,9 @@ function StudentDetail(){
                                         value={ (!modifyMode ? studentDetail.studentPhone : form.studentPhone ) || ''}
                                         readOnly={ modifyMode ? false : true }/>
                                 </td>
-                                <td><label>이메일</label></td>
+                            </tr>
+                            <tr>
+                            <td><label>이메일</label></td>
                                 <td>
                                     <input
                                         name='studentEmail'
@@ -227,23 +234,21 @@ function StudentDetail(){
                     </table>
                 </div>
 
-
-
-                <div>
-                <button        
+                <div className={ StudentManagementCSS.studentDetailBtn }>
+                <button className={ StudentManagementCSS.DetailBtn }     
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기
                 </button>
             {!modifyMode &&
-                <button 
+                <button className={ StudentManagementCSS.DetailBtn } 
                     onClick={ onClickModifyModeHandler }
                 >
                     수정 모드
                 </button>
             }
             {modifyMode &&
-                <button 
+                <button className={ StudentManagementCSS.DetailBtn } 
                     onClick={ onClickStudentUpdateHandler }
                 >
                     학생정보 저장하기

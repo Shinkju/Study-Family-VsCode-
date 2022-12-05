@@ -20,6 +20,17 @@ import SubPlan from './pages/SubPlan/SubPlan';
 import Subnotice from './pages/subnotice/Subnotice';
 import SubnoticeDetail from './pages/subnotice/SubnoticeDetail';
 import SubnoticeModal from './pages/subnotice/SubnoticeModal';
+import StudentManagement from './pages/Student/StudentManagement';
+import StudentRegistration from './pages/Student/StudentRegistration';
+import ProfessorManagement from './pages/Professor/ProfessorManagement';
+import ProfessorRegistration from './pages/Professor/ProfessorRegistration';
+import StudentDetail from './pages/Student/StudentDetail';
+import ProfessorDetail from './pages/Professor/ProfessorDetail';
+import ManagementLayout from './layouts/ManagementLayout';
+import SchoolNoticeList from './pages/SchoolNotice/SchoolNoticeList';
+import SchoolNoticeDetail from './pages/SchoolNotice/SchoolNoticeDetail';
+import SchoolNoticeRegistration from './pages/SchoolNotice/SchoolNoticeRegistration';
+
 
 function App() {
   
@@ -54,7 +65,26 @@ function App() {
               <Route path="SubnoticeDetail/:subnoticeCode" element={ <SubnoticeDetail/> }/>
               <Route path="SubnoticeModal" element={ <SubnoticeModal/> }/>
             </Route>
+
+            <Route path="/management" element={ <ManagementLayout/> }>
+              <Route path="student" element={ <StudentManagement/> }/>
+              <Route path="studentdetail/:studentNo" element={ <StudentDetail/> }/>
+              <Route path="student-registration" element={ <StudentRegistration/> }/>
+              <Route path="professor" element={ <ProfessorManagement/> }/>
+              <Route path="professordetail/:professorCode" element={ <ProfessorDetail/> }/>
+              <Route path="professor-registration" element={ <ProfessorRegistration/> }/>
+            </Route>
+
+            <Route path="/board" element={ <Layout/> }>
+              <Route path="schoolnotice" element={ <SchoolNoticeList/> }/>
+              <Route path="schoolnoticeDetail/:schoolNoticeCode" element={ <SchoolNoticeDetail/> }/>
+              <Route path="schoolnotice-registration" element={ <SchoolNoticeRegistration/> }/>
+            </Route>
+
             <Route path="SubPlan" element={ <SubPlan/> }/>
+
+            
+          
         </Routes>
 
 

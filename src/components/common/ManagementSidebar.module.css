@@ -1,0 +1,44 @@
+* {
+    font-family: 'Y_Spotlight';
+    
+}
+
+@font-face {
+    font-family: 'Y_Spotlight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.NavbarDiv {
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
+}
+
+.NavlistUl {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-wrap: wrap;
+    min-width: 100px;
+    list-style:none;
+    padding-left:20px;    
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.NavlistUl li {
+    min-width: 170px;
+    height: auto;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;    
+    color: black;
+}
+
+a:hover, a:focus, a:active{
+    text-decoration: none;
+    color: slateblue;
+    font-weight: bold;
+}

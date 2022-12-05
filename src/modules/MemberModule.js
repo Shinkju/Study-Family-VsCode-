@@ -10,6 +10,7 @@ export const POST_LOGIN = 'login/POST_LOGIN';
 export const POST_PROFESSORREGIST = 'professorRegist/POST_PROFESSORREGIST';
 export const POST_STUDENTREGIST = 'studentRegist/POST_STUDENTREGIST';
 export const POST_REGIST = 'member/POST_REGIST';
+export const GET_MEMBER = 'info/GET_MEMBER';
 
 /* 액션 함수 생성 */
 const actions = createActions({
@@ -18,6 +19,7 @@ const actions = createActions({
     [POST_PROFESSORREGIST]: () => {},
     [POST_STUDENTREGIST]: () => {},
     [POST_REGIST]: () => {},
+    [GET_MEMBER]: () => {}
 
 });
 
@@ -40,6 +42,9 @@ const memberReducer = handleActions(
             return payload;
         },
         [POST_REGIST] : (state, { payload }) => {
+            return payload;
+        },
+        [GET_MEMBER] : (state, { payload }) => {
             return payload;
         }
     },

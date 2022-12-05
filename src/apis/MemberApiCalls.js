@@ -1,4 +1,4 @@
-import { POST_LOGIN, POST_PROFESSORREGIST, POST_STUDENTREGIST, POST_REGIST } from "../modules/MemberModule";
+import { GET_MEMBER, POST_LOGIN, POST_PROFESSORREGIST, POST_STUDENTREGIST, POST_REGIST } from "../modules/MemberModule";
 
 
 /* 로그인 API - Form 형식 */
@@ -169,4 +169,33 @@ export const callLogoutAPI = () => {
 
     }
 
+}
+
+
+
+/* 내정보 조회하기 API */
+export const callGetMyInfoAPI = () => {
+
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/info/member/memeInfo`;
+
+    return async (dispatch, getState) => {
+
+        // 내정보 조회 시 Token 값 필수!!!!!! - 안넣으면 내정보 안나와요~~
+        const result = await fetch(requestURL, {
+            method : "GET",
+            headers : {
+            "Content-Type" : "application/json" ,
+            "Accept" : "*/*",
+            "Authorization" : "Bearer " + window.localStorage.getItem("accessToken")
+            }               
+        })
+        .then(response => response.json()); 
+
+        console.log('[MEMBERAPICalls] callGetMyInfoAPI result : ', result);
+
+        if(result.status === 200) {
+
+            dispatch({ type: GET_MEMBER, payload: result });   
+        }
+    }
 }

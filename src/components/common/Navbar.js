@@ -2,14 +2,18 @@ import { decodeJwt } from '../../utils/tokenUtils';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import NavbarCSS from './Navbar.module.css';
-import { callLogoutAPI } from '../../apis/MemberApiCalls';
+import { callLogoutAPI, callGetMyInfoAPI } from '../../apis/MemberApiCalls';
 import { useDispatch } from "react-redux";
+import { useEffect } from 'react';
 
 
 function Navbar() {
 
+    const member = useSelector(state => state.memberReducer);
+    const memberDetail = member.data;
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -20,10 +24,6 @@ function Navbar() {
         decoded = temp.auth[0];
     }
 
-
-    const login = useSelector((state) => state.memberReducer);
-    const loginList = login.data;
-
    
     /* 로그아웃 토큰 폐기 처리 */
     const onClickLogoutHandler = () => {
@@ -31,6 +31,17 @@ function Navbar() {
         dispatch(callLogoutAPI());
         window.location = "http://localhost:3000/";
     }
+
+
+    /* 내 정보 불러오기 */
+    useEffect(() => {
+        if(isLogin){
+            dispatch(callGetMyInfoAPI({
+                loginId: isLogin.loginId
+            }));
+        }
+    },[]);
+
 
 
     function AfterLogin() {
@@ -57,18 +68,22 @@ function Navbar() {
             <ul className={ NavbarCSS.NavlistUl }>
                 <div>
                     <ul>
+                        { memberDetail && 
                         <div>
+                            
                             <div>
                                 <img src="/images/admin.ico" alt=""></img>
                             </div>
                             <div>
-                            <strong>{ loginList?.memberName }님</strong><br/>
-                            <strong>220608</strong>
-                            <p>하이미디어과</p>
-                            <a href="/">마이페이지 | </a><AfterLogin> 로그아웃</AfterLogin>
+                            <strong>{ memberDetail?.professor?.professorName + '교수' || memberDetail?.student?.studentName + '학우' || '관리자' }님</strong><br/>
+                            <strong>{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentNo || '' }</strong>
+                            <p>{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</p>
+                            <a href="/">마이페이지</a><AfterLogin> 로그아웃</AfterLogin>
                             </div>
+                            
                         </div>
-                    </ul>
+                        } 
+                   </ul>
                 </div>
                 {/* 학생 */}
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/lectureStuList">강의실</NavLink></li> }

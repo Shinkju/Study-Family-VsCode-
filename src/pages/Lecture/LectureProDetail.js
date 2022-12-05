@@ -62,19 +62,19 @@ function LectureProDetail(){
             <div>
                 <div style={{ marginLeft:450 }}>
                         <h2
-                            style={{  float:'left' }}
+                            style={{  float:'left', cursor:"pointer"  }}
                             onClick={ onClickSubNoticeHandler }
                         >
                             공지 게시판 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         </h2>
                         <h2
-                            style={{  float:'left'  }}
+                            style={{  float:'left', cursor:"pointer"   }}
                             onClick={ onClickQaHandler }
                         >
                             Q&A 게시판
                         </h2>
                         <h2
-                            style={{  float:'right', paddingRight:100 }}
+                            style={{  float:'right', paddingRight:100, cursor:"pointer" }}
                             onClick={ onClickMsgHandler }
                         >
                             💌

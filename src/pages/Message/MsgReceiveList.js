@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 function MsgReceiveList(){
 
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const msg = useSelector(state => state.msgReducer);
     const msgList = msg.data;
@@ -34,7 +35,17 @@ function MsgReceiveList(){
 
     //쪽지 작성 페이지 넘기기
     const onClickMsgSendingHandler = () => {
+        navigate("/layout/msgSend", { replace : false });
+    }
 
+    //수신함 페이지
+    const onClickReceiveBoxHandler = () => {
+        navigate("/layout/msgReceiveList", { replace : false });
+    }
+
+    //발신함 페이지
+    const onClickSendedBoxHandler = () => {
+        navigate("/layout/msgSendedList", { replace : false });
     }
 
 
@@ -42,18 +53,28 @@ function MsgReceiveList(){
         <>
         <div>
             <div>
-                <button
-                    onClick={ onClickMsgSendingHandler }
-                >
-                    쪽지 쓰기
-                </button>
-            </div>
+                <div style={{ marginLeft:350, paddingTop:20, paddingBottom:80 }}>
+                    <h2
+                        style={{  float:'left', cursor:"pointer" }}
+                        onClick={ onClickReceiveBoxHandler }
+                    >
+                        수신 쪽지함 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    </h2>
+                    <h2
+                        style={{  float:'left', cursor:"pointer" }}
+                        onClick={ onClickSendedBoxHandler }
+                    >
+                        발신 쪽지함
+                    </h2>
+                </div>
+            </div><br/><br/>
+            <div>
             <table>
                 <colgroup>
-                    <col width="15%" />
-                    <col width="15%" />
-                    <col width="40%" />
-                    <col width="15%" />
+                    <col width="5%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="5%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -78,7 +99,16 @@ function MsgReceiveList(){
                     }                
                 </tbody>
             </table>
-            <div style={ { listStyleType: 'none', display: 'flex'} }>
+            </div><br/>
+            <div>
+                <button
+                    onClick={ onClickMsgSendingHandler }
+                    style={{ float:"right", width:130, height:50, fontSize:16 }}
+                >
+                    쪽지 쓰기
+                </button>
+            </div><br/><br/>
+            <div style={ { listStyleType: 'none', display: 'flex', justifyContent: "center"} }>
             {
                 Array.isArray(msgList) &&
                 <button

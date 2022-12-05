@@ -32,6 +32,8 @@ import SchoolNoticeDetail from './pages/SchoolNotice/SchoolNoticeDetail';
 import SchoolNoticeRegistration from './pages/SchoolNotice/SchoolNoticeRegistration';
 import MsgReceiveList from './pages/Message/MsgReceiveList';
 import MsgSendedList from './pages/Message/MsgSendedList';
+import MsgSend from './pages/Message/MsgSend';
+import RceiverModal from './pages/Message/Modal/RceiverModal';
 
 
 function App() {
@@ -68,6 +70,8 @@ function App() {
               <Route path="SubnoticeModal" element={ <SubnoticeModal/> }/>
               <Route path="msgReceiveList" element={ <MsgReceiveList/> }/>
               <Route path="msgSendedList" element={ <MsgSendedList/> }/>
+              <Route path="msgSend" element={ <MsgSend/> }/>
+              <Route path="rceiverModal" element={ <RceiverModal/> }/>
             </Route>
 
             <Route path="/management" element={ <ManagementLayout/> }>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callProfessorRegistAPI } from "../../apis/ProfessorListApiCalls";
+import ProfessorManagementCSS from './ProfessorManagement.module.css';
 
 function ProfessorRegistration(){
 
@@ -47,7 +48,7 @@ function ProfessorRegistration(){
         <div>
             <div>
                 <div>
-                    <table>
+                    <table className={ ProfessorManagementCSS.professorInsertform }>
                         <tbody>
                             <tr>
                             <td><label>학과</label></td>
@@ -68,6 +69,10 @@ function ProfessorRegistration(){
                                         placeholder='이름'
                                         onChange={ onChangeHandler } />
                                 </td>
+                                
+                            </tr>
+
+                            <tr>
                                 <td><label>주민번호</label></td>
                                 <td>
                                     <input
@@ -75,8 +80,8 @@ function ProfessorRegistration(){
                                         placeholder='-는 제외하고 입력하세요.'
                                         onChange={ onChangeHandler } />
                                 </td>
-
                             </tr>
+
 
                             <tr>
                                 <td><label>직위</label></td>
@@ -86,14 +91,17 @@ function ProfessorRegistration(){
                                         placeholder='직위'
                                         onChange={ onChangeHandler } />
                                 </td>
-                                <td><label>임용일자</label></td>
+                                
+                            </tr>
+
+                            <tr>
+                            <td><label>임용일자</label></td>
                                 <td>
                                     <input type="date" name="professorHireDate" 
                                             onChange={ onChangeHandler } 
                                     />
                                 </td>
                             </tr>
-
 
                             <tr>
                                 <td><label>핸드폰</label></td>
@@ -103,7 +111,11 @@ function ProfessorRegistration(){
                                         placeholder='핸드폰번호'
                                         onChange={ onChangeHandler } />
                                 </td>
-                                <td><label>이메일</label></td>
+                               
+                            </tr>
+
+                            <tr>
+                            <td><label>이메일</label></td>
                                 <td>
                                     <input
                                         name='professorEmail'
@@ -112,23 +124,22 @@ function ProfessorRegistration(){
                                 </td>
 
                             </tr>
-
                             <tr>
                                 <td><label>재직여부</label></td>
                                 <td>
                                 <label><input type="radio" name="professorStatus" onChange={ onChangeHandler } value="Y"/>Y</label> &nbsp;
                                 <label><input type="radio" name="professorStatus" onChange={ onChangeHandler } value="N"/>N</label> &nbsp;
                                 </td>
-                                
-                                <td><label>주소</label></td>
+                                                                
+                            </tr>
+                            <tr>
+                            <td><label>주소</label></td>
                                 <td>
                                     <input
                                         name='professorAddress'
                                         placeholder='거주지 주소'
                                         onChange={ onChangeHandler } />
                                 </td>
-
-
                             </tr>
 
                         </tbody>
@@ -136,11 +147,11 @@ function ProfessorRegistration(){
                 </div>
             </div>
 
-            <div>
-                <button
+            <div className={ ProfessorManagementCSS.professorInsertBtn }>
+                <button className={ ProfessorManagementCSS.DetailBtn }
                     onClick={ () => navigate(-1) }
                 > 돌아가기 </button>
-                <button
+                <button className={ ProfessorManagementCSS.DetailBtn }
                     onClick={ onClickProfessorRegistrationHandler }
                 > 교수등록 </button>
             </div>

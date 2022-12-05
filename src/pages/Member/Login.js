@@ -32,7 +32,7 @@ function Login(){
                 navigate("/layout/lectureProList", { replace: true });
             } else if(decoded === 'ROLE_ADMIN'){
                 console.log("[Login] Login SUCCESS {}", login);
-                navigate("/layout/", { replace: true });
+                navigate("/management/student", { replace: true });
             }
         }
     }

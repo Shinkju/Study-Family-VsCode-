@@ -9,3 +9,28 @@
 .studentDetailform {
     width: 1200px;
 }
+
+.studentDetailtr {
+    align-items: center;
+
+}
+
+.studentDetailTable td {
+    padding: 10px;
+}
+
+.studentDetailBtn {
+    margin-left: 900px;
+}
+
+.DetailBtn {
+    margin: 20px;
+}
+
+.studentInsertform {
+    width: 1000px;
+}
+
+.studentInsertBtn {
+    margin-left: 700px;
+}

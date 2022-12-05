@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useCallback, useEffect, useState } from "react";
 import{ callStudentListForAdminAPI } from '../../apis/StudentListApiCalls';
-
+import StudentManagementCSS from './StudentManagement.module.css';
 
 
 
@@ -13,10 +13,13 @@ function StudentManagement() {
     const students  = useSelector(state => state.studentListReducer);      
     const studentList = students.data;
     console.log('StudentManagement', studentList);
+   
 
     const pageInfo = students.pageInfo;
 
     const [currentPage, setCurrentPage] = useState(1);
+
+
 
     const pageNumber = [];
     if(pageInfo){
@@ -46,7 +49,7 @@ function StudentManagement() {
         <>
         <div>
       
-            <table>
+            <table className={ StudentManagementCSS.detailTable }>
                 <colgroup>
                     <col width="15%" />
                     <col width="20%" />
@@ -84,8 +87,7 @@ function StudentManagement() {
                     )) 
                     }
                 </tbody>                    
-            </table>
-
+            </table>       
             
             <div>
                 <button 

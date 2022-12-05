@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callStudentRegistAPI } from "../../apis/StudentListApiCalls";
+import StudentManagementCSS from './StudentManagement.module.css';
+
 
 function StudentRegistration(){
 
@@ -49,7 +51,7 @@ function StudentRegistration(){
         <div>
             <div>
                 <div>
-                    <table>
+                    <table className={ StudentManagementCSS.studentInsertform }>
                         <tbody>
                             <tr>
                                 <td><label>학과</label></td>
@@ -59,7 +61,8 @@ function StudentRegistration(){
                                     <label><input type="radio" name="departmentCode" onChange={ onChangeHandler } value="3"/>전기공학과</label> &nbsp;
                                     <label><input type="radio" name="departmentCode" onChange={ onChangeHandler } value="4"/>국문학과</label> &nbsp;
                                 </td>
-
+                            </tr>
+                            <tr>
                                 <td><label>입학년도</label></td>
                                 <td><input name='admissionsDay' onChange={ onChangeHandler }/></td>
                             </tr>
@@ -72,6 +75,8 @@ function StudentRegistration(){
                                         placeholder='학번'
                                         onChange={ onChangeHandler } />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><label>주민번호</label></td>
                                 <td>
                                     <input
@@ -79,7 +84,6 @@ function StudentRegistration(){
                                         placeholder='-는 제외하고 입력하세요.'
                                         onChange={ onChangeHandler } />
                                 </td>
-
                             </tr>
 
                             <tr>
@@ -90,6 +94,8 @@ function StudentRegistration(){
                                         placeholder='학생 이름'
                                         onChange={ onChangeHandler } />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><label>학년</label></td>
                                 <td>
                                     <label><input type="radio" name="grade" onChange={ onChangeHandler } value="1"/>1학년</label> &nbsp;
@@ -107,6 +113,8 @@ function StudentRegistration(){
                                         placeholder='국적'
                                         onChange={ onChangeHandler } />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><label>상태</label></td>
                                 <td>
                                     <label><input type="radio" name="schoolStatusCode" onChange={ onChangeHandler } value="1"/>재학중</label> &nbsp;
@@ -125,6 +133,8 @@ function StudentRegistration(){
                                         placeholder='핸드폰번호'
                                         onChange={ onChangeHandler } />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><label>이메일</label></td>
                                 <td>
                                     <input
@@ -132,17 +142,18 @@ function StudentRegistration(){
                                         placeholder='이메일주소'
                                         onChange={ onChangeHandler } />
                                 </td>
-
                             </tr>
 
                             <tr>
-                            <td><label>주소</label></td>
+                                <td><label>주소</label></td>
                                 <td>
                                     <input
                                         name='studentAddress'
                                         placeholder='거주지 주소'
                                         onChange={ onChangeHandler } />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><label>성별</label></td>
                                 <td>
                                     <input
@@ -150,8 +161,6 @@ function StudentRegistration(){
                                         placeholder='성별'
                                         onChange={ onChangeHandler } />
                                 </td>
-
-
                             </tr>
 
                         </tbody>
@@ -159,11 +168,11 @@ function StudentRegistration(){
                 </div>
             </div>
 
-            <div>
-                <button
+            <div className={ StudentManagementCSS.studentInsertBtn }>
+                <button className={ StudentManagementCSS.DetailBtn }
                     onClick={ () => navigate(-1) }
                 > 돌아가기 </button>
-                <button
+                <button className={ StudentManagementCSS.DetailBtn }
                     onClick={ onClickStudentRegistrationHandler }
                 > 학생등록 </button>
             </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { callSchoolNoticeListAPI } from "../../apis/SchoolNoticeApiCalls";
+import SchoolNoticeCSS from './SchoolNotice.module.css';
 
 function SchoolNoticeList() {
 
@@ -42,7 +43,7 @@ function SchoolNoticeList() {
     return (
         <>
         <div>
-            <table>
+            <table className={ SchoolNoticeCSS.schoolNoticeDetailTable }>
                 <colgroup>
                     <col width="15%" />
                     <col width="15%" />

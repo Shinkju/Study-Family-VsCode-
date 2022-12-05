@@ -3,7 +3,7 @@ import { decodeJwt } from '../../utils/tokenUtils';
 import ManagementSidebarCSS from './ManagementSidebar.module.css';
 
 
-function Managementsidebar() {
+function ManagementSidebar() {
 
     const isLogin = window.localStorage.getItem('accessToken');
     let decoded = null;
@@ -17,13 +17,12 @@ function Managementsidebar() {
         <>
             <div>
                 <ul className={ ManagementSidebarCSS.NavlistUl }>
-                    <li><NavLink to="/management/student">학생관리</NavLink></li>
+                    <li><NavLink to="/management/Student">학생관리</NavLink></li>
                     <li><NavLink to="/management/professor">교수관리</NavLink></li>
-                    <li><NavLink to="/management/chart">통계</NavLink></li>
                 </ul>
             </div>
         </>
     )
 }
 
-export default Managementsidebar;
+export default ManagementSidebar;

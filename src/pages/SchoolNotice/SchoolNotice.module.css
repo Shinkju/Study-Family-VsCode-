@@ -1,0 +1,41 @@
+.schoolNoticeTable {
+    width: 1200px;
+}
+
+.schoolNoticeDetailTable {
+    width: 1200px;
+}
+
+.schoolNoticeDetailTable input {
+    width: 900px;
+}
+
+.schoolNoticeDetailTable textarea {
+    width: 1000px;
+    height: 600px;
+    padding: 20px;
+}
+
+.schoolNoticeInsertTable {
+    width: 1000px;
+}
+
+.schoolNoticeTitle {
+    width: 600px;
+}
+
+
+
+.schoolNoticeInsertTable textarea {
+    width: 900px;
+    height: 300px;
+    padding: 20px;
+}
+
+.noticeInsertBtn {
+    margin-left: 700px;
+}
+
+.DetailBtn {
+    margin: 20px;
+}

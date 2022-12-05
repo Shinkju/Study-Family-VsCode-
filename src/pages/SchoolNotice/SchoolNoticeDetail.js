@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callSchoolNoticeDetailAPI, callSchoolNoticeUpdateAPI } from "../../apis/SchoolNoticeApiCalls";
+import SchoolNoticeCSS from './SchoolNotice.module.css';
 
 
 function SchoolNoticeDetail(){
@@ -56,11 +57,11 @@ function SchoolNoticeDetail(){
     return(
         <div> 
             <div>
-                    <table>
+                    <table className={ SchoolNoticeCSS.schoolNoticeDetailTable }>
                         <tbody>
                             <tr>
-                                <td><label>제목</label></td>
-                                <td><input
+                                <td className={ SchoolNoticeCSS.schoolNoticeTitle }><label>제목</label></td>
+                                <td className={ SchoolNoticeCSS.schoolNoticeContent }><input
                                     name='schoolNoticeTitle'
                                     placeholder='제목'
                                     readOnly={modifyMode ? false : true}
@@ -95,7 +96,7 @@ function SchoolNoticeDetail(){
 
 
 
-                <div>
+                <div> 
                 <button        
                     onClick={ () => navigate(-1) }            
                 >

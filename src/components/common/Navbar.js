@@ -75,7 +75,7 @@ function Navbar() {
                                 <img src="/images/admin.ico" alt=""></img>
                             </div>
                             <div>
-                            <strong>{ memberDetail?.professor?.professorName + '교수' || memberDetail?.student?.studentName + '학우' || '관리자' }님</strong><br/>
+                            <strong>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
                             <strong>{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentNo || '' }</strong>
                             <p>{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</p>
                             <a href="/">마이페이지</a><AfterLogin> 로그아웃</AfterLogin>

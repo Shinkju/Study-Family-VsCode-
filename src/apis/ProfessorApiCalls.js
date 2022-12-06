@@ -47,8 +47,8 @@ export const callStudentListAPI = ({ lectureCode }) => {
 };
 
 /* 학생 리스트 - 강좌 평가 */
-export const insertLectureEvalAPI = ({ form }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/studentlist`;
+export const insertLectureEvalAPI = ({ lectureCode, form }) => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/studentlist/${lectureCode}`;
 
   return async(dispatch, getState) => {
     const result = await fetch(requestURL, {
@@ -59,10 +59,10 @@ export const insertLectureEvalAPI = ({ form }) => {
         'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken'),
       },
       body : JSON.stringify({
-        // lecture : {
-        //   lectureCode : lectureCode
-        // },
-        // evalCode : form.evalCode,
+        lecture : {
+          lectureCode : lectureCode
+        },
+        evalCode : form.evalCode,
         evalMiddle : form.evalMiddle,
         evalFinal : form.evalFinal,
         evalTask : form.evalTask,

@@ -66,30 +66,29 @@ function ProfessorMyPage() {
     window.location.reload();
   }
 
-  console.log("professorCode", token.professorCode)
   console.log("professorList", professorList)
 
   return (
     <div className={ProfessorMyPageCSS.notice}>
-      {professorList && (
+      {professors && (
         <div className={ProfessorMyPageCSS.StudentMyPageDiv}>
           <table className={ProfessorMyPageCSS.noticeTable}>
             <thead>
               <tr className={ProfessorMyPageCSS.StudentMyPageUl}>
                 <td>이름</td>
-                <td>{professorList.professorName || ''}</td>
+                <td>{professors.professorName || ''}</td>
               </tr>
               <tr className={ProfessorMyPageCSS.StudentMyPageUl}>
                 <td>소속</td>
-                <td>{professorList.department.departmentName || ''}</td>
+                <td>{professors?.department?.departmentName  || ''}</td>
               </tr>
               <tr className={ProfessorMyPageCSS.StudentMyPageUl}>
                 <td>직위</td>
-                <td>{professorList.professorPosition || ''}</td>
+                <td>{professors.professorPosition || ''}</td>
               </tr>
               <tr className={ProfessorMyPageCSS.StudentMyPageUl}>
                 <td>생년월일</td>
-                <td>{professorList.professorRegistNum || ''}</td>
+                <td>{professors.professorRegistNum || ''}</td>
               </tr>
               <tr className={ProfessorMyPageCSS.StudentMyPageUl}>
                 <td>전화번호</td>
@@ -97,7 +96,7 @@ function ProfessorMyPage() {
                   <input name='professorPhone'
                          placeholder = '전화번호'
                          onChange = { onChangeHandler }
-                         value = {( !modifyMode ? professorList.professorPhone : form.professorPhone ) || ''}
+                         value = {( !modifyMode ? professors.professorPhone : form.professorPhone ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -107,8 +106,7 @@ function ProfessorMyPage() {
                   <input name='professorAddress'
                          placeholder = '주소'
                          onChange = { onChangeHandler }
-                         value = {(!
-                         modifyMode ? professorList.professorAddress : form.professorAddress ) || ''}
+                         value = {( !modifyMode ? professors.professorAddress : form.professorAddress ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -118,7 +116,7 @@ function ProfessorMyPage() {
                   <input name='professorEmail'
                          placeholder = '이메일'
                          onChange = { onChangeHandler }
-                         value = {( !modifyMode ? professorList.professorEmail : form.professorEmail ) || ''}
+                         value = {( !modifyMode ? professors.professorEmail : form.professorEmail ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -138,7 +136,7 @@ function ProfessorMyPage() {
           </thead>
 
           <tbody>
-            {Array.isArray(professorList?.lecture) && professorList.lecture.map((professor) => ([<>
+            {Array.isArray(professors?.lecture) && professors.lecture.map((professor) => ([<>
               <tr className={ProfessorMyPageCSS.noticeTr}>
                 <td>{professor.lectureCode || ''}</td>
                 <td>{professor.openingDate || ''}</td>
@@ -158,7 +156,7 @@ function ProfessorMyPage() {
           </tr>
           </thead>
           <tbody>
-            {Array.isArray(professorList?.professorHistory) && professorList.professorHistory.map((professor) => ([<>
+            {Array.isArray(professors?.professorHistory) && professors.professorHistory.map((professor) => ([<>
               <tr className={ProfessorMyPageCSS.noticeTr}>
               <td>{professor.professorPosition.professorPositionName || ''}</td>
               <td>{professor.professorModifyDate || ''}</td>

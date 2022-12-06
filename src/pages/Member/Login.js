@@ -81,33 +81,38 @@ function Login(){
     }
 
     return (
+        <div className={ LoginCss.backgroundDiv }>
         <div className={ LoginCss.login }>
             <div>
-                <h1>로그인</h1>
-                <input
+                {/* 로고이미지 */}
+                <img src = {process.env.PUBLIC_URL + '/images/logo1.png'} alt="로고" className={ LoginCss.logoimg }/>
+                {/* <h1>로그인</h1> */}
+                <input className={ LoginCss.idInput }
                     type="text"
                     name="loginId"
                     placeholder="아이디"
                     autoComplete='off'  //자동완성 기능 끄기
                     onChange={ onChangeHandler }
                 />
-                <input
+                <input className={ LoginCss.pwInput }
                     type="password"
                     name="loginPassword"
                     placeholder="패스워드"
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                 <button
+                <div className={ LoginCss.loginbtn }>
+                 <button className={ LoginCss.btn }
                     onClick={ onClickHandler }
                 >
                     로그인
                 </button>       
-                <button
+                <button className={ LoginCss.btn }
                     onClick={ onClickRegisterHandler }
                 >
                     회원가입
                 </button>
+                </div>
                 {/* <button
                     style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
                     onClick={ onClickFindIdHandler }
@@ -122,7 +127,7 @@ function Login(){
                 </button>    */}
             </div>
         </div>
-
+    </div>            
     );
 
 

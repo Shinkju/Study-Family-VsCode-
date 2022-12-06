@@ -88,7 +88,7 @@ function LectureProDetail(){
                 </div>
             </div><br/>
             <div>
-                <table>
+                <table style={{ width:1500 }}>
                     <colgroup>
                         <col width="10%" />
                         <col width="10%" />
@@ -119,7 +119,7 @@ function LectureProDetail(){
                 </table>    
                 <div>
                     <button
-                        style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                        style={{ float:"right", marginRight:60, marginTop:30, marginBottom:30 }}
                         onClick={ onClickLectureRegistHandler }
                     >
                         강좌 자료 업로드

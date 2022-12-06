@@ -74,6 +74,7 @@ function SchoolNoticeList() {
                 </tbody>
             </table>
             <div>
+                
                 <button
                     onClick={ onClickSchoolNoticeInsert }
                 >

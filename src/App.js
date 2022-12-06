@@ -35,6 +35,9 @@ import MsgSendedList from './pages/Message/MsgSendedList';
 import MsgSend from './pages/Message/MsgSend';
 import RceiverModal from './pages/Message/Modal/RceiverModal';
 
+import CalendarView from './pages/calendar/CalendarView';
+import CalendarSelect from './pages/calendar/CalendarSelect';
+import CalendarRegist from './pages/calendar/CalendarRegist';
 
 function App() {
   
@@ -72,6 +75,12 @@ function App() {
               <Route path="msgSendedList" element={ <MsgSendedList/> }/>
               <Route path="msgSend" element={ <MsgSend/> }/>
               <Route path="rceiverModal" element={ <RceiverModal/> }/>
+
+              {/* 관리자 */}
+              <Route path="calendarView" element={ <CalendarView/> }/>
+              <Route path="calendarView/:calendarCode" element={ <CalendarSelect/> }/>
+              <Route path="calendarView/regist" element={ <CalendarRegist/> }/>
+
             </Route>
 
             <Route path="/management" element={ <ManagementLayout/> }>

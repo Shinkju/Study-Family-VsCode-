@@ -1,0 +1,32 @@
+.login{    
+    height: 250px;
+    width: 280px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(202, 80, 180);
+    border: solid 1px black;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+}
+
+.login input {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 250px;
+}
+
+.login button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    background-color: white;
+}
+

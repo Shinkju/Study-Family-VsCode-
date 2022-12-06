@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../utils/tokenUtils';
 import { callLoginAPI } from '../../apis/MemberApiCalls';
+import LoginCss from './Login.module.css';
 
 function Login(){
 
@@ -80,7 +81,7 @@ function Login(){
     }
 
     return (
-        <div>
+        <div className={ LoginCss.login }>
             <div>
                 <h1>로그인</h1>
                 <input
@@ -102,7 +103,7 @@ function Login(){
                 >
                     로그인
                 </button>       
-                <button
+                {/* <button
                     onClick={ onClickRegisterHandler }
                 >
                     회원가입
@@ -118,7 +119,7 @@ function Login(){
                     onClick={ onClickFindPasswordHandler }
                 >
                     비밀번호 찾기
-                </button>   
+                </button>    */}
             </div>
         </div>
 

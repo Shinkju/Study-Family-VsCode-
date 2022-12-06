@@ -1,0 +1,43 @@
+.StudentMyPageUl > td {
+    text-align: center;
+  }
+  
+  .notice {
+    text-align: center;
+  }
+  
+  .noticeTable {
+    width: 70%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-left: 400px;
+    margin-bottom: 50px;
+  }
+  
+  .noticeTr {
+    height: 40px;
+  }
+  
+  .noticeBar {
+    background-color: #f8edf5;
+  }
+  
+  .tr {
+    border-bottom: 1px solid black;
+  }
+  
+  .td {
+    margin-right: 10px;
+    text-align: left;
+  }
+  
+  .StudentMyPageGrade {
+    text-align: left;
+  }
+  
+  .memberBtn {
+    background-color: #f8edf5;
+    margin-left: 1150px;
+    border-radius: 10px;
+    border: 1px solid black;
+  }

@@ -1,4 +1,5 @@
-import { GET_MEMBER, POST_LOGIN, POST_PROFESSORREGIST, POST_STUDENTREGIST, POST_REGIST } from "../modules/MemberModule";
+import { GET_MEMBER, POST_LOGIN, POST_PROFESSORREGIST, POST_STUDENTREGIST, POST_REGIST,
+    GET_STUDENT, PUT_STUDENT, GET_PROFESSOR, PUT_PROFESSOR } from "../modules/MemberModule";
 
 
 /* 로그인 API - Form 형식 */
@@ -199,3 +200,86 @@ export const callGetMyInfoAPI = () => {
         }
     }
 }
+
+/* [학생] 내 정보 조회 API */
+export const callGetStudentAPI = ({ studentNo }) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/student/mypage/${studentNo}`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: '*/*',
+          Authorization: 'Bearer ' + window.localStorage.getItem('accessToken'),
+        },
+      }).then((response) => response.json());
+  
+      if (result.status === 200) {
+        console.log('[MemberAPICalls] callGetStudentAPI RESULT : ', result);
+        dispatch({ type: GET_STUDENT, payload: result });
+      }
+    };
+  };
+
+    /* [학생] 마이페이지 - 개인 정보 수정 API */
+    export const callStudentUpdateAPI = ({ studentNo, form }) => {
+      const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/student/mypage/${studentNo}`;
+    
+      return async(dispatch, getState) => {
+        const result = await fetch(requestURL, {
+        method : 'PUT',
+        headers : {
+          Accept: '*/*',
+          Authorization: 'Bearer ' + window.localStorage.getItem('accessToken'),
+        },
+        body : form
+      }).then((response) => response.json());
+      
+      if(result.status === 200) {
+        console.log('[UpdateAPICalls] callStudentUpdateAPI RESULT : ', result)
+        dispatch({ type: PUT_STUDENT, payload: result.data })
+      }
+      }
+    }
+  
+  /* [교수] 내 정보 조회 API */
+  export const callGetProfessorAPI = ({ professorCode }) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/mypage/${professorCode}`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: '*/*',
+          Authorization: 'Bearer ' + window.localStorage.getItem('accessToken'),
+        },
+      }).then((response) => response.json());
+  
+      if (result.status === 200) {
+        dispatch({ type: GET_PROFESSOR, payload: result });
+      }
+    };
+  };
+
+  /* [교수] 마이페이지 - 개인 정보 수정 API */
+  export const callProfessorUpdateAPI = ({ professorCode, form }) => {
+    const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/v1/professor/mypage/${professorCode}`;
+  
+    return async(dispatch, getState) => {
+      const result = await fetch(requestURL, {
+      method : 'PUT',
+      headers : {
+        Accept: '*/*',
+        Authorization: 'Bearer ' + window.localStorage.getItem('accessToken'),
+      },
+      body : form
+    }).then((response) => response.json());
+    
+    if(result.status === 200) {
+      console.log('[UpdateAPICalls] callProfessorUpdateAPI RESULT : ', result)
+      dispatch({ type: PUT_PROFESSOR, payload: result.data })
+    }
+    }
+  }

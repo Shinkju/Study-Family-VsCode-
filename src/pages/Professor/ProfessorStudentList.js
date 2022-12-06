@@ -2,7 +2,7 @@ import ProfessorStudentListCSS from '../Student/MyPage.module.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../utils/tokenUtils';
-import { callStudentListAPI } from '../../apis/ProfessorApiCalls';
+import { callStudentListAPI, insertLectureEvalAPI } from '../../apis/ProfessorApiCalls';
 import { useNavigate, useParams } from 'react-router-dom';
 
 function ProfessorStudentList() {
@@ -12,20 +12,13 @@ function ProfessorStudentList() {
   const evals = useSelector((state) => state.professorReducer);
   const lectures = useSelector((state) => state.professorReducer);
   const evalsList = evals.data;
-  const lectureList = lectures.data;
   const evalCode = params.evalCode;
   const lectureCode = params.lectureCode;
   // const token = decodeJwt(window.localStorage.getItem('accessToken'));
-  const [form, setForm] = useState({
-    // evalCode : evalCode,
-    evalMiddle : 0,
-    evalFinal: 0,
-    evalTask : 0,
-    evalAttend : 0,
-    lecture : {
-      lectureCode : lectureCode
-    }
-  })
+
+  const [modifyMode, setModifyMode] = useState(false);
+
+  const [form, setForm] = useState({});
 
   useEffect(() => {
     // if (token) {
@@ -37,14 +30,48 @@ function ProfessorStudentList() {
     // }
   }, []);
 
+  /* 입력 양식의 값 변경될 때 */
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      [e.target.name] : e.target.value
+    });
+  }
+
+  const onClickModifyHandler = () => {
+
+    setModifyMode(true);
+    setForm({
+      evalCode : lectures.evalCode,
+      evalMiddle : lectures.evalMiddle,
+      evalFinal : lectures.evalFinal,
+      evalTask : lectures.evalTask,
+      evalAttend : lectures.evalAttend,
+    });
+  }
+
   console.log('[evalCode] : ', evalCode)
   console.log('[evals] : ', evals)
   console.log('[evalsList] : ', evalsList)
 
-  // 평가 페이지
-  const onClickTableTr = (evalCode) => {
+  /* 개인 정보 저장 버튼 클릭 이벤트 */
+  const onClickUpdateHandler = () => {
 
-    navigate(`/layout/professorEval/${evalCode}`, { replace : false });
+    const formData = new FormData();
+
+    formData.append("evalCode", form.evalCode);
+    formData.append("evalMiddle", form.evalMiddle);
+    formData.append("evalFinal", form.evalFinal);
+    formData.append("evalTask" , form.evalTask);
+    formData.append("evalAttend" , form.evalAttend);
+
+    dispatch(insertLectureEvalAPI({
+      form : formData
+    }));
+
+    // alert("강좌 평가 성공")
+    // navigate('/layout/studentMyPage', { replace : true });
+    // window.location.reload();
   }
 
   return (
@@ -61,7 +88,6 @@ function ProfessorStudentList() {
               <th>기말</th>
               <th>과제</th>
               <th>출석</th>
-              <th>종합</th>
               <th>학점</th>
               <th></th>
             </tr>
@@ -77,15 +103,32 @@ function ProfessorStudentList() {
                   <td>{lectures.student.studentNo || ''}</td>
                   <td>{lectures.student.studentName || ''}</td>
                   <td>{lectures.student.department.departmentName || ''}</td>
-                  <td>{lectures.lecture.lectureName || ''}</td> 
-                  <td>{lectures.eval[0]?.evalMiddle || ''}</td>
-                  <td>{lectures.eval[0]?.evalFinal || ''}</td>
-                  <td>{lectures.eval[0]?.evalTask || ''}</td>
-                  <td>{lectures.eval[0]?.evalAttend || ''}</td>
-                  <td>{lectures.eval[0]?.evalResult || ''}</td>
+                  <td>{lectures.lecture.lectureName || ''}</td>
+
+                  <td><input name = "evalMiddle" size = "4" maxlength = "3"
+                             onChange = { onChangeHandler }
+                             value = {( !modifyMode ? lectures.eval[0]?.evalMiddle : form.evalMiddle) || ''}
+                             readOnly = { modifyMode ? false : true }/></td>
+
+                  <td><input name = "evalFinal" size = "4" maxlength = "3"
+                             onChange = { onChangeHandler }
+                             value = {( !modifyMode ? lectures.eval[0]?.evalFinal : form.evalFinal) || ''}
+                             readOnly = { modifyMode ? false : true }/></td>
+
+                  <td><input name = "evalTask" size = "4" maxlength = "3"
+                             onChange = { onChangeHandler }
+                             value = {( !modifyMode ? lectures.eval[0]?.evalTask : form.evalTask) || ''}
+                             readOnly = { modifyMode ? false : true }/></td>
+
+                  <td><input name = "evalAttend" size = "4" maxlength = "3"
+                             onChange = { onChangeHandler }
+                             value = {( !modifyMode ? lectures.eval[0]?.evalAttend : form.evalAttend) || ''}
+                             readOnly = { modifyMode ? false : true }/></td>
                   <td>{lectures.eval[0]?.evalGrade || ''}</td>
-                  <td><button onClick={ () => onClickTableTr(evalCode)}
-                >평가하기</button></td>
+                  {/* <td> */}
+                    {/* <button onClick={ () => onClickTableTr()}>평가하기</button> */}
+                {/* </td> */}
+                
                 </tr>
                 </>]))}
                   {/* <td><input type = "text" size = "4" maxlength = "3" name = "evalMiddle"
@@ -106,6 +149,10 @@ function ProfessorStudentList() {
               
           </tbody>
         </table>
+        { !modifyMode && 
+        <button onClick={onClickModifyHandler}>평가</button> }
+        { modifyMode &&
+        <button onClick={onClickUpdateHandler}>평가완료</button> }
       </div>
     </>
   );

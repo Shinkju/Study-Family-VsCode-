@@ -78,7 +78,9 @@ function Navbar() {
                             <strong>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
                             <strong>{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentNo || '' }</strong>
                             <p>{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</p>
-                            <a href="/">마이페이지</a><AfterLogin> 로그아웃</AfterLogin>
+                            { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
+                            { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
+                            <AfterLogin> 로그아웃</AfterLogin>
                             </div>
                             
                         </div>
@@ -100,8 +102,8 @@ function Navbar() {
 
                 {/* 교수 */}
                 { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/lectureProList">강의실</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/">수강신청</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
+                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li>}
+                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/professorLectureList">학생관리</NavLink></li> }
                 { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
                 
             </ul>

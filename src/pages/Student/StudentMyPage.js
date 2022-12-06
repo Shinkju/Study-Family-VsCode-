@@ -66,30 +66,29 @@ function StudentMyPage() {
     window.location.reload();
   }
 
-  console.log("studentNo", token.studentNo)
   console.log("studentList", studentList)
 
   return (
     <div className={StudentMyPageCSS.notice}>
-      {studentList && (
+      {students && (
         <div className={StudentMyPageCSS.StudentMyPageDiv}>
           <table className={StudentMyPageCSS.noticeTable}>
             <thead>
               <tr className={StudentMyPageCSS.StudentMyPageUl}>
                 <td>이름</td>
-                <td>{studentList.studentName || ''}</td>
+                <td>{students.studentName || ''}</td>
               </tr>
               <tr className={StudentMyPageCSS.StudentMyPageUl}>
-                <td>소속</td>
-                <td>{studentList.department.departmentName || ''}</td>
+                <td>학과</td>
+                <td>{students?.department?.departmentName || ''}</td>
               </tr>
               <tr className={StudentMyPageCSS.StudentMyPageUl}>
                 <td>학번</td>
-                <td>{studentList.studentCode || ''}</td>
+                <td>{students.studentCode || ''}</td>
               </tr>
               <tr className={StudentMyPageCSS.StudentMyPageUl}>
                 <td>학년</td>
-                <td>{studentList.grade || ''}학년</td>
+                <td>{students.grade || ''}학년</td>
               </tr>
               <tr className={StudentMyPageCSS.StudentMyPageUl}>
                 <td>전화번호</td>
@@ -97,7 +96,7 @@ function StudentMyPage() {
                   <input name='studentPhone'
                          placeholder = '전화번호'
                          onChange = { onChangeHandler }
-                         value = {( !modifyMode ? studentList.studentPhone : form.studentPhone ) || ''}
+                         value = {( !modifyMode ? students.studentPhone : form.studentPhone ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -108,7 +107,7 @@ function StudentMyPage() {
                          placeholder = '주소'
                          onChange = { onChangeHandler }
                          value = {(!
-                         modifyMode ? studentList.studentAddress : form.studentAddress ) || ''}
+                         modifyMode ? students.studentAddress : form.studentAddress ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -118,7 +117,7 @@ function StudentMyPage() {
                   <input name='studentEmail'
                          placeholder = '이메일'
                          onChange = { onChangeHandler }
-                         value = {( !modifyMode ? studentList.studentEmail : form.studentEmail ) || ''}
+                         value = {( !modifyMode ? students.studentEmail : form.studentEmail ) || ''}
                          readOnly = { modifyMode ? false : true }/>
                 </td>
               </tr>
@@ -137,11 +136,12 @@ function StudentMyPage() {
               <th className = {StudentMyPageCSS.notice}>기말고사</th>
               <th className = {StudentMyPageCSS.notice}>과제점수</th>
               <th className = {StudentMyPageCSS.notice}>출석점수</th>
+              <th className = {StudentMyPageCSS.notice}>학점</th>
             </tr>
         </thead>
         <tbody>
                   {/* 중첩배열은 '[인덱스 값]?' 쓰면 된다. */}
-                  {Array.isArray(studentList?.appClasses) && studentList.appClasses.map((student) => ([<>
+                  {Array.isArray(students?.appClasses) && students.appClasses.map((student) => ([<>
                     <tr className={StudentMyPageCSS.noticeTr}>
                       <td>{student.lecture.lectureCode || ''}</td>
                       <td>{student.lecture.lectureName || ''}</td>
@@ -150,6 +150,7 @@ function StudentMyPage() {
                       <td>{student.eval[0]?.evalFinal || ''}점</td>
                       <td>{student.eval[0]?.evalTask || ''}점</td>
                       <td>{student.eval[0]?.evalAttend || ''}점</td>
+                      <td>{student.eval[0]?.evalGrade || ''}</td>
                     </tr>
                   </>]))}
         </tbody>

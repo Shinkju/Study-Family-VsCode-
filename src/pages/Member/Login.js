@@ -103,12 +103,12 @@ function Login(){
                 >
                     로그인
                 </button>       
-                {/* <button
+                <button
                     onClick={ onClickRegisterHandler }
                 >
                     회원가입
                 </button>
-                <button
+                {/* <button
                     style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
                     onClick={ onClickFindIdHandler }
                 >

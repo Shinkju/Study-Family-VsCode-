@@ -4,8 +4,8 @@
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: rgb(202, 80, 180);
-    border: solid 1px black;
+    /* background-color: rgb(202, 80, 180); */
+    /* border: solid 1px black; */
     display: grid;
     place-items: center;
     position: absolute;
@@ -21,12 +21,44 @@
     width: 250px;
 }
 
-.login button {
+
+
+.logoimg {
+    width: 300px;
+    margin-top: -200px;
+}
+
+.idInput {
+    border-radius: 10px;
+    border: solid 1px lightgray;
+}
+
+.pwInput {
+    border-radius: 10px;
+    border: solid 1px lightgray;
+}
+
+.backgroundDiv {
+    width: 100%;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	background: #f8edf5; 
+}
+
+.loginbtn {
+    float: left;
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
     width: 200px;
-    text-align: center;
-    background-color: white;
+    margin-left: 30px;
+
 }
 
+.btn {
+    text-align: center;
+    background-color: #94d0ea;
+    color: #ffffff;
+    width: 100px;
+}

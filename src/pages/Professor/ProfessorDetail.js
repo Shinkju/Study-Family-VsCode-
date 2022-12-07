@@ -53,8 +53,8 @@ function ProfessorDetail() {
             form : form
         }));
 
-        // navigate('/management/professor', { replace : true });
-        // window.location.reload();
+        navigate('/management/professor', { replace : true });
+        window.location.reload();
     }
 
     return(

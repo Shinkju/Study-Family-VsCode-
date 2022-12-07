@@ -127,6 +127,7 @@ export const callProfessorUpdateAPI = ({form}) => {
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             }, 
             body : JSON.stringify({
+                professorCode : form.professorCode,
                 professorName : form.professorName,
                 professorPosition : form.professorPosition,
                 professorHireDate : form.professorHireDate,

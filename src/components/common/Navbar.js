@@ -91,9 +91,7 @@ function Navbar() {
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
 
                  {/* 관리자 */}
-                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/management/student">인사관리</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/">강의실</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/">과목관리</NavLink></li> }
+                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/management/student">인사관리</NavLink></li> }
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
 

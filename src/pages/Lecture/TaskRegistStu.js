@@ -74,7 +74,7 @@ function TaskRegistStu(){
             form : formData
         }));
 
-        // navigate(-1)
+        navigate(-1)
         alert('과제 등록이 완료 되었습니다.');
     }
 

@@ -42,7 +42,7 @@ function ProfessorUpdate() {
             professorAddress : professorDetail.professorAddress,
             professorStatus : professorDetail.professorStatus,
             professorEmail : professorDetail.professorEmail,
-            departmentCode : professorDetail.departmentCode  
+            departmentCode : professorDetail.departmentCode   
         });
     }
 
@@ -52,8 +52,8 @@ function ProfessorUpdate() {
             form : form
         }));
 
-        // navigate('/management/professor', { replace : true });
-        // window.location.reload();
+        navigate('/management/professor', { replace : true });
+        window.location.reload();
     }
 
     return(
@@ -154,7 +154,7 @@ function ProfessorUpdate() {
                                     name='departmentCode'
                                     placeholder='학과'
                                     onChange={ onChangeHandler } 
-                                    value={ (!modifyMode ? professorDetail.department?.departmentCode : form.departmentCode ) || ''}
+                                    value={ (!modifyMode ? professorDetail.Department?.departmentCode : form.departmentCode ) || ''}
                                     readOnly={ modifyMode ? false : true }/>
                             </td>
 

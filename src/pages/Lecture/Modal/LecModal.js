@@ -5,8 +5,8 @@ import LecModalCSS from './LectureRegistModal.module.css';
 import React from 'react';
 import ReactPlayer from 'react-player'
 import { 
-    callCourseHistoryAPI,
-    callCourseHistoryUpdateAPI
+    callCourseHistoryAPI
+    // callCourseHistoryUpdateAPI
     } from '../../../apis/LectureApiCalls';
 
 
@@ -96,7 +96,7 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
         formData.append("lectureWeek.lectureWeekCode", lectureWeekCode)
 
         // API 통신으로 보내기
-        dispatch(callCourseHistoryUpdateAPI({
+        dispatch(callCourseHistoryAPI({
             form : formData
         }));
 

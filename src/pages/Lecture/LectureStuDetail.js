@@ -123,12 +123,12 @@ function LectureStuDetail(){
                         /> 
                         : null
                     }       
-                    <table>
+                    <table style={{ width:1500 }}>
                         <colgroup>
                             <col width="5%" />
                             <col width="10%" />
-                            <col width="10%" />
-                            <col width="10%" />
+                            <col width="15%" />
+                            <col width="20%" />
                         </colgroup>
                         <thead>
                             <tr>
@@ -167,7 +167,7 @@ function LectureStuDetail(){
 
                 <div>
                     <button
-                        style={ { marginLeft: 1400, marginTop: 10 } }
+                        style={ { float:"right", marginRight:50, marginTop: 10 } }
                         onClick={ onClickLectureRegistHandler }
                     >
                         과제 제출

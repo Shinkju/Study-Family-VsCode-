@@ -39,6 +39,12 @@ import CalendarView from './pages/calendar/CalendarView';
 import CalendarSelect from './pages/calendar/CalendarSelect';
 import CalendarRegist from './pages/calendar/CalendarRegist';
 
+import StudentMyPage from './pages/Student/StudentMyPage';
+import ProfessorMyPage from './pages/Professor/ProfessorMyPage';
+import ProfessorLectureList from './pages/Professor/ProfessorLectureList';
+import ProfessorStudentList from './pages/Professor/ProfessorStudentList';
+import ProfessorEval from './pages/Professor/ProfessorEval';
+
 function App() {
   
 
@@ -75,6 +81,11 @@ function App() {
               <Route path="msgSendedList" element={ <MsgSendedList/> }/>
               <Route path="msgSend" element={ <MsgSend/> }/>
               <Route path="rceiverModal" element={ <RceiverModal/> }/>
+              <Route path="studentMyPage" element={<StudentMyPage/>}/>
+              <Route path="professorMyPage" element={<ProfessorMyPage/>}/>
+              <Route path="professorLectureList" element={<ProfessorLectureList/>}/>
+              <Route path="professorStudentList/:lectureCode" element={<ProfessorStudentList/>}/>
+              <Route path="professorEval" element={<ProfessorEval/>}/>
 
               {/* 관리자 */}
               <Route path="calendarView" element={ <CalendarView/> }/>

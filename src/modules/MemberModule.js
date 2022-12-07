@@ -11,6 +11,10 @@ export const POST_PROFESSORREGIST = 'professorRegist/POST_PROFESSORREGIST';
 export const POST_STUDENTREGIST = 'studentRegist/POST_STUDENTREGIST';
 export const POST_REGIST = 'member/POST_REGIST';
 export const GET_MEMBER = 'info/GET_MEMBER';
+export const GET_STUDENT = 'student/GET_STUDENT';
+export const PUT_STUDENT = 'student/PUT_STUDNET';
+export const GET_PROFESSOR = 'professor/GET_PROFESSOR';
+export const PUT_PROFESSOR = 'professor/PUT_PROEFSSOR';
 
 /* 액션 함수 생성 */
 const actions = createActions({
@@ -19,7 +23,11 @@ const actions = createActions({
     [POST_PROFESSORREGIST]: () => {},
     [POST_STUDENTREGIST]: () => {},
     [POST_REGIST]: () => {},
-    [GET_MEMBER]: () => {}
+    [GET_MEMBER]: () => {},
+    [GET_STUDENT]: () => {},
+    [PUT_STUDENT]: () => {},
+    [GET_PROFESSOR]: () => {},
+    [PUT_PROFESSOR]: () => {}
 
 });
 
@@ -46,7 +54,19 @@ const memberReducer = handleActions(
         },
         [GET_MEMBER] : (state, { payload }) => {
             return payload;
-        }
+        },
+        [GET_STUDENT]: (state, { payload }) => {
+            return payload;
+          },
+          [PUT_STUDENT]: (state, { payload }) => {
+            return payload;
+          },
+          [GET_PROFESSOR]: (state, { payload }) => {
+            return payload;
+          },
+          [PUT_PROFESSOR]: (state, { payload }) => {
+            return payload;
+          },
     },
     initialState
 );

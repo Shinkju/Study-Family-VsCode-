@@ -36,17 +36,17 @@ function SubPlan({ setModalOpen , lectureCode}) {
                                     <tr
                                         key={ subPlan.planCode }
                                     >
-                                        <tr className={styles.head}>{ subPlan.planName }</tr><br/>
+                                        <tr className={styles.head}>{ subPlan.planName }</tr>
+                                        <tr className={styles.body}><br/><br/>강좌명 : { subPlan.lecture.lectureName }</tr><br/>
                                         <tr className={styles.body}>강좌번호 : { subPlan.lecture.lectureCode }</tr><br/>
                                         <tr className={styles.body}>학점 : 3</tr><br/>
                                         <tr className={styles.body}>담당 교수 : { subPlan.professor.professorName }</tr><br/>
                                         <tr className={styles.body}>이메일 : { subPlan.professor.professorEmail }</tr><br/>
                                         <tr className={styles.body}>연락처 : { subPlan.professor.professorPhone }</tr><br/>
                                         <tr className={styles.body}>이수 구분 : { subPlan.lecture.subject.majorType }</tr><br/>
-                                        <tr className={styles.body}>학습 목표 :{ subPlan.purpose }</tr>
+                                        <tr className={styles.body}>학습 목표 : { subPlan.purpose }</tr>
                                     </tr>
                         )}
-
                     </tbody>    
                     </div>
         </>

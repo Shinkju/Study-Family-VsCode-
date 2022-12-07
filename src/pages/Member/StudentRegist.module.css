@@ -1,4 +1,4 @@
-.login{    
+.stuRegist{    
     height: 250px;
     width: 280px;
     text-align: center;
@@ -13,7 +13,7 @@
     top: 40%;
 }
 
-.login input {
+.stuRegist input {
     display: flex;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -46,7 +46,7 @@
 	background: #f8edf5; 
 }
 
-.loginbtn {
+.stuRegistbtn {
     float: left;
     margin-top: 5px;
     margin-bottom: 5px;

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { callProfessorRegistAPI } from '../../apis/MemberApiCalls';
+import ProfessorLoginCss from './ProfessorRegist.module.css';
 
 function ProfessorRegist() {
 
@@ -46,44 +47,43 @@ function ProfessorRegist() {
     }
 
     return (
-        <div >
-            <div >
+        <div className={ ProfessorLoginCss.backgroundDiv }>
+            <div className={ ProfessorLoginCss.proRegist }>
                 <h1>교수 회원가입</h1>
-                <input 
+                <input className={ ProfessorLoginCss.idInput }
                     type="text" 
                     name="loginId"
                     placeholder="아이디" 
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <input 
+                <input className={ ProfessorLoginCss.pwInput }
                     type="password"
                     name="loginPassword" 
                     placeholder="패스워드" 
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <input 
+                <input className={ ProfessorLoginCss.pwInput }
                     type="text"
                     name="professorRegistNum" 
                     placeholder="professorRegistNum" 
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <input 
+                <input className={ ProfessorLoginCss.pwInput }
                     type="text"
                     name="professorCode" 
                     placeholder="professorCode" 
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <button
+                <button className={ ProfessorLoginCss.btn }
                     onClick = { onClickRegisterHandler }
                 >   
                     회원가입
                 </button>
-                <button
-                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                <button className={ ProfessorLoginCss.btn }
                     onClick = { onClickBackHandler }
                 >
                     돌아가기

@@ -1,4 +1,4 @@
-.login{    
+.select{    
     height: 250px;
     width: 280px;
     text-align: center;
@@ -13,7 +13,7 @@
     top: 40%;
 }
 
-.login input {
+.select input {
     display: flex;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -21,9 +21,31 @@
     width: 250px;
 }
 
+.backgroundDiv {
+    width: 100%;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	background: #f8edf5; 
+}
 
+.selectbtn {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 200px;
+}
 
-.logoimg {
+.btn {
+    text-align: center;
+    background-color: #94d0ea;
+    color: #ffffff;
+    width: 150px;
+    /* height: 30px; */
+} 
+
+/* .logoimg {
     width: 300px;
     margin-top: -200px;
 }
@@ -38,27 +60,8 @@
     border: solid 1px lightgray;
 }
 
-.backgroundDiv {
-    width: 100%;
-	left: 0;
-	top: 0;
-	height: 100vh;
-	background: #f8edf5; 
-}
 
-.loginbtn {
-    float: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    height: 30px;
-    width: 200px;
-    margin-left: 30px;
 
-}
 
-.btn {
-    text-align: center;
-    background-color: #94d0ea;
-    color: #ffffff;
-    width: 100px;
-}
+
+*/

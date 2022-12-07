@@ -84,3 +84,7 @@ hr {
     color: black;
 
 }
+
+.logout {
+    cursor : pointer;
+}

@@ -48,13 +48,10 @@ function Navbar() {
 
         return(
 
-            <div>
-
-                <text
-                    onClick = { onClickLogoutHandler }
-                >
-                    로그아웃
-                </text>
+            <div className={ NavbarCSS.logout }
+            onClick = { onClickLogoutHandler }
+            >
+            로그아웃
 
             </div>
 
@@ -74,11 +71,12 @@ function Navbar() {
                             <div>
                                 <img src="/images/admin.ico" alt=""></img>
                             </div>
-                            <div>
+                            <div >
                             <strong>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
                             <strong>{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentNo || '' }</strong>
                             <p>{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</p>
-                            <a href="/">마이페이지</a><AfterLogin> 로그아웃</AfterLogin>
+                            <a href="/">마이페이지</a>
+                            <AfterLogin>로그아웃</AfterLogin>
                             </div>
                             
                         </div>
@@ -88,22 +86,19 @@ function Navbar() {
                 {/* 학생 */}
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/lectureStuList">강의실</NavLink></li> }
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/AppClass">수강신청</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/">학과일정</NavLink></li> }
+                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/">공지사항</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/calendarView">캘린더</NavLink></li> }
                  {/* 관리자 */}
                  { decoded === "ROLE_ADMIN" &&<li><NavLink to="/management/student">인사관리</NavLink></li> }
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/">강의실</NavLink></li> }
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/">과목관리</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/">학과일정</NavLink></li> }
+                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
                 { decoded === "ROLE_ADMIN" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/layout/calendarView">캘린더</NavLink></li> }
                 {/* 교수 */}
                 { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/lectureProList">강의실</NavLink></li> }
                 { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/">수강신청</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/">학과일정</NavLink></li> }
+                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
                 { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/subnotice">공지사항</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/calendarView">캘린더</NavLink></li> }
             </ul>
         </div>
         </>

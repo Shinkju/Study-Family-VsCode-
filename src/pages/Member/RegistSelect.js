@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { callRegistAPI } from '../../apis/MemberApiCalls';
+import LoginSelectCss from './RegistSelect.module.css';
 
 function RegistSelect() {
 
@@ -28,30 +29,34 @@ function RegistSelect() {
     }
 
     return (
-        <div>
-            <div>
-                <h1>회원가입 선택</h1>
-                <button
-                    onClick = { onClickProfessorRegistHandler }
-                >   
-                    교수 회원가입
-                </button>
-                <button
-                    onClick = { onClickStudentRegistHandler }
-                >   
-                    학생 회원가입
-                </button>
-                <button
-                    onClick = { onClickRegistHandler }
-                >   
-                    관리자 회원가입
-                </button>
-                <button
-                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
-                    onClick = { onClickBackHandler }
-                >
-                    돌아가기
-                </button>
+        <div className={ LoginSelectCss.backgroundDiv }>
+            <div className={ LoginSelectCss.select }>
+                <div>
+                    <h1 align="center">회원가입 선택</h1>
+                    <div className={ LoginSelectCss.selectbtn }>
+                    <button className={ LoginSelectCss.btn }
+                        onClick = { onClickProfessorRegistHandler }
+                    >   
+                        교수 회원가입
+                    </button>
+                    <button className={ LoginSelectCss.btn }
+                        onClick = { onClickStudentRegistHandler }
+                    >   
+                        학생 회원가입
+                    </button>
+                    <button className={ LoginSelectCss.btn }
+                        onClick = { onClickRegistHandler }
+                    >   
+                        관리자 회원가입
+                    </button>
+                    <button className={ LoginSelectCss.btn }
+                        // style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                        onClick = { onClickBackHandler }
+                    >
+                        돌아가기
+                    </button>
+                    </div>
+                </div>
             </div>
         </div>
     );

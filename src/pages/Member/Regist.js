@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { callRegistAPI } from '../../apis/MemberApiCalls';
+import RegistCss from './Regist.module.css';
 
 function Regist() {
 
@@ -48,17 +49,17 @@ function Regist() {
     }
 
     return (
-        <div>
-            <div>
+        <div className={ RegistCss.backgroundDiv }>
+            <div className={ RegistCss.Regist }>
                 <h1>일반 회원가입</h1>
-                <input 
+                <input className={ RegistCss.idInput }
                     type="text" 
                     name="loginId"
                     placeholder="아이디" 
                     autoComplete='off'
                     onChange={ onChangeHandler }
                 />
-                <input 
+                <input className={ RegistCss.pwInput }
                     type="password"
                     name="loginPassword" 
                     placeholder="패스워드" 
@@ -74,13 +75,12 @@ function Regist() {
                     value="ROLE_ADMIN"
                     onChange={ onChangeHandler }
                 />
-                <button
+                <button  className={ RegistCss.btn }
                     onClick = { onClickRegisterHandler }
                 >   
                     회원가입
                 </button>
-                <button
-                    style={ { border: 'none', margin: 0, fontSize: '10px', height: '10px' } }
+                <button  className={ RegistCss.btn }
                     onClick = { onClickBackHandler }
                 >
                     돌아가기

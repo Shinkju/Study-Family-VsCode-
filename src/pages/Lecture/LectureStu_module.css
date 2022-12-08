@@ -13,6 +13,8 @@ table {
   border-collapse: collapse;
   border-radius: 5px;
   overflow: hidden;
+  width: 80%;
+  margin-left: 18%;
 }
 
 /* 강의실 입장Bt */

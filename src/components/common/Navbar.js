@@ -99,11 +99,11 @@ function Navbar() {
                 { decoded === "ROLE_PROFESSOR" &&<li><hr/><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
 
                     <div>
-                        { memberDetail && <>
+                        {/* { memberDetail && <> */}
                             { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
                             { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
                             <hr/><AfterLogin> 로그아웃</AfterLogin>
-                        </>}
+                        {/* </>} */}
                     </div>
                 </li>
                 

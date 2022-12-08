@@ -45,10 +45,6 @@ function LectureProDetail(){
         navigate("/layout/Subnotice", { replace : false });
     }
 
-    //강좌 QA 게시판 화면 넘기기
-    const onClickQaHandler = () => {
-
-    }
 
     //쪽지함 화면 넘기기
     const onClickMsgHandler = () => {
@@ -65,13 +61,7 @@ function LectureProDetail(){
                             style={{  float:'left', cursor:"pointer"  }}
                             onClick={ onClickSubNoticeHandler }
                         >
-                            공지 게시판 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        </h2>
-                        <h2
-                            style={{  float:'left', cursor:"pointer"   }}
-                            onClick={ onClickQaHandler }
-                        >
-                            Q&A 게시판
+                            공지 게시판
                         </h2>
                         <h2
                             style={{  float:'right', paddingRight:100, cursor:"pointer" }}

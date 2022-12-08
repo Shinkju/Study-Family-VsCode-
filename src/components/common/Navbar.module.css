@@ -1,6 +1,6 @@
 * {
     font-family: 'Y_Spotlight';
-    
+    margin: 0;
 }
 
 @font-face {
@@ -51,11 +51,10 @@ hr {
 .NavlistUl {
     list-style-type: none;
     background-color: #F8EDF5;
-    width: 300px;
-    height: 90vh;
+    width: 280px;
+    height: 100vh;
     float: left;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
-    border-radius: 15%;
 }
 .NavAddimg{   
     margin-top: 50px;
@@ -87,4 +86,16 @@ hr {
 
 .logout {
     cursor : pointer;
+}
+
+.myInfoNav {
+    font-size: 20px;
+    margin-left: 100px;
+    font-size: 15px;
+}
+
+.imgLogo {
+    width: 160px;
+    margin-top: 50px;
+    margin-left: 50px;
 }

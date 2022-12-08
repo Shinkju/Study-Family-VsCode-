@@ -68,11 +68,6 @@ function LectureStuDetail(){
         navigate("/layout/Subnotice", { replace : false });
     }
 
-    //깅좌 QA 게시판 화면 넘기기
-    const onClickQaHandler = () => {
-
-    }
-
 
     //쪽지 수신함 화면 넘기기
     const onClickMsgHandler = () => {
@@ -92,12 +87,6 @@ function LectureStuDetail(){
                             onClick={ onClickSubNoticeHandler }
                         >
                             공지 게시판 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                        </h2>
-                        <h2
-                            style={{  float:'left', cursor:"pointer"   }}
-                            onClick={ onClickQaHandler }
-                        >
-                            Q&A 게시판
                         </h2>
                         <h2
                             style={{  float:'right', paddingRight:100, cursor:"pointer"  }}

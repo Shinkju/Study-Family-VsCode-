@@ -5,6 +5,7 @@ import { callSubnoticeDetailAPI, callSubnoticeUpdateAPI, callSubnoticeDeleteAPI 
 import SubnoticeDetailCSS from './SubnoticeDetail.module.css';
 import { decodeJwt } from '../../utils/tokenUtils';
 import BtnCSS from './Btn.module.css';
+import Swal from 'sweetalert2';
 
 function SubnoticeDetail() {
     
@@ -50,30 +51,37 @@ function SubnoticeDetail() {
 
     /* 공지사항 수정 버튼 클릭 이벤트 */
     const onClickSubnoticeUpdateHandler = () => {        
-        console.log('[SubnoticeDetail] onClickSubnoticeUpdateHandler Start!!');      
 
         dispatch(callSubnoticeUpdateAPI({	
             form: form
         }));         
 
-        alert("글이 수정되었습니다.")
-
-        navigate(`/layout/subnotice`, { replace: true});
+        Swal.fire({
+            title: '수정 완료',
+            icon: 'success'
+          }).then((result) => {
+            if (result.value) {
+                navigate(`/layout/subnotice`, { replace: true});
         window.location.reload();
-
-        console.log('[SubnoticeDetail] onClickSubnoticeUpdateHandler End!!');      
-    }    
+            }
+        })
+    }  
     
     /* 공지사항 삭제 버튼 클릭 이벤트 */
     const onClickSubnoticeDeleteHandler = () => {
         console.log('[SubnoticeDetail 공지사항 번호] : ', form.subnoticeCode);
         dispatch(callSubnoticeDeleteAPI({form: form}));
 
-        alert("글이 삭제되었습니다.")
-
-        navigate(`/layout/subnotice`, { replace: true});
+        Swal.fire({
+            title: '삭제 완료',
+            icon: 'success'
+          }).then((result) => {
+            if (result.value) {
+                navigate(`/layout/subnotice`, { replace: true});
         window.location.reload();
-    }
+            }
+        })
+    }  
 
     /* 목록 클릭시 이동 */
     const onClickSubnoticeListHandler = () => {
@@ -81,42 +89,50 @@ function SubnoticeDetail() {
     }
     
     return (
-         <>
-         { subnoticeDetail &&
-            <div>
-                <input              
-                    className={ SubnoticeDetailCSS.code }  
+        <div> 
+            <div> <br/><br/><br/>
+            <table className={ SubnoticeDetailCSS.subNoticeInsertTable }>
+                <tbody>
+                    <tr>
+                    <td>
+                    <input     
+                    className={ SubnoticeDetailCSS.code }
                     name='lectureName'
                     readOnly={updateMode ? false : true}
                     onChange={ onChangeHandler }
-                    value={ subnoticeDetail && subnoticeDetail.lecture?.lectureName || ''}
-                >
-                </input>
+                    value={ subnoticeDetail && subnoticeDetail.lecture?.lectureName || ''}/>
+                    </td>
+                </tr>
 
-                <input              
-                    className={ SubnoticeDetailCSS.detailtitle }  
+                <tr>
+                <td>
+                <input     
+                    className={ SubnoticeDetailCSS.subNoticeTitle } 
                     name='subnoticeTitle'
                     readOnly={updateMode ? false : true}
                     onChange={ onChangeHandler }
                     value={ (!updateMode ? subnoticeDetail.subnoticeTitle : form.subnoticeTitle) || ''}
-                >
-                </input>
+                />
+                </td>
+                </tr>
 
-                <textarea 
-                    className={ SubnoticeDetailCSS.detailcontent }  
+                <tr>
+                <td colSpan={2}>
+                <textarea   
                     name='content'
                     readOnly={updateMode ? false : true}
                     onChange={ onChangeHandler }
                     value={ (!updateMode ? subnoticeDetail.content : form.content) || ''}
-                >
-                 </textarea>
-            
+                />
+                 </td>
+                 </tr>
+                 </tbody>
+            </table>
             </div>
-            }
-
+          <br/>
 
             
-            { subnoticeDetail && 
+           
                 <div className= { BtnCSS.sinBtn } >
                        
                     <button className= { BtnCSS.sinBtn2 } 
@@ -153,8 +169,7 @@ function SubnoticeDetail() {
                           
                             </div>
                         </div>
-            }
-        </>
+          </div>
     );
 }
 

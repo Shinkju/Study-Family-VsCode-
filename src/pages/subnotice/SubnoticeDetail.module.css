@@ -1,22 +1,23 @@
 .code{
     font-size : 15px;
-    margin-top : 5%;
-    margin-left: 20%;
+    margin-right: 80%;
     width: 13%;
 }
 
-.detailtitle{
-    font-size : 25px;
-    margin-top : 15px;
-    margin-left: 20%;
-    width: 40%;
+.subNoticeInsertTable {
+    width: 1000px;
+    margin-left:auto; 
+    margin-right:auto;
 }
 
-.detailcontent{
-	font-size : 25px;
-    margin-top : 30px;
-    margin-left: 20%;
-    width: 40%;
-    padding-bottom: 20%;
+.subNoticeInsertTable textarea {
+    width: 900px;
+    height: 300px;
+    padding: 20px;
+    font-size: 20px;
 }
 
+.subNoticeTitle {
+    width: 930px;
+    font-size: 20px;
+}

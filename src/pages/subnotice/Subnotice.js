@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { callSubnoticeListAPI }  from '../../apis/SubnoticeApiCalls';
-import MainCSS from './Main.module.css';
+import SubnoticeCSS from './subnoticePage.module.css';
 import SubnoticeModal from './SubnoticeModal';
 
 function Subnotice() {
@@ -53,6 +53,7 @@ function Subnotice() {
 
     return (
          <>
+         <br/><br/><br/>
          { 
                 subnoticeModal ? 
                 <SubnoticeModal 
@@ -88,15 +89,22 @@ function Subnotice() {
                                     >
                                         <td>{ subnotice.subnoticeCode }</td>
                                         <td>{ subnotice.lecture.lectureName }</td>
-                                        <td className={MainCSS.content}>{ subnotice.subnoticeTitle }</td>
+                                        <td className={SubnoticeCSS.content}>{ subnotice.subnoticeTitle }</td>
                                         <td>{ subnotice.registrationDate }</td>
                                     </tr>
                                 )
                             )
                         }
                     </tbody>                    
-                </table>            
-            </div>
+                </table>       
+                <br/> 
+                <button        
+                            className={ SubnoticeCSS.insertBtn }
+                            onClick={ onClickSubnoticeChangeHandler }    
+                            >                                         
+                                    게시글 등록
+                                </button>         
+            </div><br/>
 
             <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             {
@@ -104,7 +112,7 @@ function Subnotice() {
                 <button
                     onClick={ () => setCurrentPage(currentPage - 1) }
                     disabled={ currentPage === 1 }
-                    className={ MainCSS.pagingBtn }
+                    className={ SubnoticeCSS.pagingBtn2 }
                 >
                     &lt;
                 </button>
@@ -114,7 +122,7 @@ function Subnotice() {
                     <li key={num} onClick={ () => setCurrentPage(num) }>
                         <button
                             style={ currentPage === num ? { backgroundColor : 'orange'} : null }
-                            className={ MainCSS.pagingBtn }
+                            className={ SubnoticeCSS.pagingBtn }
                         >
                             {num}
                         </button>
@@ -126,17 +134,11 @@ function Subnotice() {
                 <button
                     onClick={ () => setCurrentPage(currentPage + 1) }
                     disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}
-                    className={ MainCSS.pagingBtn }
+                    className={ SubnoticeCSS.pagingBtn2 }
                 >
                     &gt;
                 </button>
             } 
-            <button       
-                            /*className={ ReviewDetailCSS.backBtn }*/
-                            onClick={ onClickSubnoticeChangeHandler }    
-                            >                                         
-                                    등록
-                                </button>
             </div>
         </>
     );

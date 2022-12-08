@@ -36,14 +36,17 @@ import MsgSend from './pages/Message/MsgSend';
 import RceiverModal from './pages/Message/Modal/RceiverModal';
 
 import CalendarView from './pages/calendar/CalendarView';
-import CalendarSelect from './pages/calendar/CalendarSelect';
-import CalendarRegist from './pages/calendar/CalendarRegist';
+// import CalendarSelect from './pages/calendar/CalendarSelect';
+// import CalendarRegist from './pages/calendar/CalendarRegist';
 
 import StudentMyPage from './pages/Student/StudentMyPage';
 import ProfessorMyPage from './pages/Professor/ProfessorMyPage';
 import ProfessorLectureList from './pages/Professor/ProfessorLectureList';
 import ProfessorStudentList from './pages/Professor/ProfessorStudentList';
+<<<<<<< HEAD
 // import ProfessorEval from './pages/Professor/ProfessorEval';
+=======
+>>>>>>> 3d451bfb47c0b862c1f232788e1d262d7d0b07d8
 
 function App() {
   
@@ -89,8 +92,8 @@ function App() {
 
               {/* 관리자 */}
               <Route path="calendarView" element={ <CalendarView/> }/>
-              <Route path="calendarView/:calendarCode" element={ <CalendarSelect/> }/>
-              <Route path="calendarView/regist" element={ <CalendarRegist/> }/>
+              {/* <Route path="calendarView/:calendarCode" element={ <CalendarSelect/> }/>
+              <Route path="calendarView/regist" element={ <CalendarRegist/> }/> */}
 
             </Route>
 

@@ -1,6 +1,6 @@
 import { GET_CALENDARS, GET_CALENDAR, POST_CALENDAR, PUT_CALENDAR, DELETE_CALENDAR } from "../modules/CalendarModule";
 
-export const callCalendarViewApi = ({}) => {
+export const callCalendarViewApi = ({form}) => {
 
     const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8001/api/calendarView`;
 
@@ -12,7 +12,15 @@ export const callCalendarViewApi = ({}) => {
                 "Content-Type" : "application/json",
                 "Accept" : "*/*",
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
-            }
+            },
+            body : JSON.stringify({
+                calendarCode : form.calendarCode,
+                calendarDate : form.calendarDate,
+                calendarContent : form.calendarContent,
+                calendarStatus : form.calendarStatus,
+                calendarType : form.calendarType,
+                calendarDepartmentCode : form.calendarDepartmentCode
+            })
         })
         .then(response => response.json());
 

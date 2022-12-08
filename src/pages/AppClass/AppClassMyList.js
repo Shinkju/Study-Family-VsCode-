@@ -5,6 +5,7 @@ import { callLectureStuListAPI } from '../../apis/LectureApiCalls';
 import { callAppClassDeleteAPI, callAppClassMyListAPI  } from '../../apis/AppClassApiCalls';
 import AppClassCSS from './AppClass.module.css';
 import SubPlan from '../SubPlan/SubPlan';
+import Swal from 'sweetalert2'
 
 function AppClassMyList() {
 
@@ -38,18 +39,24 @@ function AppClassMyList() {
 
     /* 수강취소 버튼 이벤트 */
         const onClickAppClassDeleteHandler = (lectureCode) => {
-            console.log('[AppClassMyList 수강취소 번호] : ', lectureCode);
+           
             dispatch(callAppClassDeleteAPI(lectureCode));
-            alert("수강 취소 되었습니다.");
-            window.location.reload();
-    }
+
+            Swal.fire({
+                title: '수강 취소 완료',
+                icon: 'success'
+              }).then((result) => {
+                if (result.value) {
+                    window.location.reload();
+                }
+            })
+        }
 
 
 
     return (
         <>
-
-        신청한 과목
+                <br/>
                 <div>
                 <table>
                     <colgroup>
@@ -73,7 +80,6 @@ function AppClassMyList() {
                           <th>수강신청</th>
                           <th>수강인원</th>
                           <th>강의계획서</th>
-                            <th></th>
                         </tr>
                     </thead>
 
@@ -109,7 +115,7 @@ function AppClassMyList() {
                     </tbody>   
                     </table>
                     {modalOpen && <SubPlan setModalOpen={setModalOpen} lectureCode = {lectureCode} />}
-                    <div className= { AppClassCSS.sinBtn } >
+                    <div className= { AppClassCSS.sinBtn } ><br/>
                     <button onClick={ onClickAppListHandler }
                     className= { AppClassCSS.sinBtn2 }> 목록 </button></div>
                     

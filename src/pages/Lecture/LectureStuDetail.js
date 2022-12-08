@@ -81,7 +81,7 @@ function LectureStuDetail(){
             <div style={ { zindex:99 } }>
             
                 <div>
-                    <div style={{ marginLeft:450, paddingTop:19 }}>
+                    <div style={{ marginLeft:450, paddingTop:19 }}><br/>
                         <h2
                             style={{  float:'left', cursor:"pointer", fontSize:25 }}
                             onClick={ onClickSubNoticeHandler }
@@ -100,7 +100,7 @@ function LectureStuDetail(){
                             style={{ marginLeft:350, paddingTop:30 }}
                         >{ lectureDetail?.lectureName }  /  { lectureDetail?.professor?.professorName } 교수</h3>
                     </div>
-                </div><br/>
+                </div>
 
                 <div>
                     { 

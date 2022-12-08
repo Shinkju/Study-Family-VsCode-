@@ -70,13 +70,11 @@ function AppClass() {
                     window.location.reload();
                 }
             })
-        } 
-        
-        }
+        }}
 
     return (
         <>
-      
+                <br/>
                 <div>
                 <table>
                     <colgroup>
@@ -100,7 +98,6 @@ function AppClass() {
                           <th>수강신청</th>
                           <th>수강인원</th>
                          <th>강의계획서</th>
-                            <th></th>
                         </tr>
                     </thead>
 
@@ -141,10 +138,10 @@ function AppClass() {
                     </tbody>    
                     </table>
                     {modalOpen && <SubPlan setModalOpen={setModalOpen} lectureCode = {lectureCode} />}
-                    <div className= { AppClassCSS.sinBtn } >
+                    <div className= { AppClassCSS.sinBtn } > <br/>
                     <button className= { AppClassCSS.sinBtn2 } onClick= {onClickAppClassListHandler}> 신청목록 </button>
                   </div> 
-                  </div>
+                  </div><br/>
 
 
 

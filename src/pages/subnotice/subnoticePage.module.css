@@ -13,6 +13,15 @@
     font-weight: bold;
 }
 
+.pagingBtn2{
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+    height: 10%;
+   
+}
+
 .pagingBtn:hover{
     cursor: pointer;
     background-color: burlywood;
@@ -20,4 +29,9 @@
 
 .content{
     cursor: pointer;
+}
+
+.insertBtn {
+    margin-left: 40px;
+    margin-top: 15px;
 }

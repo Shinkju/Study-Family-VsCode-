@@ -64,25 +64,26 @@ function Navbar() {
         <div>
             <ul className={ NavbarCSS.NavlistUl }>
                 <div>
-                    <ul>
-                        { memberDetail && 
+                    { memberDetail && 
                         <div>
-                            
+                            <img 
+                                src="/images/logo2.png" 
+                                alt=""
+                                className={ NavbarCSS.imgLogo }
+                            ></img>
                             <div>
-                                <img src="/images/admin.ico" alt=""></img>
-                            </div>
-                            <div >
-                            <strong>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
-                            <strong>{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentNo || '' }</strong>
-                            <p>{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</p>
-                            { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
-                            { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
-                            <AfterLogin> 로그아웃</AfterLogin>
+                                <strong  className={ NavbarCSS.myInfoNav }>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
+                                <strong style={{ marginLeft:20, marginRight:15 }} >{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentCode || '' }</strong>
+                                <strong  >{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</strong>
+                                <strong style={{ float:"right", marginBottom:500 }}>
+                                    { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
+                                    { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
+                                    <AfterLogin> 로그아웃</AfterLogin>
+                                </strong>
                             </div>
                             
                         </div>
-                        } 
-                   </ul>
+                    } 
                 </div>
                 {/* 학생 */}
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/lectureStuList">강의실</NavLink></li> }

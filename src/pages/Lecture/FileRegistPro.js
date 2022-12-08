@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { callRegistFileAPI } from '../../apis/LectureApiCalls';
 import React from "react";
 import { useNavigate  } from "react-router-dom";
+import FileRegistCSS from './FileRegist.module.css';
 
 function FileRegistPro(){
 
@@ -98,16 +99,17 @@ function FileRegistPro(){
 
     return(
         
-        <div>
+        <div style={{ marginLeft:600, paddingTop:100 }}>
             <div>
-                <table>
+                <table className={ FileRegistCSS.tbodySt }>
                     <tbody>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>회차 코드</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="number"
                                     name="lectureWeek"
                                     onChange={ onChangeHandler }
@@ -115,11 +117,12 @@ function FileRegistPro(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>회차</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="text"
                                     name="week"
                                     onChange={ onChangeHandler }
@@ -127,11 +130,12 @@ function FileRegistPro(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>시작일</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="date"
                                     name="startDate"
                                     onChange={ onChangeHandler }
@@ -139,11 +143,12 @@ function FileRegistPro(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>마감일</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="date"
                                     name="endDate"
                                     onChange={ onChangeHandler }
@@ -151,11 +156,12 @@ function FileRegistPro(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>자료명</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="text"
                                     name="originName"
                                     onChange={ onChangeHandler }
@@ -163,11 +169,12 @@ function FileRegistPro(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>자료 타입</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     name="fileType"
                                     onChange={ onChangeHandler }
                                 />
@@ -177,36 +184,45 @@ function FileRegistPro(){
                 </table>
             </div>
             <div>
-                    { videoUrl && <video 
-                            src={ videoUrl } 
-                            alt="preview"
-                            autoPlay={ true }
-                            muted ={ true }
-                        />}
-                    <div>
-                        <input
-                            type="file"
-                            name="lectureFiles"
-                            accept = "image/jpg, image/jpeg, image/png, video/*"
-                            ref={ fileInput }
-                            onChange={ handleChange }
-                            multiple={true}
-                            style={{ display: "none" }}
-                        />  
-                        <button onClick={handleButtonClick}>파일 업로드</button>
-                    </div>
-            </div>
-            <div>
-                <button
-                    onClick={ onClickLectureRegistHandler }
-                >
-                    등록 하기
-                </button>
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    목록
-                </button>
+                <div style={{ paddingTop:30 }}>
+                    <strong>자료 영상 미리보기</strong>
+                    <p>
+                        { videoUrl && <video 
+                                src={ videoUrl } 
+                                alt="preview"
+                                autoPlay={ true }
+                                muted ={ true }
+                            />}
+                    </p>
+                </div>
+                <div>
+                    <input
+                        type="file"
+                        name="lectureFiles"
+                        accept = "image/jpg, image/jpeg, image/png, video/*"
+                        ref={ fileInput }
+                        onChange={ handleChange }
+                        multiple={true}
+                        style={{ display: "none" }}
+                    />
+                    <button 
+                        onClick={handleButtonClick}
+                    >
+                        파일 업로드
+                    </button>
+                    <button
+                        onClick={ () => navigate(-1) }
+                        style={{ float:"right", marginRight:330, marginLeft:4 }}
+                    >
+                        목록
+                    </button>
+                    <button
+                        onClick={ onClickLectureRegistHandler }
+                        style={{ float:"right" }}
+                    >
+                        등록 하기
+                    </button>
+                </div>
             </div>
         </div>
         

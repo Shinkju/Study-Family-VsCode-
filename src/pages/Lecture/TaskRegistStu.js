@@ -2,7 +2,8 @@ import { callRegistTaskAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate  } from "react-router-dom";
-import lectureListStuCSS from './LectureStu_module.css';
+import FileRegistCSS from './FileRegist.module.css';
+import Swal from 'sweetalert2'
 
 function TaskRegistStu(){
 
@@ -74,24 +75,35 @@ function TaskRegistStu(){
             form : formData
         }));
 
-        navigate(-1)
-        alert('과제 등록이 완료 되었습니다.');
+        Swal.fire({
+            title: '과제 등록 성공',
+            text: "과제 등록이 완료 되었습니다.",
+            icon: 'success'
+          }).then((result) => {
+            if (result.value) {
+                navigate(-1) 
+                window.location.reload();
+            }
+        })
     }
 
 
 
     return(
         
-        <div style={{ marginLeft:600, paddingTop:200 }}>
-            <div>
-                <table style={{ width:800, height:300 }}>
+        <div style={{ paddingTop:130 }}>
+            <h1 style={{ textAlign:'center' }}>과제 제출</h1>
+            <div> 
+                <table className={ FileRegistCSS.tbodySt }>
+                    <p style={{ width:300, height:10}}></p>
                     <tbody>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>자료 코드</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="number"
                                     name="task"
                                     style={{ width:400 }}
@@ -100,25 +112,29 @@ function TaskRegistStu(){
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>자료명</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="text"
                                     name="originName"
+                                    style={{ width:400 }}
                                     onChange={ onChangeHandler }
                                 />
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td className={ FileRegistCSS.labelSt }>
                                 <label>자료 타입</label>
                             </td>
                             <td>
                                 <input
+                                    className={ FileRegistCSS.inputBox }
                                     type="text"
                                     name="fileType"
+                                    style={{ width:400 }}
                                     onChange={ onChangeHandler }
                                 />
                             </td>
@@ -127,12 +143,14 @@ function TaskRegistStu(){
                 </table>
             </div>
             <div>
+                <div style={{ paddingTop:30 }}>
                     { imgUrl && <img 
                             src={ imgUrl } 
                             alt="preview"
                             autoPlay={ true }
                             muted ={ true }
                         />}
+                </div>
                     <div>
                         <input
                             type="file"
@@ -143,20 +161,25 @@ function TaskRegistStu(){
                             multiple={true}
                             style={{ display: "none" }}
                         />  
-                        <button onClick={handleButtonClick}>파일 업로드</button>
+                        <button 
+                            style={{ marginLeft:40 }}
+                            onClick={handleButtonClick}
+                        >
+                            파일 업로드
+                        </button>
+                        <button
+                            onClick={ () => navigate(-1) }
+                            style={{ float:"right", marginRight:50, marginLeft:4 }}
+                        >
+                            목록
+                        </button>
+                        <button
+                            onClick={ onClickLectureRegistHandler }
+                            style={{ float:"right" }}
+                        >
+                            등록 하기
+                        </button>
                     </div>
-            </div>
-            <div>
-                <button
-                    onClick={ onClickLectureRegistHandler }
-                >
-                    등록 하기
-                </button>
-                <button
-                    onClick={ () => navigate(-1) }
-                >
-                    목록
-                </button>
             </div>
         </div>
         

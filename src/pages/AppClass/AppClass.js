@@ -6,6 +6,7 @@ import { callAppClassListAPI } from '../../apis/LectureApiCalls';
 import AppClassCSS from './AppClass.module.css';
 import PageCSS from './Page.module.css';
 import SubPlan from '../SubPlan/SubPlan';
+import Swal from 'sweetalert2'
 
 function AppClass() {
 
@@ -53,13 +54,22 @@ function AppClass() {
     const onClickAppClassHandler = (e) => {
 
         if(e.lecturePersonnel >= e.capacity){
-            alert("수강 인원이 초과되었습니다.")
+            Swal.fire({
+                title: '수강 인원이 초과되었습니다.',
+                icon: 'error'
+              })
         } else {
             dispatch(callAppClassAPI({
                 lectureCode : e.lectureCode
             }));
-            alert("수강 신청되었습니다.");
-            window.location.reload(); 
+            Swal.fire({
+                title: '수강 신청 완료',
+                icon: 'success'
+              }).then((result) => {
+                if (result.value) {
+                    window.location.reload();
+                }
+            })
         } 
         
         }

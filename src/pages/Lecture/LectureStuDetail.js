@@ -2,7 +2,7 @@ import { callLectureStuDetailAPI } from '../../apis/LectureApiCalls';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams,useNavigate } from "react-router-dom";
-import lectureListStuCSS from './LecModal.module.css';
+import lectureListStuCSS from './LectureStu_module.css';
 import LecModal from './Modal/LecModal';
 
 
@@ -70,9 +70,9 @@ function LectureStuDetail(){
 
 
     //쪽지 수신함 화면 넘기기
-    const onClickMsgHandler = () => {
-        navigate("/layout/msgReceiveList", { replace : false });
-    }
+    // const onClickMsgHandler = () => {
+    //     navigate("/layout/msgReceiveList", { replace : false });
+    // }
 
 
     return (
@@ -81,23 +81,23 @@ function LectureStuDetail(){
             <div style={ { zindex:99 } }>
             
                 <div>
-                    <div style={{ marginLeft:450 }}>
+                    <div style={{ marginLeft:450, paddingTop:19 }}>
                         <h2
-                            style={{  float:'left', cursor:"pointer" }}
+                            style={{  float:'left', cursor:"pointer", fontSize:25 }}
                             onClick={ onClickSubNoticeHandler }
                         >
-                            공지 게시판 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            공지 게시판 
                         </h2>
-                        <h2
+                        {/* <h2
                             style={{  float:'right', paddingRight:100, cursor:"pointer"  }}
                             onClick={ onClickMsgHandler }
                         >
                             💌
-                        </h2>
+                        </h2> */}
                     </div><br/>
                     <div>
                         <h3
-                            style={{ marginLeft:350, paddingTop:80 }}
+                            style={{ marginLeft:350, paddingTop:30 }}
                         >{ lectureDetail?.lectureName }  /  { lectureDetail?.professor?.professorName } 교수</h3>
                     </div>
                 </div><br/>

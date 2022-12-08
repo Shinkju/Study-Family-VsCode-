@@ -47,28 +47,28 @@ function LectureProDetail(){
 
 
     //쪽지함 화면 넘기기
-    const onClickMsgHandler = () => {
-        navigate("/layout/msgReceiveList", { replace : false });
-    }
+    // const onClickMsgHandler = () => {
+    //     navigate("/layout/msgReceiveList", { replace : false });
+    // }
  
 
     return(
         <>
            
             <div>
-                <div style={{ marginLeft:450 }}>
+                <div style={{ marginLeft:450, paddingTop:19 }}>
                         <h2
-                            style={{  float:'left', cursor:"pointer"  }}
+                            style={{  float:'left', cursor:"pointer", fontSize:25 }}
                             onClick={ onClickSubNoticeHandler }
                         >
                             공지 게시판
                         </h2>
-                        <h2
+                        {/* <h2
                             style={{  float:'right', paddingRight:100, cursor:"pointer" }}
                             onClick={ onClickMsgHandler }
                         >
                             💌
-                        </h2>
+                        </h2> */}
                 </div><br/>
                 <div>
                 <h3

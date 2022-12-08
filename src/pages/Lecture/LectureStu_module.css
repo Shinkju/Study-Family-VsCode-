@@ -103,3 +103,8 @@ button:hover {
 .registTable {
   margin-left: 500px;
 }
+
+div>div>div>h2:hover {
+  opacity: 0.1;
+  transition: 0.2s;
+}

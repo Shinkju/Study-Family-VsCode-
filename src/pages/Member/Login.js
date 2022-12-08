@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decodeJwt } from '../../utils/tokenUtils';
 import { callLoginAPI } from '../../apis/MemberApiCalls';
 import LoginCss from './Login.module.css';
+import Swal from 'sweetalert2'
 
 function Login(){
 
@@ -23,18 +24,25 @@ function Login(){
     useEffect(() => {
         if(login.status === 200){
 
-            alert('로그인 완료!');
+            Swal.fire({
+                title: '로그인 성공',
+                // text: "",
+                icon: 'success'
+              }).then((result) => {
+                if (result.value) {
+                    if(decoded === 'ROLE_STUDENT'){
+                        console.log("[Login] Login SUCCESS {}", login);
+                        navigate("/layout/lectureStuList", { replace: true });  //리듀서값 변경 시 동작
+                    } else if(decoded === 'ROLE_PROFESSOR'){
+                        console.log("[Login] Login SUCCESS {}", login);
+                        navigate("/layout/lectureProList", { replace: true });
+                    } else if(decoded === 'ROLE_ADMIN'){
+                        console.log("[Login] Login SUCCESS {}", login);
+                        navigate("/management/student", { replace: true });
+                    }
+                }
+            })
 
-            if(decoded === 'ROLE_STUDENT'){
-                console.log("[Login] Login SUCCESS {}", login);
-                navigate("/layout/lectureStuList", { replace: true });  //리듀서값 변경 시 동작
-            } else if(decoded === 'ROLE_PROFESSOR'){
-                console.log("[Login] Login SUCCESS {}", login);
-                navigate("/layout/lectureProList", { replace: true });
-            } else if(decoded === 'ROLE_ADMIN'){
-                console.log("[Login] Login SUCCESS {}", login);
-                navigate("/management/student", { replace: true });
-            }
         }
     }
     ,[login]

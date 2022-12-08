@@ -1,6 +1,6 @@
 import { GET_MEMBER, POST_LOGIN, POST_PROFESSORREGIST, POST_STUDENTREGIST, POST_REGIST,
   GET_STUDENT, PUT_STUDENT, GET_PROFESSOR, PUT_PROFESSOR } from "../modules/MemberModule";
-
+import Swal from 'sweetalert2'
 
 /* 로그인 API - Form 형식 */
 export const callLoginAPI = ({form}) => {
@@ -66,14 +66,29 @@ return async (dispatch, getState) => {
 
  console.log('[MemberApiCalls] callProfessorRegistAPI RESULT : ', result);        
  
+
+
+
  if(result.status === 201){
      dispatch({ type: POST_PROFESSORREGIST,  payload: result });
-     alert("교수님, 회원가입 완료.");
-     window.location = "http://localhost:3000/";
+    Swal.fire({
+        title: '교수님, 회원가입 완료',
+        icon: 'success'
+      }).then((result) => {
+        if (result.value) {
+            window.location = "http://localhost:3000/";
+        }
+    })
  }
  else{
-     alert("교수님, 다시 확인하세요.");
-     window.location.reload();
+     Swal.fire({
+        title: '교수님, 다시 확인하세요.',
+        icon: 'warning'
+      }).then((result) => {
+        if (result.value) {
+            window.location.reload();
+        }
+    })
  }
 
 };
@@ -112,12 +127,24 @@ return async (dispatch, getState) => {
  
  if(result.status === 201){
      dispatch({ type: POST_STUDENTREGIST,  payload: result });
-     alert("학생, 회원가입 완료");
-     window.location = "http://localhost:3000/";
+     Swal.fire({
+        title: '학생, 회원가입 완료',
+        icon: 'success'
+      }).then((result) => {
+        if (result.value) {
+            window.location = "http://localhost:3000/";
+        }
+    })
  }
  else{
-     alert("학생, 다시 확인하세요.");
-     window.location.reload();
+    Swal.fire({
+        title: '학생, 다시 확인하세요.',
+        icon: 'warning'
+      }).then((result) => {
+        if (result.value) {
+            window.location.reload();
+        }
+    })
  }
 };
 }

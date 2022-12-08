@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import LecModalCSS from './LectureRegistModal.module.css';
 import React from 'react';
 import ReactPlayer from 'react-player'
+import Swal from 'sweetalert2'
 import { 
     callCourseHistoryAPI
     // callCourseHistoryUpdateAPI
@@ -65,10 +66,22 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
             form : formData
         }));
 
+        
         //모달 닫기
         setLecModal(false)
-        alert("시청중인 강의가 종료됩니다.");
-        window.location.reload();
+
+        //알럿 및 새로고침
+        Swal.fire({
+		  title: '강의 종료',
+		  text: "시청중인 강의가 종료됩니다.",
+		  icon: 'success'
+		}).then((result) => {
+		  if (result.value) {
+            window.location.reload();
+		  }
+		})
+
+            
     }
     
 
@@ -103,8 +116,16 @@ function LecModal({savedRoute, lectureWeekCode, setLecModal}) {
         console.log("formData = ", form);
 
         setLecModal(false)
-        alert("강의 시청이 완료되었습니다.");
-        window.location.reload();
+        //알럿 및 새로고침
+        Swal.fire({
+		  title: '강의 종료',
+		  text: "강의 시청이 완료되었습니다.",
+		  icon: 'success'
+		}).then((result) => {
+		  if (result.value) {
+            window.location.reload();
+		  }
+		})
     }
     
     /* seekTo() : 재생 컨트롤러를 인식하는 메소드

@@ -4,6 +4,7 @@ import { callRegistFileAPI } from '../../apis/LectureApiCalls';
 import React from "react";
 import { useNavigate  } from "react-router-dom";
 import FileRegistCSS from './FileRegist.module.css';
+import Swal from 'sweetalert2'
 
 function FileRegistPro(){
 
@@ -89,19 +90,29 @@ function FileRegistPro(){
             form : formData
         }));
 
-        //등록 후 디테일 페이지로 돌아가기
-        alert('수업자료가 등록 되었습니다.');
-        navigate(-1) 
-        // window.location.reload();
+        //등록 후 디테일 페이지로 돌아가기        
+        Swal.fire({
+            title: '자료 등록 성공',
+            text: "수업자료가 등록 되었습니다.",
+            icon: 'success'
+          }).then((result) => {
+            if (result.value) {
+                navigate(-1) 
+                window.location.reload();
+            }
+          })
+
     };
 
 
 
     return(
         
-        <div style={{ marginLeft:600, paddingTop:100 }}>
+        <div style={{ paddingTop:130 }}>
+            <h1 style={{ textAlign:'center' }}>자료 등록</h1>
             <div>
                 <table className={ FileRegistCSS.tbodySt }>
+                    <p style={{ width:300, height:10}}></p>
                     <tbody>
                         <tr>
                             <td className={ FileRegistCSS.labelSt }>
@@ -184,8 +195,12 @@ function FileRegistPro(){
                 </table>
             </div>
             <div>
-                <div style={{ paddingTop:30 }}>
-                    <strong>자료 영상 미리보기</strong>
+                <div style={{ paddingTop:30, marginLeft:40 }}>
+                    <strong
+                        style={{ paddingTop:30, marginLeft:40 }}
+                    >
+                        자료 영상 미리보기
+                    </strong>
                     <p>
                         { videoUrl && <video 
                                 src={ videoUrl } 
@@ -207,12 +222,13 @@ function FileRegistPro(){
                     />
                     <button 
                         onClick={handleButtonClick}
+                        style={{ marginLeft:40 }}
                     >
                         파일 업로드
                     </button>
                     <button
                         onClick={ () => navigate(-1) }
-                        style={{ float:"right", marginRight:330, marginLeft:4 }}
+                        style={{ float:"right", marginRight:50, marginLeft:4 }}
                     >
                         목록
                     </button>

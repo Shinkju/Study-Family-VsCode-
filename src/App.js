@@ -84,7 +84,6 @@ function App() {
               <Route path="professorMyPage" element={<ProfessorMyPage/>}/>
               <Route path="professorLectureList" element={<ProfessorLectureList/>}/>
               <Route path="professorStudentList/:lectureCode" element={<ProfessorStudentList/>}/>
-              {/* <Route path="professorEval" element={<ProfessorEval/>}/> */}
 
               {/* 관리자 */}
               <Route path="calendarView" element={ <CalendarView/> }/>

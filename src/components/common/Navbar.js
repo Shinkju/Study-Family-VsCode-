@@ -61,7 +61,7 @@ function Navbar() {
 
     return (
         <>
-        <div>
+        <div style={{ margin:0 }}>
             <ul className={ NavbarCSS.NavlistUl }>
                 <div>
                     { memberDetail && 
@@ -73,34 +73,39 @@ function Navbar() {
                             ></img>
                             <div>
                                 <strong  className={ NavbarCSS.myInfoNav }>{ memberDetail?.professor?.professorName || memberDetail?.student?.studentName || '관리자' }님</strong><br/>
-                                <strong style={{ marginLeft:20, marginRight:15 }} >{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentCode || '' }</strong>
+                                <strong style={{ marginLeft:20, marginRight:18 }} >{ memberDetail?.professor?.professorCode || memberDetail?.student?.studentCode || '' }</strong>
                                 <strong  >{ memberDetail?.professor?.professor?.department?.departmentName || memberDetail?.student?.department?.departmentName || '' }</strong>
-                                <strong style={{ float:"right", marginBottom:500 }}>
-                                    { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
-                                    { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
-                                    <AfterLogin> 로그아웃</AfterLogin>
-                                </strong>
                             </div>
                             
                         </div>
                     } 
                 </div>
+                <li>
                 {/* 학생 */}
                 { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/lectureStuList">강의실</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/AppClass">수강신청</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
-                { decoded === "ROLE_STUDENT" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
+                { decoded === "ROLE_STUDENT" &&<li><hr/><NavLink to="/layout/AppClass">수강신청</NavLink></li> }
+                { decoded === "ROLE_STUDENT" &&<li><hr/><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
+                { decoded === "ROLE_STUDENT" &&<li><hr/><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
 
                  {/* 관리자 */}
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/management/student">인사관리</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
-                { decoded === "ROLE_ADMIN" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
+                { decoded === "ROLE_ADMIN" &&<li><hr/><NavLink to="/management/student">인사관리</NavLink></li> }
+                { decoded === "ROLE_ADMIN" &&<li><hr/><NavLink to="/layout/calendarView">학과일정</NavLink></li> }
+                { decoded === "ROLE_ADMIN" &&<li><hr/><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
 
                 {/* 교수 */}
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/lectureProList">강의실</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/calendarView">학과일정</NavLink></li>}
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/layout/professorLectureList">학생관리</NavLink></li> }
-                { decoded === "ROLE_PROFESSOR" &&<li><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
+                { decoded === "ROLE_PROFESSOR" &&<li><hr/><NavLink to="/layout/lectureProList">강의실</NavLink></li> }
+                { decoded === "ROLE_PROFESSOR" &&<li><hr/><NavLink to="/layout/calendarView">학과일정</NavLink></li>}
+                { decoded === "ROLE_PROFESSOR" &&<li><hr/><NavLink to="/layout/professorLectureList">학생관리</NavLink></li> }
+                { decoded === "ROLE_PROFESSOR" &&<li><hr/><NavLink to="/board/schoolnotice">공지사항</NavLink></li> }
+
+                    <div>
+                        { memberDetail && <>
+                            { decoded === "ROLE_STUDENT" &&<li><NavLink to ="/layout/studentMyPage">마이페이지</NavLink></li> }
+                            { decoded === "ROLE_PROFESSOR" &&<li><NavLink to ="/layout/professorMyPage">마이페이지</NavLink></li> }
+                            <hr/><AfterLogin> 로그아웃</AfterLogin>
+                        </>}
+                    </div>
+                </li>
                 
             </ul>
         </div>

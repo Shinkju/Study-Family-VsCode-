@@ -1,3 +1,4 @@
+
 * {
     font-family: 'Y_Spotlight';
     
@@ -28,8 +29,10 @@
 
 .NavlistUl li {
     min-width: 170px;
-    height: auto;
+    height: 30px;
     text-align: left;
+    margin-left: 50px;
+    font-size: 20px;
 }
 
 a {
@@ -39,6 +42,6 @@ a {
 
 a:hover, a:focus, a:active{
     text-decoration: none;
-    color: slateblue;
+    color: #9A30AE;
     font-weight: bold;
 }

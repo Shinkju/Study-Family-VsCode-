@@ -76,7 +76,7 @@ function ProfessorManagement() {
                 </tbody>                    
             </table>         
             <div>
-                <button 
+                <button className={ ProfessorManagementCSS.insertBtn }
                     onClick={ onClickProfessorInsert }
                 >
                     교수 등록
@@ -85,7 +85,7 @@ function ProfessorManagement() {
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(professorList) &&
-            <button 
+            <button className={ ProfessorManagementCSS.leftBtn }
                 onClick={() => setCurrentPage(currentPage - 1)} 
                 disabled={currentPage === 1}
                 
@@ -104,7 +104,7 @@ function ProfessorManagement() {
             </li>
             ))}
             { Array.isArray(professorList) &&
-            <button 
+            <button  className={ ProfessorManagementCSS.rightBtn }
                 
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}

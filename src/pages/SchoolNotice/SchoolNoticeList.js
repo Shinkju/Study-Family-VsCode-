@@ -43,6 +43,7 @@ function SchoolNoticeList() {
     return (
         <>
         <div>
+            
             <table className={ SchoolNoticeCSS.schoolNoticeDetailTable }>
                 <colgroup>
                     <col width="15%" />
@@ -75,7 +76,7 @@ function SchoolNoticeList() {
             </table>
             <div>
                 
-                <button
+                <button className={ SchoolNoticeCSS.insertBtn }
                     onClick={ onClickSchoolNoticeInsert }
                 >
                     게시글 등록

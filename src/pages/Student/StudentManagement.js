@@ -90,7 +90,7 @@ function StudentManagement() {
             </table>       
             
             <div>
-                <button 
+                <button className={ StudentManagementCSS.insertBtn }
                     onClick={ onClickStudentInsert }
                 >
                     학생 등록
@@ -99,7 +99,7 @@ function StudentManagement() {
         </div>
         <div style={{ listStyleType: "none", display: "flex", justifyContent: "center" }}>
             { Array.isArray(studentList) &&
-            <button 
+            <button className={ StudentManagementCSS.leftBtn }
                 onClick={() => setCurrentPage(currentPage - 1)} 
                 disabled={currentPage === 1}
                 
@@ -118,7 +118,7 @@ function StudentManagement() {
             </li>
             ))}
             { Array.isArray(studentList) &&
-            <button 
+            <button className={ StudentManagementCSS.rightBtn }
                 
                 onClick={() => setCurrentPage(currentPage + 1)} 
                 disabled={currentPage === pageInfo.maxPage || pageInfo.endPage === 1}

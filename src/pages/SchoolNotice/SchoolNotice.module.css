@@ -4,6 +4,7 @@
 
 .schoolNoticeDetailTable {
     width: 1200px;
+    margin-top: 30px;
 }
 
 .schoolNoticeDetailTable input {
@@ -18,6 +19,7 @@
 
 .schoolNoticeInsertTable {
     width: 1000px;
+    margin-top: 30px;
 }
 
 .schoolNoticeTitle {
@@ -38,4 +40,9 @@
 
 .DetailBtn {
     margin: 20px;
+}
+
+.insertBtn {
+    margin-left: 40px;
+    margin-top: 15px;
 }

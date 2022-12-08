@@ -62,7 +62,7 @@ function SchoolNoticeRegistration(){
                                 </td>
                             </tr>
                             <tr>
-                            <td>
+                            <td colSpan={2}>
                                     <label><input className={ SchoolNoticeCSS.schoolNoticeRadio } type="radio" name="departmentCode" onChange={ onChangeHandler } value="1"/>건축학과</label>&nbsp;
                                     <label><input className={ SchoolNoticeCSS.schoolNoticeRadio } type="radio" name="departmentCode" onChange={ onChangeHandler } value="2"/>기계공학과</label>&nbsp;
                                     <label><input className={ SchoolNoticeCSS.schoolNoticeRadio } type="radio" name="departmentCode" onChange={ onChangeHandler } value="3"/>전기공학과</label>&nbsp;

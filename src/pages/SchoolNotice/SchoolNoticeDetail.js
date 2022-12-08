@@ -97,7 +97,7 @@ function SchoolNoticeDetail(){
 
 
                 <div> 
-                <button        
+                <button className={ SchoolNoticeCSS.insertBtn }        
                     onClick={ () => navigate(-1) }            
                 >
                     돌아가기

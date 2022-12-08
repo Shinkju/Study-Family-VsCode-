@@ -31,3 +31,19 @@
 .professorInsertBtn {
     margin-left: 700px;
 }
+
+.insertBtn {
+    margin-left: 40px;
+    margin-top: 15px;
+}
+
+.leftBtn {
+    margin-top: 28px;
+    height: 40px;
+}
+
+.rightBtn {
+    margin-top: 28px;
+    margin-left: 1px;
+    height: 40px;
+}
